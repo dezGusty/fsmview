@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FSMSequenceConfig>
+	<ArrayOfSequence>
+		<FSMSequence>
+			<Name>workflow1</Name>
+			<Description>something something something darkside</Description>
+			<FinalDescription>Done</FinalDescription>
+			<ArrayOfStep>
+				<FSMStep>
+					<Name>seq_trigger1</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+				<FSMStep>
+					<Name>seq_trigger2</Name>
+					<Weight>5</Weight>
+          <TimeoutInSeconds>80</TimeoutInSeconds>
+				</FSMStep>
+				<FSMStep>
+					<Name>seq_trigger3</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+			</ArrayOfStep>
+		</FSMSequence>
+
+		<FSMSequence>
+			<Name>workflow1</Name>
+			<Description>Deploying project including prior online backup</Description>
+			<FinalDescription>Running</FinalDescription>
+			<ArrayOfStep>
+				<FSMStep>
+					<Name>seq_trigger1</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+				<FSMStep>
+					<Name>state_5.db_loading</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+				<FSMStep>
+					<Name>state_6.db_loaded</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+			</ArrayOfStep>
+		</FSMSequence>
+
+  </ArrayOfSequence>
+</FSMSequenceConfig>
