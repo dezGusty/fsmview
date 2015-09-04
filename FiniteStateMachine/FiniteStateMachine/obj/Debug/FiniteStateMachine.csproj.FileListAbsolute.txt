@@ -1,0 +1,13 @@
+D:\Code\FiniteStateMachine\FiniteStateMachine\bin\Debug\FiniteStateMachine.exe.config
+D:\Code\FiniteStateMachine\FiniteStateMachine\bin\Debug\FiniteStateMachine.exe
+D:\Code\FiniteStateMachine\FiniteStateMachine\bin\Debug\FiniteStateMachine.pdb
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.csprojResolveAssemblyReference.cache
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\MainWindow.baml
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\MainWindow.g.cs
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\App.g.cs
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine_MarkupCompile.cache
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.g.resources
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.Properties.Resources.resources
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.csproj.GenerateResource.Cache
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.exe
+D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.pdb

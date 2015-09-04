@@ -24,3 +24,29 @@ C:\Users\Mircea.Solovastru\Desktop\TestGraph\TestGraph\obj\Debug\TestGraph.Prope
 C:\Users\Mircea.Solovastru\Desktop\TestGraph\TestGraph\obj\Debug\TestGraph.csproj.GenerateResource.Cache
 C:\Users\Mircea.Solovastru\Desktop\TestGraph\TestGraph\obj\Debug\TestGraph.exe
 C:\Users\Mircea.Solovastru\Desktop\TestGraph\TestGraph\obj\Debug\TestGraph.pdb
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\TestGraph.exe.config
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph.csprojResolveAssemblyReference.cache
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\App.g.cs
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph_MarkupCompile.cache
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\TestGraph.exe
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\TestGraph.pdb
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\GraphSharp.Controls.dll
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\GraphSharp.dll
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.Data.dll
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.dll
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.Graphviz.dll
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.Serialization.dll
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\WPFExtensions.dll
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.xml
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.Data.xml
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.Graphviz.xml
+D:\New folder\fsmview\TestGraph\TestGraph\bin\Debug\QuickGraph.Serialization.xml
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\MainWindow.g.cs
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph_MarkupCompile.lref
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\MainWindow.baml
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph.g.resources
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph.Properties.Resources.resources
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph.csproj.GenerateResource.Cache
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph.exe
+D:\New folder\fsmview\TestGraph\TestGraph\obj\Debug\TestGraph.pdb
