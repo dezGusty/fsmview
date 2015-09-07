@@ -51,27 +51,6 @@ namespace FiniteStateMachineTest.Graph
             }
         }
 
-        public void CreateRandomGraph()
-        {
-            _graph.Clear();
-            SampleVertex obj1 = new SampleVertex("1");
-            _graph.AddVertex(obj1);
-            SampleVertex obj2 = new SampleVertex("2");
-            _graph.AddVertex(obj2);
-            SampleVertex obj3 = new SampleVertex("3");
-            _graph.AddVertex(obj3);
-            SampleVertex obj4 = new SampleVertex("4");
-            _graph.AddVertex(obj4);
-
-            _graph.AddEdge(new Edge<object>(obj1, obj2));
-            _graph.AddEdge(new Edge<object>(obj1, obj4));
-            _graph.AddEdge(new Edge<object>(obj1, obj3));
-            _graph.AddEdge(new Edge<object>(obj2, obj3));
-            _graph.AddEdge(new Edge<object>(obj2, obj4));
-            _graph.AddEdge(new Edge<object>(obj3, obj4));
-        }
-
-
         public string CreateNodesFromStateMachine(StateMachine machine,string input)
         {
             _graph.Clear();

@@ -6,10 +6,14 @@
         xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
         xmlns:local="clr-namespace:FiniteStateMachineTest.Graph"
         xmlns:tree="clr-namespace:GraphSharp.Algorithms.Layout.Simple.Tree;assembly=GraphSharp"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="650">
 
     <Grid>
-       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
         <Grid.Resources>
 
             <local:ActiveConverter x:Key="activeConverter"/>
@@ -68,24 +72,22 @@
 
         </Grid.Resources>
 
-        <zoom:ZoomControl Name="zoomControl">
+        <zoom:ZoomControl Name="zoomControl" Grid.Column="0" Margin="0,0,272,0">
             <graphsharp:GraphLayout x:Name="graphLayout"
                                 Graph="{Binding Path=Graph}"
                                 LayoutAlgorithmType="ISOM"
                                 OverlapRemovalAlgorithmType="FSM"
-                                HighlightAlgorithmType="Simple"
+                                HighlightAlgorithmType="Simple" Margin="-6,0,-12,0"
                                    >
                 <graphsharp:GraphLayout.LayoutParameters>
                     <tree:SimpleTreeLayoutParameters Direction="LeftToRight" VertexGap="10"   WidthPerHeight="20"></tree:SimpleTreeLayoutParameters>
                 </graphsharp:GraphLayout.LayoutParameters>
-                <graphsharp:EdgeControl></graphsharp:EdgeControl>
-                <graphsharp:EdgeControl>
-                   
-                </graphsharp:EdgeControl>
+
             </graphsharp:GraphLayout>
 
         </zoom:ZoomControl>
-        
-
+        <Button Content="Represent first sequence" Click="Button_Click_2" Margin="393,10,0,267"/>
+        <TextBlock Grid.Column="1" Grid.Row="1"></TextBlock>
+        <TextBlock  HorizontalAlignment="Left" Margin="393,71,0,0" TextWrapping="Wrap" Name="console" VerticalAlignment="Top" Height="239" Width="239"/>
     </Grid>
 </Window>

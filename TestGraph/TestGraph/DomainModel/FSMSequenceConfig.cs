@@ -22,14 +22,22 @@ namespace TestGraph.DomainModel
       this.LoadFromXML(xmlContent);
     }
 
-    public void LoadFromXML(string xmlContent)
+    /// <summary>
+    /// Loads from XML an returns a FSMSequenceConfig object.
+    /// </summary>
+    /// <param name="xmlContent">Content of the XML.</param>
+    /// <returns></returns>
+    public FSMSequenceConfig LoadFromXML(string xmlContent)
     {
       FSMSequenceConfig fsmsSequence = FSMVUtilities.FromXmlString<FSMSequenceConfig>(xmlContent);
-
-      //MessageBox.Show("What a success");
-      // do your work here
+      return fsmsSequence;
     }
 
-    public FSMSequenceConfig() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FSMSequenceConfig"/> class.
+    /// </summary>
+    public FSMSequenceConfig() 
+    {
+    }
   }
 }

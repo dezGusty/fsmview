@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,6 +18,9 @@ namespace TestGraph
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string xml = "../../statemachinecfg.xml";
+        private string xmlSeq = "../../statemachinecfgsequences.xml"; 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
@@ -87,22 +91,55 @@ namespace TestGraph
             var vertex = menuItem.Tag as SampleVertex;
             vertex.Change();
         }
-        private string xml = "../../statemachinecfg.xml";
-        private string xmlSeq = "../../statemachinecfgsequences.xml";
+
         //private string xmlAbloute = "C:/Users/Mircea.Solovastru/Desktop/TestGraph/TestGraph/statemachinecfg.xml";
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          //FSMVConfig conf = new FSMVConfig();
           FSMSequenceConfig seq = new FSMSequenceConfig();
-          //conf.LoadFromXML(xml);
-          seq.LoadFromXML(xmlSeq);
+          seq=seq.LoadFromXML(xmlSeq);
 
-          //foreach(var p in conf.ArrayOfFSMVTrigger)
-          //{
-          //  xmlParse.Items.Add(p.Name + " " + p.SequenceID + " " + p.CommonID);
-          //}
+          if (seq.ArrayOfSequence.Count == 0)
+              MessageBox.Show("Nothing to display!");
+          else
+          {
+              foreach (var p in seq.ArrayOfSequence)
+              {
+                  xmlParse.Items.Add("Name: "+p.Name + "Final description:  " + p.FinalDescription+" Description: "+p.Description);
+                  xmlParse.Items.Add("Steps:");
+                  foreach (var item in p.ArrayOfStep)
+                  {
+                      xmlParse.Items.Add("Name: " + item.Name);
+                  }
+                  xmlParse.Items.Add(" ");
+              }
+          }
+        }
 
-          xmlParse.Items.Add("XML successfully parsed");
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            FSMVConfig seq = new FSMVConfig();
+            seq = seq.LoadFromXML(xml);
+            foreach (var item in seq.ArrayOfFSMVState)
+            {
+                xmlParse.Items.Add("Name of state: " + item.Name + " Default handler: " + item.DefaultHandler);
+                xmlParse.Items.Add("Triggers:");
+                foreach (var it in item.ArrayOfAllowedTrigger)
+                {
+                     xmlParse.Items.Add("Name of trigger: " + it.TriggerName + " State name: " + it.StateName);
+                }
+            }
+
+            foreach (var item in seq.ArrayOfFSMVTrigger)
+            {
+                StringBuilder s = new StringBuilder();
+                if (item.Name.Trim().Length != 0)
+                    s.Append("Trigger name: " +item.Name);
+                if(item.SequenceID.Trim().Length!=0)
+                    s.Append("Trigger SequenceID: " + item.SequenceID);
+                if (item.CommonID.Trim().Length != 0)
+                    s.Append("Trigger CommonID: " + item.CommonID);
+                xmlParse.Items.Add(s);
+            }
         }
     }
 }

@@ -24,3 +24,29 @@ D:\Code\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Graphviz.xml
 D:\Code\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Serialization.xml
 D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Code\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine_MarkupCompile.lref
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\FiniteStateMachine.exe.config
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.exe
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.pdb
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\FiniteStateMachine.exe
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\FiniteStateMachine.pdb
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\GraphSharp.Controls.dll
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\GraphSharp.dll
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Data.dll
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.dll
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Graphviz.dll
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Serialization.dll
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\WPFExtensions.dll
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.xml
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Data.xml
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Graphviz.xml
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\bin\Debug\QuickGraph.Serialization.xml
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachineTest.csprojResolveAssemblyReference.cache
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\MainWindow.g.cs
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\App.g.cs
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine_MarkupCompile.cache
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine_MarkupCompile.lref
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\MainWindow.baml
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.g.resources
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachine.Properties.Resources.resources
+D:\New folder\fsmview\FiniteStateMachine\FiniteStateMachine\obj\Debug\FiniteStateMachineTest.csproj.GenerateResource.Cache

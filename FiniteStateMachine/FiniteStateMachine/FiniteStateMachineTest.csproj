@@ -82,6 +82,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DomainModel\AllowedTrigger.cs" />
+    <Compile Include="DomainModel\FSMSequence.cs" />
+    <Compile Include="DomainModel\FSMSequenceConfig.cs" />
+    <Compile Include="DomainModel\FSMStep.cs" />
+    <Compile Include="DomainModel\FSMVConfig.cs" />
+    <Compile Include="DomainModel\FSMVState.cs" />
+    <Compile Include="DomainModel\FSMVTrigger.cs" />
+    <Compile Include="DomainModel\FSMVUtilities.cs" />
     <Compile Include="Graph\ActiveConverter.cs" />
     <Compile Include="Graph\MyGraph.cs" />
     <Compile Include="Graph\SampleVertex.cs" />

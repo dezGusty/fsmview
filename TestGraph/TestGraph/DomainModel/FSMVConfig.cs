@@ -37,15 +37,15 @@ namespace TestGraph.DomainModel
       this.LoadFromXML(xmlContent);
     }
 
-    public void LoadFromXML(string xmlContent)
+    public FSMVConfig LoadFromXML(string xmlContent)
     {
       FSMVConfig fsmvConfigs = FSMVUtilities.FromXmlString<FSMVConfig>(xmlContent);
-
-      //MessageBox.Show("What a success");
-      // do your work here
+      return fsmvConfigs;
     }
 
-
-    public FSMVConfig() {}
+    public FSMVConfig() 
+    {
+    
+    }
   }
 }

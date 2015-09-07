@@ -25,8 +25,6 @@ namespace TestGraph.DomainModel
       get;
       set;
     }
-    
-
-
+   
   }
 }
