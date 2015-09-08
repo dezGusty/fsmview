@@ -6,7 +6,7 @@
         xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
         xmlns:local="clr-namespace:FiniteStateMachineTest.Graph"
         xmlns:tree="clr-namespace:GraphSharp.Algorithms.Layout.Simple.Tree;assembly=GraphSharp"
-        Title="MainWindow" Height="350" Width="650">
+        Title="MainWindow" Height="750" Width="1000">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -72,12 +72,12 @@
 
         </Grid.Resources>
 
-        <zoom:ZoomControl Name="zoomControl" Grid.Column="0" Margin="0,0,272,0">
+        <zoom:ZoomControl Name="zoomControl" Grid.Column="0" Margin="0,0,301,0">
             <graphsharp:GraphLayout x:Name="graphLayout"
                                 Graph="{Binding Path=Graph}"
                                 LayoutAlgorithmType="ISOM"
                                 OverlapRemovalAlgorithmType="FSM"
-                                HighlightAlgorithmType="Simple" Margin="-6,0,-12,0"
+                                HighlightAlgorithmType="Simple" Margin="-7,0,-9,0"
                                    >
                 <graphsharp:GraphLayout.LayoutParameters>
                     <tree:SimpleTreeLayoutParameters Direction="LeftToRight" VertexGap="10"   WidthPerHeight="20"></tree:SimpleTreeLayoutParameters>
@@ -86,8 +86,10 @@
             </graphsharp:GraphLayout>
 
         </zoom:ZoomControl>
-        <Button Content="Represent first sequence" Click="Button_Click_2" Margin="393,10,0,267"/>
+        <Button Content="Represent first sequence" Click="Show_Graph" Margin="725,10,0,670"/>
         <TextBlock Grid.Column="1" Grid.Row="1"></TextBlock>
-        <TextBlock  HorizontalAlignment="Left" Margin="393,71,0,0" TextWrapping="Wrap" Name="console" VerticalAlignment="Top" Height="239" Width="239"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="725,131,0,0" TextWrapping="Wrap" Name="console" VerticalAlignment="Top" Height="579" Width="267"/>
+        <ComboBox   Name="cmbBox" HorizontalAlignment="Left" Margin="725,64,0,0" VerticalAlignment="Top" Width="262" Height="36" ItemsSource="{Binding Path=Sequences}" DisplayMemberPath="Name" SelectionChanged="cmbBox_SelectionChanged" >
+        </ComboBox>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using FiniteStateMachine.Machine;
+﻿using FiniteStateMachine.DomainModel;
+using FiniteStateMachine.Machine;
 using FiniteStateMachineTest.DomainModel;
 using FiniteStateMachineTest.Machine;
 using QuickGraph;
@@ -17,7 +18,7 @@ namespace FiniteStateMachineTest.Graph
 
         public MyGraph()
         {
-           
+
         }
 
         public BidirectionalGraph<object, IEdge<object>> Graph
@@ -51,37 +52,11 @@ namespace FiniteStateMachineTest.Graph
             }
         }
 
-        public string CreateNodesFromStateMachine(StateMachine machine,string input)
+        public List<FSMSequence> Sequences
         {
-            _graph.Clear();
-
-            List<SampleVertex> aList = new List<SampleVertex>();
-            foreach (var item in machine.MachineStates)
-            {
-                aList.Add(new SampleVertex(item.ToString()));
-            }
-
-            foreach (SampleVertex item in aList)
-            {
-                _graph.AddVertex(item);
-            }
-
-            List<PairOfStates> edges = new List<PairOfStates>();
-            edges = machine.GetEdges(input);
-
-            foreach (PairOfStates item in edges)
-            {
-                SampleVertex aux1 = aList.Where(i => i.Text == item.FirstState).FirstOrDefault();
-                SampleVertex aux2 = aList.Where(i => i.Text == item.SecondState).FirstOrDefault();
-
-                if(!aux1.Equals(" ") && !aux2.Equals(" "))
-                {
-                    Edge <object>e = new Edge<object>(aux1, aux2);
-                    
-                    _graph.AddEdge(new Edge<object>(aux1, aux2));
-                }
-            }
-            return "DCS";
+            get;
+            set;
         }
+
     }
 }

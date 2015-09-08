@@ -23,7 +23,7 @@
 		</FSMSequence>
 
 		<FSMSequence>
-			<Name>workflow1</Name>
+			<Name>workflow2</Name>
 			<Description>Deploying project including prior online backup</Description>
 			<FinalDescription>Running</FinalDescription>
 			<ArrayOfStep>

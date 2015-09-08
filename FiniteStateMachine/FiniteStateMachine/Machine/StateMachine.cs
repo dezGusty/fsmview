@@ -1,6 +1,8 @@
-﻿using FiniteStateMachine.Machine;
+﻿using FiniteStateMachine.DomainModel;
+using FiniteStateMachine.Machine;
 using FiniteStateMachineTest.Graph;
 using FiniteStateMachineTest.Machine;
+using QuickGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,137 +15,248 @@ namespace FiniteStateMachineTest.DomainModel
     {
         public StateMachine()
         {
+            seq = seq.LoadFromXML(xmlSeq);
+            config = config.LoadFromXML(xml);
+            Graph = new MyGraph();
+            this.GetSequences();
         }
-        public readonly List<string> MachineStates = new List<string>();
-        public readonly List<char> Alfabet = new List<char>();
-        public readonly List<Transition> Delta = new List<Transition>();
-        public string Q0;
-        public readonly List<string> FinishStates = new List<string>();
 
-        /// <summary>
-        /// Adds the list of transitions to this Finite state machine transitions.
-        /// </summary>
-        /// <param name="transitions">The transitions.</param>
-        private void AddTransitions(IEnumerable<Transition> transitions)
+        //realtive path to xml
+        private string xml = "../../statemachinecfg.xml";
+        private string xmlSeq = "../../statemachinecfgsequences.xml";
+
+        //stores the XML configuration, the states and the triggers
+        private FSMVConfig config = new FSMVConfig();
+
+        //stores the sequences
+        private FSMSequenceConfig seq = new FSMSequenceConfig();
+
+        //the graph
+        public MyGraph Graph
         {
-            foreach (var transition in transitions.Where(ValidTransition))
+            get;
+            set;
+        }
+
+        public void GetSequences()
+        {
+            Graph.Sequences = this.seq.ArrayOfSequence.ToList();
+        }
+
+        public String RepresentOneSequence(FSMSequence sequence)
+        {
+            Graph.Graph.Clear();
+            //for console displaying
+            StringBuilder str = new StringBuilder();
+
+            //current step
+            FSMStep stepp = new FSMStep();
+
+            //first step
+            stepp = sequence.ArrayOfStep.First();
+            str.Append("First step: " + stepp.Name + "\n");
+
+            //founds the trigger in the config file
+            FSMVTrigger tr = new FSMVTrigger();
+
+            //the states to be represented
+            FSMVState initialState = new FSMVState();
+            FSMVState otherState = new FSMVState();
+
+            //list of vertices
+            List<SampleVertex> listOfVertices = new List<SampleVertex>();
+
+            try
             {
-                Delta.Add(transition);
-            }
-        }
+                //found the trigger in the list of triggers
+                tr = config.ArrayOfFSMVTrigger.Where(trig => (trig.SequenceID == stepp.Name || trig.CommonID == stepp.Name)).FirstOrDefault();
+                str.Append("Found trigger: " + tr.Name + "\n");
 
-        /// <summary>
-        /// Valids the transition.
-        /// </summary>
-        /// <param name="transition">The transition.</param>
-        /// <returns></returns>
-        private bool ValidTransition(Transition transition)
-        {
-            return MachineStates.Contains(transition.StartState) &&
-                    MachineStates.Contains(transition.EndState) &&
-                    Alfabet.Contains(transition.Token) &&
-                    !TransitionAlreadyDefined(transition);
-        }
+                //initial state
+                initialState = config.ArrayOfFSMVState.FirstOrDefault();
+                str.Append("Initial state is always: " + initialState.Name + "\n");
 
-        /// <summary>
-        /// Verifies if the transition is not defined.
-        /// </summary>
-        /// <param name="transition">The transition to be verified.</param>
-        /// <returns></returns>
-        private bool TransitionAlreadyDefined(Transition transition)
-        {
-            return Delta.Any(t => t.StartState == transition.StartState &&
-                                  t.Token == transition.Token);
-        }
-
-        /// <summary>
-        /// Adds the initial state.
-        /// </summary>
-        /// <param name="q0">The q0.</param>
-        private void AddInitialState(string q0)
-        {
-            if (MachineStates.Contains(q0))
-            {
-                Q0 = q0;
-            }
-        }
-
-        /// <summary>
-        /// Adds the final states.
-        /// </summary>
-        /// <param name="finalStates">The final states.</param>
-        private void AddFinalStates(IEnumerable<string> finalStates)
-        {
-            foreach (var finalState in finalStates.Where(
-                       finalState => MachineStates.Contains(finalState)))
-            {
-                FinishStates.Add(finalState);
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FiniteStateMachine"/> class.
-        /// </summary>
-        /// <param name="q">The q.</param>
-        /// <param name="sigma">The sigma.</param>
-        /// <param name="delta">The delta.</param>
-        /// <param name="q0">The inital state.</param>
-        /// <param name="f">The fina states.</param>
-        public StateMachine(IEnumerable<string> q, IEnumerable<char> sigma,
-                            IEnumerable<Transition> delta, string q0,
-                            IEnumerable<string> f)
-        {
-        MachineStates = q.ToList();
-        Alfabet = sigma.ToList();
-        AddTransitions(delta);
-        AddInitialState(q0);
-        AddFinalStates(f);
-       }
-
-        public String Accepts(string input)
-        {
-            var currentState = Q0;
-            var steps = new StringBuilder();
-            foreach (var symbol in input.ToCharArray())
-            {
-                var transition = Delta.Find(t => t.StartState == currentState &&
-                                                 t.Token == symbol);
-                if (transition == null)
+                try
                 {
-                    return "No transitions for current state and symbol";
+                    //founds the trigger in current state
+                    AllowedTrigger aTrigger = new AllowedTrigger();
+                    aTrigger = initialState.FoundTriggerInCureentState(tr);
+                    string newState = "";
+                    if (String.IsNullOrEmpty(aTrigger.StateName))
+                        newState = aTrigger.StateAndTriggerName;
+                    else
+                        newState = aTrigger.StateName;
+                    listOfVertices.Add(new SampleVertex(newState));//adds  the node to the list of vertices
+                    Graph.Graph.AddVertex(listOfVertices.ElementAt(0)); //adds a new node to graph
 
+                    //switch to new state
+                    otherState = config.ArrayOfFSMVState.Where(state => state.Name == newState).FirstOrDefault();
+                    str.Append("Next state is:" + otherState.Name + " Allowed triggers: " + otherState.ArrayOfAllowedTrigger.Count.ToString() + "\n");
+
+                    for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
+                    {
+                        stepp = sequence.ArrayOfStep.ElementAt(i);
+                        str.Append("\nNext step: " + stepp.Name + "\n");
+                        try
+                        {
+                            tr = config.ArrayOfFSMVTrigger.Where(trig => (trig.SequenceID == stepp.Name || trig.CommonID == stepp.Name)).FirstOrDefault();
+                            str.Append("Found trigger: " + tr.Name + "\n");
+                            newState = "";
+                            try
+                            {
+                                aTrigger = otherState.FoundTriggerInCureentState(tr);
+                                if (String.IsNullOrEmpty(aTrigger.StateName))
+                                    newState = aTrigger.StateAndTriggerName;
+                                else
+                                    newState = aTrigger.StateName;
+
+                                listOfVertices.Add(new SampleVertex(newState));
+                                Graph.Graph.AddVertex(listOfVertices.Last());
+                                Graph.Graph.AddEdge(new Edge<object>(listOfVertices.ElementAt(listOfVertices.Count - 2), listOfVertices.Last()));
+                                initialState = otherState;
+                                otherState = config.ArrayOfFSMVState.Where(state => state.Name == newState).FirstOrDefault();
+                                str.Append("Takes FSM to state: " + otherState.Name + "\n");
+                            }
+                            catch (Exception ex)
+                            {
+                                str.Append(ex.Message + "\nA problem ocurred! The trigger does not exist in current state!\nDone representing!" + "\n");
+                                break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            str.Append(ex.Message + "\nIncorrect trigger!\nDone representing!");
+                            break;
+                        }
+                    }
                 }
-                currentState = transition.EndState;
-                steps.Append(transition + "\n");
-            }
-            if (FinishStates.Contains(currentState))
-            {
-                return "Accepted the input with steps:\n" + steps;
-
-            }
-            return "Stopped in state " + currentState +" which is not a final state.";
-        }
-
-        public List<PairOfStates> GetEdges(string input)
-        {
-            List<PairOfStates> list = new List<PairOfStates>();
-            var currentState = Q0;
-            var steps = new StringBuilder();
-            foreach (var symbol in input.ToCharArray())
-            {
-                var transition = Delta.Find(t => t.StartState == currentState &&
-                                                 t.Token == symbol);
-
-                if(transition!=null)
+                catch (Exception ex)
                 {
-                    string state1 = currentState;
-                    string state2 = transition.EndState;
-                    list.Add(new PairOfStates(state1, state2));
-                    currentState = transition.EndState;
-                    steps.Append(transition + "\n");
+                    str.Append(ex.Message + "\nThe trigger does not exist in current state!\nDone representing!");
                 }
             }
-            return list;
+            catch (Exception ex)
+            {
+                str.Append(ex.Message + "\n Nothing to draw!");
+            }
+            return str.ToString();
         }
+
+        public String RepresentSequence(FSMSequence sequence)
+        {
+            //for console displaying
+            StringBuilder str = new StringBuilder();
+
+            //current step
+            FSMStep stepp = new FSMStep();
+
+            //first step
+            stepp = sequence.ArrayOfStep.First();
+            str.Append("First step: " + stepp.Name + "\n");
+
+            //founds the trigger in the config file
+            FSMVTrigger tr = new FSMVTrigger();
+
+            //the states to be represented
+            FSMVState initialState = new FSMVState();
+            FSMVState otherState = new FSMVState();
+
+            //list of vertices
+            List<SampleVertex> listOfVertices = new List<SampleVertex>();
+
+            try
+            {
+                //found the trigger in the list of triggers
+                tr = config.ArrayOfFSMVTrigger.Where(trig => (trig.SequenceID == stepp.Name || trig.CommonID == stepp.Name)).FirstOrDefault();
+                str.Append("Found trigger: " + tr.Name + "\n");
+
+                //initial state
+                initialState = config.ArrayOfFSMVState.FirstOrDefault();
+                str.Append("Initial state is always: " + initialState.Name + "\n");
+
+                try
+                {
+                    //founds the trigger in current state
+                    AllowedTrigger aTrigger = new AllowedTrigger();
+                    aTrigger = initialState.FoundTriggerInCureentState(tr);
+                    string newState = "";
+                    if (String.IsNullOrEmpty(aTrigger.StateName))
+                        newState = aTrigger.StateAndTriggerName;
+                    else
+                        newState = aTrigger.StateName;
+                    listOfVertices.Add(new SampleVertex(newState));//adds  the node to the list of vertices
+                    Graph.Graph.AddVertex(listOfVertices.ElementAt(0)); //adds a new node to graph
+
+                    //switch to new state
+                    otherState = config.ArrayOfFSMVState.Where(state => state.Name == newState).FirstOrDefault();
+                    str.Append("Next state is:" + otherState.Name + " Allowed triggers: " + otherState.ArrayOfAllowedTrigger.Count.ToString() + "\n");
+
+                    for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
+                    {
+                        stepp = sequence.ArrayOfStep.ElementAt(i);
+                        str.Append("\nNext step: " + stepp.Name + "\n");
+                        try
+                        {
+                            tr = config.ArrayOfFSMVTrigger.Where(trig => (trig.SequenceID == stepp.Name || trig.CommonID == stepp.Name)).FirstOrDefault();
+                            str.Append("Found trigger: " + tr.Name + "\n");
+                            newState = "";
+                            try
+                            {
+                                aTrigger = otherState.FoundTriggerInCureentState(tr);
+                                if (String.IsNullOrEmpty(aTrigger.StateName))
+                                    newState = aTrigger.StateAndTriggerName;
+                                else
+                                    newState = aTrigger.StateName;
+
+                                listOfVertices.Add(new SampleVertex(newState));
+                                Graph.Graph.AddVertex(listOfVertices.Last());
+                                Graph.Graph.AddEdge(new Edge<object>(listOfVertices.ElementAt(listOfVertices.Count - 2), listOfVertices.Last()));
+                                initialState = otherState;
+                                otherState = config.ArrayOfFSMVState.Where(state => state.Name == newState).FirstOrDefault();
+                                str.Append("Takes FSM to state: " + otherState.Name + "\n");
+                            }
+                            catch (Exception ex)
+                            {
+                                str.Append(ex.Message + "\nA problem ocurred! The trigger does not exist in current state!\nDone representing!" + "\n");
+                                break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            str.Append(ex.Message + "\nIncorrect trigger!\nDone representing!");
+                            break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    str.Append(ex.Message + "\nThe trigger does not exist in current state!\nDone representing!");
+                }
+            }
+            catch (Exception ex)
+            {
+                str.Append(ex.Message + "\n Nothing to draw!");
+            }
+            return str.ToString();
+        }
+
+        public String RepresentThisMachine()
+        {
+            //string containing the result
+            StringBuilder str = new StringBuilder();
+
+            //first sequence to be represented
+            FSMSequence sequence = new FSMSequence();
+            if (seq.ArrayOfSequence.Count > 0)
+            {
+                foreach (FSMSequence s in seq.ArrayOfSequence)
+                {
+                    str.Append(this.RepresentSequence(s));
+                }
+            }
+            
+            return str.ToString();
+        }
+
     }
 }

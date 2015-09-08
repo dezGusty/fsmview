@@ -40,9 +40,11 @@ namespace FiniteStateMachine.DomainModel
         }
 
         //returneaza numele starii in care duce trigerul cu numele trigName si stare curenta\
-       public String FoundTriggerInCureentState(FSMVTrigger trig)
+        public AllowedTrigger FoundTriggerInCureentState(FSMVTrigger trig)
         {
-            return this.ArrayOfAllowedTrigger.Where(t => t.TriggerName == trig.Name).FirstOrDefault().StateName;
+           AllowedTrigger tr = new AllowedTrigger();
+           tr=this.ArrayOfAllowedTrigger.Where(t =>( t.TriggerName == trig.Name || t.StateAndTriggerName==trig.CommonID)).FirstOrDefault();
+           return tr;
 
         }
     }
