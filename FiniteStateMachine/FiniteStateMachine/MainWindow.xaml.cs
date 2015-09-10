@@ -1,8 +1,6 @@
 ﻿using FiniteStateMachine.DomainModel;
 using FiniteStateMachine.Machine;
-using FiniteStateMachineTest.DomainModel;
-using FiniteStateMachineTest.Graph;
-using FiniteStateMachineTest.Machine;
+using FiniteStateMachine.Graph;
 using QuickGraph;
 using System;
 using System.Collections.Generic;
@@ -30,8 +28,12 @@ namespace FiniteStateMachine
 
         public MainWindow()
         {
-          this.DataContext = fi.Graph;
+          MyGraph g = new MyGraph();
+
+          //this.DataContext = fi.Graph.Graph;
+          this.DataContext = g.Graph;
           InitializeComponent();
+          
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -44,18 +46,24 @@ namespace FiniteStateMachine
         private void Show_Graph(object sender, RoutedEventArgs e)
         {
             this.DataContext = fi.Graph;
-            console.Text = fi.RepresentThisMachine();
+           // console.Text = fi.RepresentThisMachine();
         }
 
         private void cmbBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FSMSequence s = new FSMSequence();
-            if (cmbBox.SelectedIndex != -1)
-            {
-                s = (FSMSequence)cmbBox.SelectedItem;
-            }
-            console.Text = fi.RepresentOneSequence(s);
+            //if (cmbBox.SelectedIndex != -1)
+            //{
+            //    s = (FSMSequence)cmbBox.SelectedItem;
+            //}
+            //console.Text = fi.RepresentOneSequence(s);
+            MessageBox.Show(fi.RepresentOneSequence(s));
+           // this.UpdateLayout();
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Clicked!");
         }
 
 }

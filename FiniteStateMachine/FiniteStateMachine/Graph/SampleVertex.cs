@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FiniteStateMachineTest.Graph
+namespace FiniteStateMachine.Graph
 {
     public class SampleVertex:INotifyPropertyChanged
     {
@@ -37,6 +37,7 @@ namespace FiniteStateMachineTest.Graph
         {
             Active = !Active;
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyChanged(string propertyName)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace FiniteStateMachineTest.Graph
+namespace FiniteStateMachine.Graph
 {
     [ValueConversion(typeof(bool), typeof(Brush))]
     public class ActiveConverter : IValueConverter

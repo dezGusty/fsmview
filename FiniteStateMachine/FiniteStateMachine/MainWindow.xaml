@@ -4,92 +4,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:graphsharp="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
         xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
-        xmlns:local="clr-namespace:FiniteStateMachineTest.Graph"
+        xmlns:local="clr-namespace:FiniteStateMachine.Graph"
         xmlns:tree="clr-namespace:GraphSharp.Algorithms.Layout.Simple.Tree;assembly=GraphSharp"
-        Title="MainWindow" Height="750" Width="1000">
+        Title="MainWindow" Height="780" Width="1500">
+    <Window.Resources>
+
+
+        <DataTemplate x:Key="demoTemplate" DataType="{x:Type local:PocVertex}">
+
+        </DataTemplate>
+
+        <Style TargetType="{x:Type graphsharp:VertexControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type graphsharp:VertexControl}">
+                        <Border BorderBrush="White" 
+                                    Background="Black"
+							        BorderThickness="2"
+							        CornerRadius="10,10,10,10"
+							        Padding="{TemplateBinding Padding}">
+
+                            <StackPanel Orientation="Vertical">
+
+                            </StackPanel>
+
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="2" Color="LightGray" 
+                                    Opacity="0.3" Direction="315"/>
+                            </Border.Effect>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <Style TargetType="{x:Type graphsharp:EdgeControl}">
+            <Style.Resources>
+                <ToolTip x:Key="ToolTipContent">
+                    <StackPanel>
+                        <TextBlock FontWeight="Bold" Text="Edge Information"/>
+                        <TextBlock Text="{Binding ID}"/>
+                    </StackPanel>
+                </ToolTip>
+            </Style.Resources>
+            <Setter Property="ToolTip" Value="{StaticResource ToolTipContent}"/>
+        </Style>
+    </Window.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Grid.Resources>
 
-            <local:ActiveConverter x:Key="activeConverter"/>
-
-            <DataTemplate DataType="{x:Type local:SampleVertex}">
-
-                <Border  Background="{Binding Path=Active, Converter={StaticResource activeConverter}, NotifyOnTargetUpdated=True}"
-
-					BorderBrush="LightGray" 
-
-					BorderThickness="1,1,1,1"
-
-					CornerRadius="10,10,10,10"
-
-					Padding="10,10,10,10"
-
-					HorizontalAlignment="Center"
-
-					VerticalAlignment="Center"
-
-					Cursor="Hand">
-
-                    <Border.ContextMenu>
-
-                        <ContextMenu>
-
-                            <MenuItem x:Name="Change" Click="MenuItem_Click" Tag="{Binding}">
-
-                                <MenuItem.Header>
-
-                                    <TextBlock HorizontalAlignment="Left">Change</TextBlock>
-
-                                </MenuItem.Header>
-
-                            </MenuItem>
-
-                        </ContextMenu>
-
-                    </Border.ContextMenu>
-
-                    <Border.ToolTip>
-
-                        <ToolTip>
-
-                            <TextBlock Text="{Binding Text}" />
-
-                        </ToolTip>
-
-                    </Border.ToolTip>
-
-                    <TextBlock Text="{Binding Text}" TextAlignment="Center" TextWrapping="Wrap" />
-
-                </Border>
-
-            </DataTemplate>
-
-        </Grid.Resources>
-
-        <zoom:ZoomControl Name="zoomControl" Grid.Column="0" Margin="0,0,301,0">
-            <graphsharp:GraphLayout x:Name="graphLayout"
-                                Graph="{Binding Path=Graph}"
-                                LayoutAlgorithmType="ISOM"
-                                OverlapRemovalAlgorithmType="FSM"
-                                HighlightAlgorithmType="Simple" Margin="-7,0,-9,0"
-                                   >
-                <graphsharp:GraphLayout.LayoutParameters>
-                    <tree:SimpleTreeLayoutParameters Direction="LeftToRight" VertexGap="10"   WidthPerHeight="20"></tree:SimpleTreeLayoutParameters>
-                </graphsharp:GraphLayout.LayoutParameters>
-
-            </graphsharp:GraphLayout>
-
+        <StackPanel Orientation="Vertical" Grid.Row="0" >
+            <StackPanel Orientation="Horizontal" Background="Black"
+                        HorizontalAlignment="Stretch" Margin="0">
+                <Label VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="White"
+                        FontSize="10" FontFamily="Verdana" FontWeight="Bold" Margin="0,0,0,0"  
+                        Content="Pick Layout Type"/>
+                <ComboBox ItemsSource="{Binding LayoutAlgorithmTypes}"
+                          SelectedItem="{Binding Path=LayoutAlgorithmType, Mode=TwoWay}"
+                          Width="150" Height="25" Margin="5" />
+                <Button Content="Create New Graph" Width="150" Height="25" Margin="5" Click="Button_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <zoom:ZoomControl  Grid.Row="1"  Zoom="0.2" ZoomBoxOpacity="0.5" Background="#ff656565">
+            <local:PocGraphLayout x:Name="graphLayout" Margin="10"
+						Graph="{Binding Path=Graph}"
+						LayoutAlgorithmType="{Binding Path=LayoutAlgorithmType, Mode=OneWay}"
+						OverlapRemovalAlgorithmType="FSA"
+						HighlightAlgorithmType="Simple" />
         </zoom:ZoomControl>
-        <Button Content="Represent first sequence" Click="Show_Graph" Margin="725,10,0,670"/>
-        <TextBlock Grid.Column="1" Grid.Row="1"></TextBlock>
-        <TextBlock  HorizontalAlignment="Left" Margin="725,131,0,0" TextWrapping="Wrap" Name="console" VerticalAlignment="Top" Height="579" Width="267"/>
-        <ComboBox   Name="cmbBox" HorizontalAlignment="Left" Margin="725,64,0,0" VerticalAlignment="Top" Width="262" Height="36" ItemsSource="{Binding Path=Sequences}" DisplayMemberPath="Name" SelectionChanged="cmbBox_SelectionChanged" >
-        </ComboBox>
+
     </Grid>
 </Window>

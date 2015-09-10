@@ -91,11 +91,17 @@
     <Compile Include="DomainModel\FSMVTrigger.cs" />
     <Compile Include="DomainModel\FSMVUtilities.cs" />
     <Compile Include="Graph\ActiveConverter.cs" />
+    <Compile Include="Graph\CustomEdge.cs" />
+    <Compile Include="Graph\CustomVertex.cs" />
+    <Compile Include="Graph\CustomGraph.cs" />
     <Compile Include="Graph\MyGraph.cs" />
+    <Compile Include="Graph\PocEdge.cs" />
+    <Compile Include="Graph\PocGraph.cs" />
+    <Compile Include="Graph\PocVertex.cs" />
     <Compile Include="Graph\SampleVertex.cs" />
+    <Compile Include="Machine\MainWindowViewModel.cs" />
     <Compile Include="Machine\PairOfStates.cs" />
     <Compile Include="Machine\StateMachine.cs" />
-    <Compile Include="Machine\Transition.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
