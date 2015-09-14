@@ -8,45 +8,43 @@
         Title="MainWindow" Height="780" Width="1350">
     <Window.Resources>
 
-
-        <DataTemplate x:Key="demoTemplate" DataType="{x:Type local:CustomVertex}">
-            <DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding Text}">
-
-                </DataTrigger>
-            </DataTemplate.Triggers>
+        <DataTemplate x:Key="demoTemplate" DataType="{x:Type local:CustomVertex}" >
+            <StackPanel>
+                <StackPanel.Triggers>
+                    <DataTrigger  Binding="{Binding Text}">
+                    </DataTrigger>
+                </StackPanel.Triggers>
+            </StackPanel>
         </DataTemplate>
 
         <Style TargetType="{x:Type graphsharp:VertexControl}">
+
             <Setter Property="Template">
                 <Setter.Value>
-                   
-                    <ControlTemplate TargetType="{x:Type graphsharp:VertexControl}">
-                        <Border BorderBrush="White" 
-							        BorderThickness="2"
-							        CornerRadius="10,10,10,10"
-							        Padding="{TemplateBinding Padding}">
+                    <ControlTemplate  TargetType="{x:Type graphsharp:VertexControl}" >
+                        <Border  Name="Border" BorderBrush="Black"
+                                Background="Beige" 
+							    BorderThickness="1.5"
+							    CornerRadius="15"
+							    Padding="{TemplateBinding Padding}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" >                    
                             <StackPanel Orientation="Vertical">
-
-                                <TextBlock>
-                                    <ContentPresenter Content="{TemplateBinding Vertex}" 
+                                <TextBlock Margin="4" >
+                                    <ContentPresenter  Content="{TemplateBinding Vertex}" 
                                             ContentTemplate="{Binding Text}"/>
                                 </TextBlock>
                             </StackPanel>
-
-                            <Border.Effect>
-                                <DropShadowEffect BlurRadius="2" Color="LightGray" 
-                                    Opacity="0.3" Direction="315"/>
-                            </Border.Effect>
                         </Border>
                     </ControlTemplate>
-                </Setter.Value>
+
+                </Setter.Value>     
             </Setter>
+
         </Style>
 
 
         <Style TargetType="{x:Type graphsharp:EdgeControl}" >
             <Style.Resources>
+                <local:EdgeColorConverter x:Key="edgeToEdgeColorConverter"/>
                 
                 <ToolTip x:Key="ToolTipContent">
                     <StackPanel>
@@ -54,14 +52,10 @@
                         <TextBlock  FontSize="15" Text="{Binding ID}"/>
                     </StackPanel>
                 </ToolTip>
+
             </Style.Resources>
             
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Foreground" Value="Yellow" />
-                </Trigger>
-            </Style.Triggers>
-           
+            <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self},Path=Edge.EdgeColor, Converter={StaticResource edgeToEdgeColorConverter}}"/>
             <Setter Property="ToolTip" Value="{StaticResource ToolTipContent}"/>
         </Style>
 
@@ -91,8 +85,8 @@
             </StackPanel>
         </StackPanel>
 
-        <zoom:ZoomControl  Grid.Row="1"  Zoom="0.5" ZoomBoxOpacity="0.5" Background="#ff656565">
-            <local:CustomGraphLayout x:Name="graphLayout" Margin="10"
+        <zoom:ZoomControl  Grid.Row="1"  Zoom="0.5" ZoomBoxOpacity="0.5" Background="#ff656565" >
+            <local:CustomGraphLayout x:Name="graphLayout" Margin="10" 
 						Graph="{Binding Path=Graph}"
 						LayoutAlgorithmType="{Binding Path=LayoutAlgorithmType, Mode=OneWay}"
 						OverlapRemovalAlgorithmType="FSA"

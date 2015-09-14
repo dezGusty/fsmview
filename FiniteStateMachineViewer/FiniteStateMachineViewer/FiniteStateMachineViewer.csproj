@@ -83,6 +83,8 @@
     <Compile Include="DomainModel\FSMVState.cs" />
     <Compile Include="DomainModel\FSMVTrigger.cs" />
     <Compile Include="DomainModel\FSMVUtilities.cs" />
+    <Compile Include="Graph\EdgeColorConverter .cs" />
+    <Compile Include="Graph\VertexColorConverter.cs" />
     <Compile Include="ViewModel\GraphViewModel.cs" />
     <Compile Include="ViewModel\StateMachine.cs" />
     <Page Include="MainWindow.xaml">

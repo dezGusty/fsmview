@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 
 namespace FiniteStateMachineViewer.ViewModel
 {
@@ -50,10 +51,10 @@ namespace FiniteStateMachineViewer.ViewModel
         /// </summary>
         /// <param name="sequence">The sequence to be represented.</param>
         /// <returns></returns>
-        public void RepresentOneSequence(FSMSequence sequence)
+        public void RepresentOneSequence(FSMSequence sequence,Color color)
         {
-            Reset();
-            RepresentSequence(sequence);
+            this.Graph.ChangeEdgeColor(Colors.Black);
+            ChangeWorkFlowEdges(color,sequence);
         }
 
         /// <summary>
@@ -63,7 +64,7 @@ namespace FiniteStateMachineViewer.ViewModel
         {
             foreach (FSMVState item in config.ArrayOfFSMVState)
             {
-                CustomVertex vertex = new CustomVertex(item.Name);
+                CustomVertex vertex = new CustomVertex(item.Name,Colors.Black);
                 Graph.AddNewVertex(vertex);
             }
         }
@@ -73,26 +74,32 @@ namespace FiniteStateMachineViewer.ViewModel
         /// </summary>
         public void ViewMachineConfiguration()
         {
-            Reset();
             GraphViewModel.Message += "Getting machine configuration...\r\n";
             FSMVTrigger t = new FSMVTrigger();
             Graph.LayoutAlgorithmType = "Circular";
-            foreach (FSMVState state in config.ArrayOfFSMVState)
+            try
             {
-                foreach (AllowedTrigger trigger in state.ArrayOfAllowedTrigger)
+                foreach (FSMVState state in config.ArrayOfFSMVState)
                 {
-                    t = FoundTriggerInList(trigger);
-                    if(String.IsNullOrEmpty(trigger.TriggerName) )
+                    foreach (AllowedTrigger trigger in state.ArrayOfAllowedTrigger)
                     {
-                        GraphViewModel.Message +="Trigger name: " + trigger.StateAndTriggerName + "\r\n";
-                        GraphViewModel.Message +="Added edge: " +Graph.AddNewEdge(trigger.StateAndTriggerName,Graph.GetVertexByName(state.Name), Graph.GetVertexByName(trigger.StateAndTriggerName))+"\r\n";
-                    }
-                    else
-                    {
-                         GraphViewModel.Message +="Trigger name: " + trigger.TriggerName + "\r\n";
-                         GraphViewModel.Message +="Added edge: " + Graph.AddNewEdge(trigger.TriggerName ,Graph.GetVertexByName(state.Name), Graph.GetVertexByName(trigger.StateName))+"\r\n";
+                        t = FoundTriggerInList(trigger);
+                        if (String.IsNullOrEmpty(trigger.TriggerName))
+                        {
+                            GraphViewModel.Message += "Trigger name: " + trigger.StateAndTriggerName + "\r\n";
+                            GraphViewModel.Message += "Added edge: " + Graph.AddNewEdge(trigger.StateAndTriggerName, Graph.GetVertexByName(state.Name), Graph.GetVertexByName(trigger.StateAndTriggerName),Colors.Black) + "\r\n";
+                        }
+                        else
+                        {
+                            GraphViewModel.Message += "Trigger name: " + trigger.TriggerName + "\r\n";
+                            GraphViewModel.Message += "Added edge: " + Graph.AddNewEdge(trigger.TriggerName, Graph.GetVertexByName(state.Name), Graph.GetVertexByName(trigger.StateName),Colors.Black) + "\r\n";
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                GraphViewModel.Message += "An error ocurred! Done representing\r\n"+ex.Message;
             }
         }
 
@@ -100,106 +107,125 @@ namespace FiniteStateMachineViewer.ViewModel
         /// Represents the sequence.
         /// </summary>
         /// <param name="sequence">The sequence.</param>
-        public void RepresentSequence(FSMSequence sequence)
+        public void RepresentSequence(FSMSequence sequence,Color color)
         {
             //current step
             FSMStep stepp = new FSMStep();
 
             //first step
-            stepp = sequence.ArrayOfStep.First();
-            GraphViewModel.Message += "First step: " + stepp.Name + "\r\n";
-
-            //founds the trigger in the config file
-            FSMVTrigger tr = new FSMVTrigger();
-
-            //the states to be represented
-            FSMVState initialState = new FSMVState();
-            FSMVState otherState = new FSMVState();
-
-            try
+            if (sequence.ArrayOfStep.Count != 0)
             {
-                //found the trigger in the list of triggers
-                tr = FoundTriggerInList(stepp);
+                stepp = sequence.ArrayOfStep.First();
+                GraphViewModel.Message += "First step: " + stepp.Name + "\r\n";
 
-                GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
+                //founds the trigger in the config file
+                FSMVTrigger tr = new FSMVTrigger();
 
-                //initial state
-                initialState = config.ArrayOfFSMVState.FirstOrDefault();
-                GraphViewModel.Message += "Initial state is always: " + initialState.Name + "\r\n";
+                //the states to be represented
+                FSMVState initialState = new FSMVState();
+                FSMVState otherState = new FSMVState();
 
                 try
                 {
-                    //founds the trigger in current state
-                    AllowedTrigger aTrigger = new AllowedTrigger();
-                    aTrigger = initialState.FoundTriggerInCureentState(tr);
-                    string newState = "";
-                    if (String.IsNullOrEmpty(aTrigger.StateName))
-                        newState = aTrigger.StateAndTriggerName;
-                    else
-                        newState = aTrigger.StateName;
-                    Graph.AddNewEdge("1", Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState));
+                    //found the trigger in the list of triggers
+                    tr = FoundTriggerInList(stepp);
 
-                    //switch to new state
-                    otherState = FoundNextState(newState);
-                    GraphViewModel.Message += "Next state is:" + otherState.Name + " Allowed triggers: " + otherState.ArrayOfAllowedTrigger.Count.ToString() + "\r\n";
+                    GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
 
-                    for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
+                    //initial state
+                    initialState = config.ArrayOfFSMVState.FirstOrDefault();
+                    GraphViewModel.Message += "Initial state is always: " + initialState.Name + "\r\n";
+
+                    try
                     {
-                        stepp = sequence.ArrayOfStep.ElementAt(i);
-                        GraphViewModel.Message += "\nNext step: " + stepp.Name + "\r\n";
-                        try
+                        //founds the trigger in current state
+                        AllowedTrigger aTrigger = new AllowedTrigger();
+                        aTrigger = initialState.FoundTriggerInCureentState(tr);
+                        string newState = "";
+                        if (String.IsNullOrEmpty(aTrigger.StateName))
                         {
-                            tr = FoundTriggerInList(stepp);
-                            GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
-                            newState = "";
+                            newState = aTrigger.StateAndTriggerName;
+                            Graph.AddNewEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                        }
+                        else
+                        {
+                            newState = aTrigger.StateName;
+                            Graph.AddNewEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                        }
+
+                        //switch to new state
+                        otherState = FoundNextState(newState);
+                        GraphViewModel.Message += "Next state is:" + otherState.Name + " Allowed triggers: " + otherState.ArrayOfAllowedTrigger.Count.ToString() + "\r\n";
+
+                        for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
+                        {
+                            stepp = sequence.ArrayOfStep.ElementAt(i);
+                            GraphViewModel.Message += "\nNext step: " + stepp.Name + "\r\n";
                             try
                             {
-                                aTrigger = otherState.FoundTriggerInCureentState(tr);
-                                if (String.IsNullOrEmpty(aTrigger.StateName))
-                                    newState = aTrigger.StateAndTriggerName;
-                                else
-                                    newState = aTrigger.StateName;
-                                Graph.AddNewEdge("1", Graph.GetVertexByName(otherState.Name), Graph.GetVertexByName(newState));
-                                initialState = otherState;
-                                otherState = FoundNextState(newState);
-                                GraphViewModel.Message += "Takes FSM to state: " + otherState.Name + "\r\n";
+                                tr = FoundTriggerInList(stepp);
+                                GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
+                                newState = "";
+                                try
+                                {
+                                    aTrigger = otherState.FoundTriggerInCureentState(tr);
+                                    if (String.IsNullOrEmpty(aTrigger.StateName))
+                                    {
+                                        newState = aTrigger.StateAndTriggerName;
+                                        Graph.AddNewEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(otherState.Name), Graph.GetVertexByName(newState), Colors.Black);
+                                    }
+                                    else
+                                    {
+                                        newState = aTrigger.StateName;
+                                        Graph.AddNewEdge(aTrigger.TriggerName, Graph.GetVertexByName(otherState.Name), Graph.GetVertexByName(newState), Colors.Black);
+                                    }
+                                    initialState = otherState;
+                                    otherState = FoundNextState(newState);
+                                    GraphViewModel.Message += "Takes FSM to state: " + otherState.Name + "\r\n";
+                                }
+                                catch (Exception ex)
+                                {
+                                    GraphViewModel.Message += ex.Message + "\r\nA problem ocurred! The trigger does not exist in current state!\nDone representing!" + "\r\n";
+                                    break;
+                                }
                             }
                             catch (Exception ex)
                             {
-                                GraphViewModel.Message += ex.Message + "\r\nA problem ocurred! The trigger does not exist in current state!\nDone representing!" + "\r\n";
+                                GraphViewModel.Message += ex.Message + "\r\nIncorrect trigger!\r\nDone representing!";
                                 break;
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            GraphViewModel.Message += ex.Message + "\r\nIncorrect trigger!\r\nDone representing!";
-                            break;
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        GraphViewModel.Message += ex.Message + "\r\nThe trigger does not exist in current state!\r\nDone representing!";
                     }
                 }
                 catch (Exception ex)
                 {
-                    GraphViewModel.Message += ex.Message + "\r\nThe trigger does not exist in current state!\r\nDone representing!";
+                    GraphViewModel.Message += ex.Message + "\r\n Nothing to draw!";
                 }
             }
-            catch (Exception ex)
+            else
             {
-                GraphViewModel.Message += ex.Message + "\r\n Nothing to draw!";
+                GraphViewModel.Message += "\r\n Sequence with no steps!";  
             }
         }
-
+        
+        
         /// <summary>
         /// Represents this machine.
         /// </summary>
         /// <returns></returns>
         public void RepresentThisMachine()
         {
-            Reset();
+            //Reset();
             if (seq.ArrayOfSequence.Count > 0)
             {
                 foreach (FSMSequence s in seq.ArrayOfSequence)
                 {
-                    this.RepresentSequence(s);
+                    //this.RepresentSequence(s,Colors.Black);
+                    this.ChangeWorkFlowEdges(Colors.Blue, s);
                 }
             }
         }
@@ -234,6 +260,114 @@ namespace FiniteStateMachineViewer.ViewModel
            return  config.ArrayOfFSMVTrigger.Where(t => t.Name == trig.TriggerName || t.Name == trig.StateAndTriggerName || t.CommonID==trig.StateAndTriggerName).FirstOrDefault();
         }
 
+        public void ChangeWorkFlowEdges(Color color,FSMSequence sequence)
+        {
+             //current step
+            FSMStep stepp = new FSMStep();
+
+            //first step
+            if (sequence.ArrayOfStep.Count != 0)
+            {
+                stepp = sequence.ArrayOfStep.First();
+                GraphViewModel.Message += "First step: " + stepp.Name + "\r\n";
+
+                //founds the trigger in the config file
+                FSMVTrigger tr = new FSMVTrigger();
+
+                //the states to be represented
+                FSMVState initialState = new FSMVState();
+                FSMVState otherState = new FSMVState();
+
+                try
+                {
+                    //found the trigger in the list of triggers
+                    tr = FoundTriggerInList(stepp);
+
+                    GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
+
+                    //initial state
+                    initialState = config.ArrayOfFSMVState.FirstOrDefault();
+                    GraphViewModel.Message += "Initial state is always: " + initialState.Name + "\r\n";
+
+                    try
+                    {
+                        //founds the trigger in current state
+                        AllowedTrigger aTrigger = new AllowedTrigger();
+                        aTrigger = initialState.FoundTriggerInCureentState(tr);
+                        string newState = "";
+                        if (String.IsNullOrEmpty(aTrigger.StateName))
+                        {
+                            newState = aTrigger.StateAndTriggerName;
+                            CustomEdge edge=new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                            Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), Colors.Blue);
+                        }
+                        else
+                        {
+                            newState = aTrigger.StateName;
+                            CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                            Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), Colors.Blue);
+                        }
+
+                        //switch to new state
+                        otherState = FoundNextState(newState);
+                        GraphViewModel.Message += "Next state is:" + otherState.Name + " Allowed triggers: " + otherState.ArrayOfAllowedTrigger.Count.ToString() + "\r\n";
+
+                        for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
+                        {
+                            stepp = sequence.ArrayOfStep.ElementAt(i);
+                            GraphViewModel.Message += "\nNext step: " + stepp.Name + "\r\n";
+                            try
+                            {
+                                tr = FoundTriggerInList(stepp);
+                                GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
+                                newState = "";
+                                try
+                                {
+                                    aTrigger = otherState.FoundTriggerInCureentState(tr);
+                                    if (String.IsNullOrEmpty(aTrigger.StateName))
+                                    {
+                                        newState = aTrigger.StateAndTriggerName;
+                                        CustomEdge edge = new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                                        Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), Colors.Blue);
+                                    }
+                                    else
+                                    {
+                                        newState = aTrigger.StateName;
+                                        CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                                        Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), Colors.Blue);        
+                                    }
+                                    initialState = otherState;
+                                    otherState = FoundNextState(newState);
+                                    GraphViewModel.Message += "Takes FSM to state: " + otherState.Name + "\r\n";
+                                }
+                                catch (Exception ex)
+                                {
+                                    GraphViewModel.Message += ex.Message + "\r\nA problem ocurred! The trigger does not exist in current state!\nDone representing!" + "\r\n";
+                                    break;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                GraphViewModel.Message += ex.Message + "\r\nIncorrect trigger!\r\nDone representing!";
+                                break;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        GraphViewModel.Message += ex.Message + "\r\nThe trigger does not exist in current state!\r\nDone representing!";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    GraphViewModel.Message += ex.Message + "\r\n Nothing to draw!";
+                }
+            }
+            else
+            {
+                GraphViewModel.Message += "\r\n Sequence with no steps!";  
+            }
+        }
 
     }
 }

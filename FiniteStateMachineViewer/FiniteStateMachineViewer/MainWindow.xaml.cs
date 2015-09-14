@@ -27,6 +27,7 @@ namespace FiniteStateMachineViewer
         public MainWindow()
         {
             machine = new StateMachine();
+            machine.ViewMachineConfiguration();
             this.DataContext = machine.Graph;
             InitializeComponent();
         }
@@ -37,10 +38,9 @@ namespace FiniteStateMachineViewer
             this.DataContext = machine.Graph;
         }
 
-
         private void View_Configuration(object sender, RoutedEventArgs e)
         {
-            machine = new StateMachine();
+             machine = new StateMachine();
             machine.ViewMachineConfiguration();
             this.DataContext = machine.Graph;
         }
@@ -48,12 +48,27 @@ namespace FiniteStateMachineViewer
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FSMSequence sequence = new FSMSequence();
-            if(cmbBox.SelectedIndex!=-1)
-                  sequence = (FSMSequence)cmbBox.SelectedItem;
-
-            machine.RepresentOneSequence(sequence);
-            this.DataContext = machine.Graph;
+            if (cmbBox.SelectedIndex != -1)
+            {
+                sequence = (FSMSequence)cmbBox.SelectedItem;
+                machine.RepresentOneSequence(sequence,Colors.Black);
+                this.DataContext = machine.Graph;
+            }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+          //  machine.Graph.ChangeEdgeColor(Colors.Aquamarine);
+        }
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+         //machine.Graph.ChangeOneEdgeColor("trigger1", Colors.BlueViolet);
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+           // machine.Graph.ChangeEdgeColor(Colors.Black);        
+        }
     }
 }
