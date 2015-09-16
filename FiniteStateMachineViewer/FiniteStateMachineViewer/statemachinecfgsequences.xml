@@ -42,5 +42,51 @@
 			</ArrayOfStep>
 		</FSMSequence>
 
+		<FSMSequence>
+			<Name>workflow3</Name>
+			<Description>New workflow</Description>
+			<FinalDescription>Running</FinalDescription>
+			<ArrayOfStep>
+				<FSMStep>
+					<Name>seq_trigger1</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+				<FSMStep>
+					<Name>state_5</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+				<FSMStep>
+					<Name>state_6.db_loaded</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+			</ArrayOfStep>
+		</FSMSequence>
+		
+		<FSMSequence>
+			<Name>workflow4</Name>
+			<Description>New workflow</Description>
+			<FinalDescription>Running</FinalDescription>
+			<ArrayOfStep>
+
+			</ArrayOfStep>
+		</FSMSequence>
+		
+		<FSMSequence>
+			<Name>workflow5</Name>
+			<Description>New workflow</Description>
+			<FinalDescription>Running</FinalDescription>
+			<ArrayOfStep>
+				<FSMStep>
+					<Name>seq_trigger1</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+				<FSMStep>
+					<Name>state_5.db_loading</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+
+			</ArrayOfStep>
+		</FSMSequence>
+		
   </ArrayOfSequence>
 </FSMSequenceConfig>

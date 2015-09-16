@@ -8,6 +8,12 @@ namespace FiniteStateMachineViewer.DomainModel
 {
     public class FSMSequence
     {
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public string Name
         {
             get;

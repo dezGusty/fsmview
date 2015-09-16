@@ -34,41 +34,32 @@ namespace FiniteStateMachineViewer
 
         private void Draw_StateMachine(object sender, RoutedEventArgs e)
         {
-            machine.RepresentThisMachine();
+            machine.RepresentThisMachine(Colors.Yellow);
             this.DataContext = machine.Graph;
         }
 
         private void View_Configuration(object sender, RoutedEventArgs e)
         {
              machine = new StateMachine();
-            machine.ViewMachineConfiguration();
-            this.DataContext = machine.Graph;
+             machine.ViewMachineConfiguration();
+             this.DataContext = machine.Graph;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FSMSequence sequence = new FSMSequence();
+            OperationResult result=new OperationResult();
             if (cmbBox.SelectedIndex != -1)
             {
                 sequence = (FSMSequence)cmbBox.SelectedItem;
-                machine.RepresentOneSequence(sequence,Colors.Black);
+
+               result=machine.RepresentOneSequence(sequence,Colors.Yellow);
+              if(!result.Succes)
+              {
+                  MessageBox.Show(result.Message);
+              }
                 this.DataContext = machine.Graph;
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-          //  machine.Graph.ChangeEdgeColor(Colors.Aquamarine);
-        }
-
-        private void Border_MouseEnter(object sender, MouseEventArgs e)
-        {
-         //machine.Graph.ChangeOneEdgeColor("trigger1", Colors.BlueViolet);
-        }
-
-        private void Border_MouseLeave(object sender, MouseEventArgs e)
-        {
-           // machine.Graph.ChangeEdgeColor(Colors.Black);        
         }
     }
 }

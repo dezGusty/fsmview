@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphSharp.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -14,7 +15,13 @@ namespace FiniteStateMachineViewer
         private string _text;
         private Color _color;
 
-        public Color Color
+        public bool Highlight
+        {
+            get;
+            set;
+        }
+
+        public Color BackgroundColor
         {
             get
             {
@@ -23,7 +30,7 @@ namespace FiniteStateMachineViewer
             set
             {
                 this._color = value;
-                NotifyChanged("Color");
+                NotifyChanged("BackgroundColor");
             }
         }
 
@@ -45,13 +52,15 @@ namespace FiniteStateMachineViewer
 
         public CustomVertex()
         {
-            Text = "";
+            this._text = "";
+            this.Highlight = false;
         }
 
         public CustomVertex(string text, Color c)
         {
-            Text = text;
-            Color = c;
+            this._text = text;
+            BackgroundColor = c;
+            this.Highlight = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -63,14 +72,22 @@ namespace FiniteStateMachineViewer
 
         public CustomVertex(string id,string text,Color c)
         {
-            ID = id;
-            Text = text;
-            Color = c;
+            this.ID = id;
+            this._text = text;
+            this._color = c;
+            this.Highlight = false;
+        }
+
+        public bool CompareTo(CustomVertex vertex)
+        {
+            if (this.ID==vertex.ID && this.Text==vertex.Text)
+                return true;
+            return false;
         }
 
         public override string ToString()
         {
-            return string.Format("{0}",Text);
+            return this.Text;
         }
     }
 }

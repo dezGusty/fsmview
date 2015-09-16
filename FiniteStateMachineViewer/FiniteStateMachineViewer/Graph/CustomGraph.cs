@@ -19,5 +19,7 @@ namespace FiniteStateMachineViewer
 
         public CustomGraph(bool allowParallelEdges, int vertexCapacity)
             : base(allowParallelEdges, vertexCapacity) { }
+
+       
     }
 }

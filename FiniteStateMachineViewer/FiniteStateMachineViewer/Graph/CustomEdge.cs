@@ -14,8 +14,9 @@ namespace FiniteStateMachineViewer
 
     public class CustomEdge :TypedEdge<CustomVertex>, INotifyPropertyChanged
     {
-        private string id;
+        private string trigger;
         private Color color;
+
         public Color EdgeColor 
         { 
             get
@@ -29,13 +30,13 @@ namespace FiniteStateMachineViewer
             }
         }
 
-        public string ID
+        public string Trigger
         {
-            get { return id; }
+            get { return trigger; }
             set
             {
-                id = value;
-                NotifyPropertyChanged("ID");
+                trigger = value;
+                NotifyPropertyChanged("Trigger");
             }
         }
 
@@ -45,16 +46,16 @@ namespace FiniteStateMachineViewer
             this.color = Colors.Black;
         }
 
-        public CustomEdge(string id,CustomVertex source, CustomVertex target,Color color)
+        public CustomEdge(string trig,CustomVertex source, CustomVertex target,Color color)
             : base(source, target,EdgeTypes.General)
         {
-            this.id = id;
+            this.trigger = trig;
             this.color = color;
         }
 
         public bool CompareTo(CustomEdge edge)
         {
-            if (this.ID == edge.ID)
+            if (this.Trigger == edge.Trigger)
                 return true;
             return false;
         }
