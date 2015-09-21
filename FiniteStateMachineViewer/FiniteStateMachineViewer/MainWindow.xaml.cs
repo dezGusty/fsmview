@@ -25,7 +25,7 @@ namespace FiniteStateMachineViewer
         public StateMachine machine;
 
         public MainWindow()
-        {
+        {        
             machine = new StateMachine();
             machine.ViewMachineConfiguration();
             this.DataContext = machine.Graph;
@@ -52,11 +52,11 @@ namespace FiniteStateMachineViewer
             if (cmbBox.SelectedIndex != -1)
             {
                 sequence = (FSMSequence)cmbBox.SelectedItem;
-
-               result=machine.RepresentOneSequence(sequence,Colors.Yellow);
+                result=machine.RepresentOneSequence(sequence,Colors.Yellow);
               if(!result.Succes)
               {
                   MessageBox.Show(result.Message);
+                  machine.RepresentOneSequence(sequence, Colors.Red);
               }
                 this.DataContext = machine.Graph;
             }

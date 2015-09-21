@@ -20,18 +20,36 @@ namespace FiniteStateMachineViewer.DomainModel
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the reentry using trigger.
+        /// </summary>
+        /// <value>
+        /// The reentry using trigger.
+        /// </value>
         public string ReentryUsingTrigger
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the array of allowed trigger.
+        /// </summary>
+        /// <value>
+        /// The array of allowed trigger.
+        /// </value>
         public Collection<AllowedTrigger> ArrayOfAllowedTrigger
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the default handler.
+        /// </summary>
+        /// <value>
+        /// The default handler.
+        /// </value>
         public string DefaultHandler
         {
             get;

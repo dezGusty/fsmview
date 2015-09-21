@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FiniteStateMachineViewer
 {
+
     public class CustomGraphLayout : GraphLayout<CustomVertex, CustomEdge, CustomGraph> { }
 
     public class CustomGraph : BidirectionalGraph<CustomVertex, CustomEdge>

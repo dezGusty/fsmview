@@ -16,7 +16,7 @@ namespace FiniteStateMachineViewer.DomainModel
             get;
             set;
         }
-
+        
         /// <summary>
         /// The name or ID by which the trigger is identified in the sequences definition.
         /// Should also be unique.
@@ -43,10 +43,25 @@ namespace FiniteStateMachineViewer.DomainModel
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FSMVTrigger"/> class.
+        /// </summary>
         public FSMVTrigger()
         {
             this.Name = string.Empty;
             this.SequenceID = string.Empty;
+        }
+
+        /// <summary>
+        /// Compares current trigger to another trigger.
+        /// </summary>
+        /// <param name="trigger">The trigger.</param>
+        /// <returns></returns>
+        public bool compareTo(FSMVTrigger trigger)
+        {
+            if(string.Compare(this.Name.Trim(),trigger.Name.Trim())==0 && string.Compare(this.CommonID.Trim(),trigger.CommonID.Trim())==0 && string.Compare(this.SequenceID,trigger.SequenceID)==0)
+                return true;
+            return false;
         }
     }
 }

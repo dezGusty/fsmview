@@ -84,7 +84,22 @@
 					<Name>state_5.db_loading</Name>
 					<Weight>1</Weight>
 				</FSMStep>
-
+			</ArrayOfStep>
+		</FSMSequence>
+		
+		<FSMSequence>
+			<Name>workflow6</Name>
+			<Description>New workflow</Description>
+			<FinalDescription>Running</FinalDescription>
+			<ArrayOfStep>
+				<FSMStep>
+					<Name>to_me</Name>
+					<Weight>1</Weight>
+				</FSMStep>
+				<FSMStep>
+					<Name>to_me</Name>
+					<Weight>1</Weight>
+				</FSMStep>
 			</ArrayOfStep>
 		</FSMSequence>
 		

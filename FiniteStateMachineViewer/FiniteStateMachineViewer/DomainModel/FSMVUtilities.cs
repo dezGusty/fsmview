@@ -9,6 +9,12 @@ namespace FiniteStateMachineViewer.DomainModel
 {
     public class FSMVUtilities
     {
+        /// <summary>
+        /// Froms the XML string.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="xmlData">The XML data.</param>
+        /// <returns></returns>
         public static T FromXmlString<T>(string xmlData)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));

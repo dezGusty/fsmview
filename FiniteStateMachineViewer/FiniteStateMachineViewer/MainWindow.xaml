@@ -7,12 +7,21 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="780" Width="1350">
     <Window.Resources>
-
+        
         <Style x:Key="borderStyle"  TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="1.5"/>
             <Setter Property="CornerRadius" Value="20"/>
             <Setter Property="Padding" Value="10"/>
+        </Style>
+
+        <Style x:Key="imageStyle" TargetType="Image">
+            <Style.Resources>
+                <local:CustomVertex x:Key="vertex" />
+            </Style.Resources>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Width" Value="28"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
         </Style>
         
         <Style TargetType="{x:Type graphsharp:VertexControl}">
@@ -22,7 +31,6 @@
                     <DataTemplate.Resources>
                         <local:EdgeColorConverter x:Key="edgeToEdgeColorConverter"/>
                     </DataTemplate.Resources>
-
                     <Border Background="{Binding BackgroundColor, Converter={StaticResource edgeToEdgeColorConverter}}"/>
                 </DataTemplate>
             </Style.Resources>
@@ -30,11 +38,36 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type graphsharp:VertexControl}">
-                        <Border Style="{StaticResource borderStyle}"
+                        <Grid>                            
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                                                      
+                           <Border Grid.Column="0" Style="{StaticResource borderStyle}"
                               Background="{TemplateBinding Background}">
-                            <ContentPresenter Content="{TemplateBinding Vertex}" />
-                        </Border>
-                    </ControlTemplate>                   
+                                <ContentPresenter Content="{TemplateBinding Vertex}" />
+                            </Border>
+                            <Image Name="img" Grid.Column="1" Style="{StaticResource imageStyle}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Highlight}" Value="true">
+                                <Setter  TargetName="img" Property="Source" Value="C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineViewer\black.jpg" />
+                                <Setter  TargetName="img" Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Highlight}" Value="true" />
+                                    <Condition Binding="{Binding Represented}" Value="true" />
+                                </MultiDataTrigger.Conditions>
+                                <MultiDataTrigger.Setters>
+                                    <Setter  TargetName="img" Property="Source" Value="C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineViewer\yellow.jpg" />
+                                    <Setter  TargetName="img" Property="Visibility" Value="Visible" />
+                                </MultiDataTrigger.Setters>
+                            </MultiDataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>                  
                 </Setter.Value>
             </Setter>
             
@@ -45,9 +78,8 @@
                     <Setter Property="Background" Value="Coral" />
                 </Trigger>
             </Style.Triggers>
-
+            
         </Style>
-
 
         <Style TargetType="{x:Type graphsharp:EdgeControl}" >
             <Style.Resources>
@@ -74,7 +106,6 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
-
         <StackPanel Orientation="Vertical" Grid.Row="0" >
             <StackPanel Orientation="Horizontal" Background="Black"
                         HorizontalAlignment="Stretch" Margin="0">
@@ -96,8 +127,7 @@
 						Graph="{Binding Path=Graph}"
 						LayoutAlgorithmType="{Binding Path=LayoutAlgorithmType, Mode=OneWay}"
 						OverlapRemovalAlgorithmType="FSA"
-						HighlightAlgorithmType="Simple" 
-                                     />
+						HighlightAlgorithmType="Simple" />
         </zoom:ZoomControl>
 
         <ScrollViewer Grid.Row="2">

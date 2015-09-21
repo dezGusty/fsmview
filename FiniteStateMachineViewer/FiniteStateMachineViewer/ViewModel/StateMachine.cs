@@ -14,8 +14,9 @@ namespace FiniteStateMachineViewer.ViewModel
         /// </summary>
         public StateMachine()
         {
-            seq = seq.LoadFromXML(xmlSeq);
-            config = config.LoadFromXML(xml);
+            seq = seq.LoadFromXML(xmlSeq);  //load sequences from XML
+            config = config.LoadFromXML(xml); //load XML configuration
+            Graph = new GraphViewModel();  //initialize a new instance of Graph
             Reset();
         }
 
@@ -34,6 +35,7 @@ namespace FiniteStateMachineViewer.ViewModel
         {
             get;
             set;
+            
         }
 
         /// <summary>
@@ -55,12 +57,11 @@ namespace FiniteStateMachineViewer.ViewModel
         {
             this.Graph.ChangeEdgeColor(Colors.Black);
             this.Graph.ChangeVertexColor(Colors.Beige);
-            return RepresentSequence(color,sequence);
-
+            return RepresentSequence(color,sequence,true);
         }
 
         /// <summary>
-        /// Gets the nodes.
+        /// Gets the nodes and represents them.
         /// </summary>
         public void GetTheNodes()
         {
@@ -106,7 +107,7 @@ namespace FiniteStateMachineViewer.ViewModel
         }
    
         /// <summary>
-        /// Represents this machine.
+        /// Represents this machine by representing all sequences.
         /// </summary>
         /// <returns></returns>
         public void RepresentThisMachine(Color color)
@@ -115,7 +116,7 @@ namespace FiniteStateMachineViewer.ViewModel
             {
                 foreach (FSMSequence s in seq.ArrayOfSequence)
                 {
-                    this.RepresentSequence(color, s);
+                    this.RepresentSequence(color,s,true);
                 }
             }
         }
@@ -127,7 +128,7 @@ namespace FiniteStateMachineViewer.ViewModel
         /// <returns></returns>
         public FSMVTrigger FoundTriggerInList(FSMStep stepp)
         {
-             return config.ArrayOfFSMVTrigger.Where(trig => (trig.SequenceID == stepp.Name || trig.CommonID == stepp.Name)).FirstOrDefault();
+             return config.ArrayOfFSMVTrigger.Where(trig => (string.Compare(trig.SequenceID.Trim(),stepp.Name.Trim())==0)  || string.Compare(trig.CommonID.Trim(),stepp.Name.Trim())==0).FirstOrDefault();
         }
 
         /// <summary>
@@ -137,7 +138,7 @@ namespace FiniteStateMachineViewer.ViewModel
         /// <returns></returns>
         public FSMVState FoundNextState(string stateName)
         {
-            return config.ArrayOfFSMVState.Where(state => state.Name == stateName).FirstOrDefault();
+            return config.ArrayOfFSMVState.Where(state => state.Name.Trim() == stateName.Trim()).FirstOrDefault();
         }
 
         /// <summary>
@@ -151,11 +152,12 @@ namespace FiniteStateMachineViewer.ViewModel
         }
 
         /// <summary>
-        /// Changes the work flow edges.
+        /// Represents the sequence by changing vertices and edges color.
         /// </summary>
         /// <param name="color">The color.</param>
         /// <param name="sequence">The sequence.</param>
-        public OperationResult RepresentSequence(Color color,FSMSequence sequence)
+        /// /// <param name="oneSequence">if is true the Property Represented will be setted true.</param>
+        public OperationResult RepresentSequence(Color color,FSMSequence sequence,bool oneSequence)
         {
             //the result of operation
             OperationResult result = new OperationResult(true,"Succesfully represented!");
@@ -163,18 +165,20 @@ namespace FiniteStateMachineViewer.ViewModel
              //current step
             FSMStep stepp = new FSMStep();
 
-            //first step
+            AllowedTrigger aTrigger = new AllowedTrigger();
+
+            //the states to be represented
+            FSMVState initialState = new FSMVState();
+            FSMVState otherState = new FSMVState();
+
+            //verifies if there are steps to be represented
             if (sequence.ArrayOfStep.Count != 0)
             {
+                //get first step
                 stepp = sequence.ArrayOfStep.First();
                 GraphViewModel.Message += "First step: " + stepp.Name + "\r\n";
 
-                //founds the trigger in the config file
                 FSMVTrigger tr = new FSMVTrigger();
-
-                //the states to be represented
-                FSMVState initialState = new FSMVState();
-                FSMVState otherState = new FSMVState();
 
                 try
                 {
@@ -185,29 +189,36 @@ namespace FiniteStateMachineViewer.ViewModel
 
                     //initial state
                     initialState = config.ArrayOfFSMVState.FirstOrDefault();
+                    if(oneSequence)
+                    {
+                        this.Graph.GetVertexByName(initialState.Name).Represented = true;
+                    }
                     GraphViewModel.Message += "Initial state is always: " + initialState.Name + "\r\n";
 
                     try
                     {
-                        //founds the trigger in current state
-                        AllowedTrigger aTrigger = new AllowedTrigger();
-                        aTrigger = initialState.FoundTriggerInCureentState(tr);
+                        aTrigger = new AllowedTrigger();
+                        aTrigger = initialState.FoundTriggerInCureentState(tr); //founds the trigger in current state
                         string newState = "";
                         if (String.IsNullOrEmpty(aTrigger.StateName))
                         {
                             newState = aTrigger.StateAndTriggerName;
                             CustomEdge edge=new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
                             Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);
-                            Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
                             Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
                         }
                         else
                         {
                             newState = aTrigger.StateName;
                             CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
-                            Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);
-                            Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
+                            Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);                      
                             Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
+                        }
+                        Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);  
+                        if (oneSequence)
+                        {
+                           this.Graph.GetVertexByName(initialState.Name).Represented = true;
+                           this.Graph.GetVertexByName(newState).Represented = true;
                         }
 
                         //switch to new state
@@ -234,17 +245,19 @@ namespace FiniteStateMachineViewer.ViewModel
                                     {
                                         newState = aTrigger.StateAndTriggerName;
                                         CustomEdge edge = new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
-                                        Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);
-                                        Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
                                         Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
                                     }
                                     else
                                     {
                                         newState = aTrigger.StateName;
                                         CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
-                                        Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);
-                                        Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
                                         Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);        
+                                    }
+                                    Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
+                                    if (oneSequence)
+                                    {
+                                        this.Graph.GetVertexByName(initialState.Name).Represented = true;
+                                        this.Graph.GetVertexByName(newState).Represented = true;
                                     }
                                     initialState = otherState;
                                     otherState = FoundNextState(newState);
@@ -254,7 +267,7 @@ namespace FiniteStateMachineViewer.ViewModel
                                 {
                                     GraphViewModel.Message += ex.Message + "\r\nA problem ocurred! Invalid state name!"+newState+"\nDone representing!" + "\r\n";
                                     result.Succes = false;
-                                    result.Message= "\r\nA problem ocurred! Invalid state!"+newState+"\nDone representing!";
+                                    result.Message= "\r\nA problem ocurred! Invalid state!"+newState+"\nDone representing!"; 
                                 }
                             }
                             catch (Exception ex)
@@ -285,6 +298,13 @@ namespace FiniteStateMachineViewer.ViewModel
                 result.Message = "\r\n Workflow with no steps!";
                 result.Succes = false;
             }
+            CustomVertex v = new CustomVertex();
+            //TREBUIE SA IAU ULTIMUL NOD GALBEN
+            //v = this.Graph.existingVertices.Last();
+
+            //CustomEdge ed = new CustomEdge(config.DefaultTriggerOnError, Graph.GetVertexByName(v.Text), Graph.GetVertexByName(config.DefaultTriggerOnError), color);
+          //  Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(ed)).FirstOrDefault(), color); 
+            //CustomEdge ed = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(v.Text), Graph.GetVertexByName(config.DefaultTriggerOnError), color);
             return result;
         }
     }

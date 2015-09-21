@@ -20,18 +20,36 @@ namespace FiniteStateMachineViewer.DomainModel
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
         public string Description
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the final description.
+        /// </summary>
+        /// <value>
+        /// The final description.
+        /// </value>
         public string FinalDescription
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the array of step.
+        /// </summary>
+        /// <value>
+        /// The array of step.
+        /// </value>
         public Collection<FSMStep> ArrayOfStep
         {
             get;

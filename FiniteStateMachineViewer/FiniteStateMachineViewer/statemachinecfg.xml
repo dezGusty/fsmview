@@ -30,6 +30,10 @@
     <FSMVTrigger>
       <CommonID>state_5.db_loading</CommonID>
     </FSMVTrigger>
+	<FSMVTrigger>
+      <Name>ToSelf</Name>
+	  <SequenceID>to_me</SequenceID>
+    </FSMVTrigger>
     <FSMVTrigger>
       <CommonID>state_6.db_loaded</CommonID>
     </FSMVTrigger>
@@ -73,6 +77,10 @@
           <TriggerName>NameTrigger1</TriggerName>
           <StateName>State1</StateName>
         </AllowedTrigger>
+		<AllowedTrigger>
+          <TriggerName>ToSelf</TriggerName>
+          <StateName>State1</StateName>
+        </AllowedTrigger>
       </ArrayOfAllowedTrigger>
       <DefaultHandler>CallbackFunctionOnReset</DefaultHandler>
     </FSMVState>
@@ -91,6 +99,10 @@
         </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>state_5.db_loading</StateAndTriggerName>
+        </AllowedTrigger>
+		<AllowedTrigger>
+          <TriggerName>ToSelf</TriggerName>
+          <StateName>State1</StateName>
         </AllowedTrigger>
 
         <!-- Allow the usual triggers to the usual states: user abort and error encountered.-->
@@ -149,7 +161,6 @@
         <AllowedTrigger>
           <StateAndTriggerName>state_6.db_loaded</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
         </AllowedTrigger>
