@@ -22,6 +22,9 @@ namespace FiniteStateMachineViewer
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// The machine
+        /// </summary>
         public StateMachine machine;
 
         public MainWindow()
@@ -32,12 +35,20 @@ namespace FiniteStateMachineViewer
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the StateMachine event of the Draw control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Draw_StateMachine(object sender, RoutedEventArgs e)
         {
             machine.RepresentThisMachine(Colors.Yellow);
             this.DataContext = machine.Graph;
         }
 
+        /// <summary>
+        ///View the entire state machine configuration.
+        /// </summary>
         private void View_Configuration(object sender, RoutedEventArgs e)
         {
              machine = new StateMachine();
@@ -45,6 +56,9 @@ namespace FiniteStateMachineViewer
              this.DataContext = machine.Graph;
         }
 
+        /// <summary>
+        /// Represents the selected sequence from combobox
+        /// </summary>
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FSMSequence sequence = new FSMSequence();

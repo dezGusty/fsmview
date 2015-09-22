@@ -74,7 +74,7 @@ namespace FiniteStateMachineViewer
         /// <returns></returns>
         public CustomEdge AddNewEdge(string trigger,CustomVertex from, CustomVertex to,Color color)
         {
-            string edgeString = string.Format("{0}-{1} Connected", from.ID, to.ID);
+            string edgeString = string.Format("{0}-{1} Connected", from.Text, to.Text);
             CustomEdge newEdge = new CustomEdge(trigger,from, to,color);
             if(from.CompareTo(to))
             {
@@ -193,15 +193,27 @@ namespace FiniteStateMachineViewer
         }
 
         /// <summary>
+        /// Resets the highlight to default.
+        /// </summary>
+        public void ResetRepresentedToDefault()
+        {
+            for (int i = 0; i < this.graph.VertexCount; i++)
+            {
+                this.graph.Vertices.ElementAt(i).Represented = false;
+            }
+            NotifyPropertyChanged("Graph");
+        }
+
+        /// <summary>
         /// Changes the color of the one edge.
         /// </summary>
         /// <param name="edge">The edge.</param>
-        /// <param name="c">The c.</param>
-        public void ChangeOneEdgeColor(CustomEdge edge,Color c)
+        /// <param name="c">The color.</param>
+        public void ChangeOneEdgeColor(CustomEdge edge,Color color)
         {
             for (int i = 0; i < this.graph.EdgeCount; i++)
             {
-                this.graph.Edges.Where(e=>e==edge).FirstOrDefault().EdgeColor = c;
+                this.graph.Edges.Where(e=>e==edge).FirstOrDefault().EdgeColor = color;
             }
             NotifyPropertyChanged("Graph");
         }

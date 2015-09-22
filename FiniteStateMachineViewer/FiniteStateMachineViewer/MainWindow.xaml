@@ -52,7 +52,7 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <DataTrigger Binding="{Binding Highlight}" Value="true">
-                                <Setter  TargetName="img" Property="Source" Value="C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineViewer\black.jpg" />
+                                <Setter  TargetName="img" Property="Source" Value="D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\black.jpg" />
                                 <Setter  TargetName="img" Property="Visibility" Value="Visible" />
                             </DataTrigger>
 
@@ -62,7 +62,7 @@
                                     <Condition Binding="{Binding Represented}" Value="true" />
                                 </MultiDataTrigger.Conditions>
                                 <MultiDataTrigger.Setters>
-                                    <Setter  TargetName="img" Property="Source" Value="C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineViewer\yellow.jpg" />
+                                    <Setter  TargetName="img" Property="Source" Value="D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\yellow.jpg" />
                                     <Setter  TargetName="img" Property="Visibility" Value="Visible" />
                                 </MultiDataTrigger.Setters>
                             </MultiDataTrigger>

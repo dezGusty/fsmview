@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 namespace FiniteStateMachineViewer
 {
 
+    /// <summary>
+    /// Used for graph layout
+    /// </summary>
     public class CustomGraphLayout : GraphLayout<CustomVertex, CustomEdge, CustomGraph> { }
 
+    /// <summary>
+    /// Class that extends BidirectionalGraph
+    /// </summary>
     public class CustomGraph : BidirectionalGraph<CustomVertex, CustomEdge>
     {
         public CustomGraph() { }

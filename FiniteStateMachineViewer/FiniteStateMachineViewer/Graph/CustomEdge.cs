@@ -94,7 +94,7 @@ namespace FiniteStateMachineViewer
         /// <returns></returns>
         public bool CompareTo(CustomEdge edge)
         {
-            if (this.Trigger == edge.Trigger)
+            if (string.Compare(this.Trigger,edge.Trigger)==0)
                 return true;
             return false;
         }

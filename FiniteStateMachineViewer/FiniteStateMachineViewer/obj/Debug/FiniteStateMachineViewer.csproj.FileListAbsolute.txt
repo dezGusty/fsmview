@@ -40,7 +40,6 @@ D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debu
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Data.xml
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Graphviz.xml
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Serialization.xml
-D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.csprojResolveAssemblyReference.cache
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\MainWindow.g.cs
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\App.g.cs
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\GeneratedInternalTypeHelper.g.cs

@@ -10,9 +10,11 @@ using System.Windows.Media;
 
 namespace FiniteStateMachineViewer
 {
+    /// <summary>
+    /// Class that implements interface INotifyPropertyChanged
+    /// </summary>
     public class CustomVertex : INotifyPropertyChanged
     {
-
         private string _text;
         private Color _color;
         private bool highlight;
@@ -76,18 +78,6 @@ namespace FiniteStateMachineViewer
         }
 
         /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        public string ID
-        { 
-            get; 
-            private set; 
-        }
-
-        /// <summary>
         /// Gets or sets the text.
         /// </summary>
         /// <value>
@@ -117,33 +107,11 @@ namespace FiniteStateMachineViewer
         /// Initializes a new instance of the <see cref="CustomVertex"/> class.
         /// </summary>
         /// <param name="text">The text.</param>
-        /// <param name="c">The c.</param>
-        public CustomVertex(string text, Color c)
+        /// <param name="c">The color.</param>
+        public CustomVertex(string text, Color color)
         {
             this._text = text;
-            this.BackgroundColor= c;
-            this.highlight = false;
-            this.represented = false;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CustomVertex"/> class.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="text">The text.</param>
-        /// <param name="c">The c.</param>
-        public CustomVertex(string id,string text,Color c)
-        {
-            this.ID = id;
-            this._text = text;
-            this._color = c;
+            this.BackgroundColor= color;
             this.highlight = false;
             this.represented = false;
         }
@@ -155,7 +123,7 @@ namespace FiniteStateMachineViewer
         /// <returns></returns>
         public bool CompareTo(CustomVertex vertex)
         {
-            if (this.ID==vertex.ID && this.Text==vertex.Text)
+            if (string.Compare(this.Text,vertex.Text)==0)
                 return true;
             return false;
         }
@@ -169,6 +137,13 @@ namespace FiniteStateMachineViewer
         public override string ToString()
         {
             return this.Text;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
