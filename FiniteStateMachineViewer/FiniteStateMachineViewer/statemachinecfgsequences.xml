@@ -88,22 +88,6 @@
 		</FSMSequence>
 		
 		<FSMSequence>
-			<Name>workflow7</Name>
-			<Description>New workflow</Description>
-			<FinalDescription>Running</FinalDescription>
-			<ArrayOfStep>
-				<FSMStep>
-					<Name>seq</Name>
-					<Weight>1</Weight>
-				</FSMStep>
-				<FSMStep>
-					<Name>state_5.db_loading</Name>
-					<Weight>1</Weight>
-				</FSMStep>
-			</ArrayOfStep>
-		</FSMSequence>
-		
-		<FSMSequence>
 			<Name>workflow6</Name>
 			<Description>New workflow</Description>
 			<FinalDescription>Running</FinalDescription>

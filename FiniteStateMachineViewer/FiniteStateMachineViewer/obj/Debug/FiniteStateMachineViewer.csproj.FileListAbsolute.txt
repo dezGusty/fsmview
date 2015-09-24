@@ -36,10 +36,6 @@ D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debu
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Graphviz.dll
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Serialization.dll
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\WPFExtensions.dll
-D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.xml
-D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Data.xml
-D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Graphviz.xml
-D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Serialization.xml
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\MainWindow.g.cs
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\App.g.cs
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -130,3 +126,8 @@ C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineVie
 C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.g.resources
 C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.Properties.Resources.resources
 C:\Users\paula.trifanov\Downloads\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.csproj.GenerateResource.Cache
+D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.csprojResolveAssemblyReference.cache
+D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.xml
+D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Data.xml
+D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Graphviz.xml
+D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Serialization.xml

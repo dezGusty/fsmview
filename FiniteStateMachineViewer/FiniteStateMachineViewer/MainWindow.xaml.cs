@@ -63,15 +63,19 @@ namespace FiniteStateMachineViewer
         {
             FSMSequence sequence = new FSMSequence();
             OperationResult result=new OperationResult();
-            if (cmbBox.SelectedIndex != -1)
+            if (cmbBox.SelectedIndex != -1)  
             {
                 sequence = (FSMSequence)cmbBox.SelectedItem;
                 result=machine.RepresentOneSequence(sequence,Colors.Yellow);
-              if(!result.Succes)
-              {
-                  MessageBox.Show(result.Message);
-                  machine.RepresentOneSequence(sequence, Colors.Red);
-              }
+                if(!result.Succes)
+                {
+                    MessageBox.Show(result.Message);
+                    if (result.ResultID == Result.IncorrectSequence)
+                    {
+                        machine.RepresentOneSequence(sequence, Colors.Red);
+                        machine.ToErrorState(Colors.Red);
+                    }
+                }
                 this.DataContext = machine.Graph;
             }
         }

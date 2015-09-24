@@ -111,11 +111,14 @@ namespace FiniteStateMachineViewer.ViewModel
         /// <returns></returns>
         public void RepresentThisMachine(Color color)
         {
+            this.Graph.ChangeEdgeColor(Colors.Black);
+            this.Graph.ChangeVertexColor(Colors.Bisque);
             if (seq.ArrayOfSequence.Count > 0)
             {
                 foreach (FSMSequence s in seq.ArrayOfSequence)
                 {
-                    this.RepresentSequence(color,s,true);
+                   if(this.RepresentSequence(color,s,true).Succes==false)
+                       this.RepresentSequence(Colors.Bisque,s,false);
                 }
             }
         }
@@ -270,7 +273,7 @@ namespace FiniteStateMachineViewer.ViewModel
                                     Graph.ResetRepresentedToDefault();
                                     result.Succes = false;
                                     result.Message= "\r\nA problem ocurred! Invalid state!"+newState+"\nDone representing!";
-                                    ToErrorState(color);
+                                    result.ResultID = Result.IncorrectSequence;
                                 }
                             }
                             catch (Exception ex)
@@ -279,7 +282,7 @@ namespace FiniteStateMachineViewer.ViewModel
                                 Graph.ResetRepresentedToDefault();
                                 result.Message= "\r\nIncorrect trigger!\r\nDone representing!";
                                 result.Succes = false;
-                                ToErrorState(color);
+                                result.ResultID = Result.IncorrectSequence;
                             }
                         }
                     }
@@ -289,7 +292,7 @@ namespace FiniteStateMachineViewer.ViewModel
                         Graph.ResetRepresentedToDefault();
                         result.Message="\r\nTrigger does not exist in current state!\r\nDone representing!";
                         result.Succes = false;
-                        ToErrorState(color);
+                        result.ResultID = Result.IncorrectSequence;
                     }
                 }
                 catch (Exception ex)
@@ -297,6 +300,7 @@ namespace FiniteStateMachineViewer.ViewModel
                     GraphViewModel.Message += ex.Message + "\r\n Incorrect sequence!";
                     result.Message= "\r\n Incorrect sequence!";
                     result.Succes = false;
+                    result.ResultID = Result.IncorrectSequence;
                 }
             }
             else
@@ -305,6 +309,7 @@ namespace FiniteStateMachineViewer.ViewModel
                 Graph.ResetRepresentedToDefault();
                 result.Message = "\r\n Workflow with no steps!";
                 result.Succes = false;
+                result.ResultID = Result.NoSteps;
             }
             return result;
         }
