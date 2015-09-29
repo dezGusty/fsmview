@@ -131,3 +131,29 @@ D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debu
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Data.xml
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Graphviz.xml
 D:\New folder\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Serialization.xml
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\FiniteStateMachineViewer.exe.config
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.pdb
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.csprojResolveAssemblyReference.cache
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\App.g.cs
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer_MarkupCompile.cache
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\FiniteStateMachineViewer.exe
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\FiniteStateMachineViewer.pdb
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\GraphSharp.Controls.dll
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\GraphSharp.dll
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Data.dll
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.dll
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Graphviz.dll
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Serialization.dll
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\WPFExtensions.dll
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.xml
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Data.xml
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Graphviz.xml
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\bin\Debug\QuickGraph.Serialization.xml
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\MainWindow.g.cs
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer_MarkupCompile.lref
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\MainWindow.baml
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.g.resources
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.Properties.Resources.resources
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.csproj.GenerateResource.Cache
+C:\Users\Solo\Documents\GitHub\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.exe
