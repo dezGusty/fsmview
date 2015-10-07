@@ -28,7 +28,7 @@ namespace FiniteStateMachineViewer
         public StateMachine machine;
 
         public MainWindow()
-        {        
+        {
             machine = new StateMachine();
             machine.ViewMachineConfiguration();
             this.DataContext = machine.Graph;
@@ -51,9 +51,9 @@ namespace FiniteStateMachineViewer
         /// </summary>
         private void View_Configuration(object sender, RoutedEventArgs e)
         {
-             machine = new StateMachine();
-             machine.ViewMachineConfiguration();
-             this.DataContext = machine.Graph;
+            machine = new StateMachine();
+            machine.ViewMachineConfiguration();
+            this.DataContext = machine.Graph;
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace FiniteStateMachineViewer
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FSMSequence sequence = new FSMSequence();
-            OperationResult result=new OperationResult();
-            if (cmbBox.SelectedIndex != -1)  
+            OperationResult result = new OperationResult();
+            if (cmbBox.SelectedIndex != -1)
             {
                 sequence = (FSMSequence)cmbBox.SelectedItem;
-                result=machine.RepresentOneSequence(sequence,Colors.Yellow);
-                if(!result.Succes)
+                result = machine.RepresentOneSequence(sequence, Colors.Yellow);
+                if (!result.Succes)
                 {
                     MessageBox.Show(result.Message);
                     if (result.ResultID == Result.IncorrectSequence)
@@ -82,44 +82,55 @@ namespace FiniteStateMachineViewer
 
         private void add_vertex(object sender, RoutedEventArgs e)
         {
-          string text = txtaddvertex.Text;
-          if (text.Length.Equals(0))
-          {
-            MessageBox.Show("Invalid name!" + "\n" + "It cannot be empty!");
-          }
-          else
-          {
-            if (machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == text.ToLower()))
+            string text = txtaddvertex.Text;
+            if (text.Length.Equals(0))
             {
-              MessageBox.Show("A vertex with the name << " + text + " >>  already exists in the graph");
+                MessageBox.Show("Invalid name!" + "\n" + "It cannot be empty!");
             }
             else
             {
-              CustomVertex vertex = new CustomVertex(text, Colors.Magenta);
-              machine.Graph.AddNewVertex(vertex);
-              this.DataContext = machine.Graph;
+                if (machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == text.ToLower()))
+                {
+                    MessageBox.Show("A vertex with the name << " + text + " >>  already exists in the graph");
+                }
+                else
+                {
+                    CustomVertex vertex = new CustomVertex(text, Colors.Magenta);
+                    machine.Graph.AddNewVertex(vertex);
+                    this.DataContext = machine.Graph;
+                }
             }
-          }
         }
 
         private void add_edge(object sender, RoutedEventArgs e)
         {
-          string textFrom = from.Text;
-          string textTo = to.Text;
-
-          if(machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == textFrom.ToLower()) ||
-             machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == textTo.ToLower()))
-          {
-            MessageBox.Show("Error. The vertex doesn't exist!!");
-            //Test for both vertex names. 
-          }
-          else
-          {
-              CustomVertex vtxFrom = machine.Graph.GetVertexByName(textFrom);
-              CustomVertex vtxTo = machine.Graph.GetVertexByName(textTo);
-              machine.Graph.AddNewEdge("sth new", vtxFrom, vtxTo, Colors.Yellow);
-              this.DataContext = machine.Graph;
-          }
+            string textFrom = from.Text;
+            string textTo = to.Text;
+            if (textFrom.Length.Equals(0) || textTo.Length.Equals(0))
+            {
+                MessageBox.Show("Invalid name!" + "\n" + "It cannot be empty!");
+            }
+            else
+            {
+                if (!(machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == textFrom.ToLower())))
+                {
+                    MessageBox.Show(textFrom + " doesn't exist!");
+                }
+                else
+                {
+                    if (!(machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == textTo.ToLower())))
+                    {
+                        MessageBox.Show(textTo + " doesn't exist!");
+                    }
+                    else
+                    {
+                        CustomVertex vtxFrom = machine.Graph.GetVertexByName(textFrom);
+                        CustomVertex vtxTo = machine.Graph.GetVertexByName(textTo);
+                        machine.Graph.AddNewEdge("sth new", vtxFrom, vtxTo, Colors.Yellow);
+                        this.DataContext = machine.Graph;
+                    }
+                }
+            }
         }
     }
 }

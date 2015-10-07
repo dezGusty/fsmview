@@ -151,7 +151,7 @@ namespace FiniteStateMachineViewer
         /// <returns></returns>
         public CustomVertex GetVertexByName(string vertexName)
         {
-            return existingVertices.Where(v => v.Text == vertexName).FirstOrDefault();
+            return existingVertices.Where(v => v.Text.ToLower() == vertexName.ToLower()).FirstOrDefault();
         }
 
         /// <summary>
