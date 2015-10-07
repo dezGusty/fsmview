@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FiniteStateMachineViewer.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GraphSharp, Version=1.0.2.0, Culture=neutral, PublicKeyToken=f9c24778325a6b82, processorArchitecture=MSIL">
       <HintPath>..\packages\GraphSharp.1.1.0.0\lib\net40\GraphSharp.dll</HintPath>
@@ -86,9 +89,9 @@
     <Compile Include="DomainModel\FSMSequence.cs" />
     <Compile Include="DomainModel\FSMSequenceConfig.cs" />
     <Compile Include="DomainModel\FSMStep.cs" />
-    <Compile Include="DomainModel\FSMVConfig.cs" />
-    <Compile Include="DomainModel\FSMVState.cs" />
-    <Compile Include="DomainModel\FSMVTrigger.cs" />
+    <Compile Include="DomainModel\FSMConfig.cs" />
+    <Compile Include="DomainModel\FSMState.cs" />
+    <Compile Include="DomainModel\FSMTrigger.cs" />
     <Compile Include="DomainModel\FSMVUtilities.cs" />
     <Compile Include="Graph\Converters\EdgeColorConverter .cs" />
     <Compile Include="ViewModel\GraphViewModel.cs" />

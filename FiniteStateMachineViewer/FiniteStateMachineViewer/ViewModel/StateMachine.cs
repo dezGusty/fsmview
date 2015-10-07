@@ -21,11 +21,11 @@ namespace FiniteStateMachineViewer.ViewModel
         }
 
         //realtive paths to XMLs
-        private string xml = "../../statemachinecfg.xml";
-        private string xmlSeq = "../../statemachinecfgsequences.xml";
+        private string xml = "../../WinCCOADeployment.xml";
+        private string xmlSeq = "../../WinCCOADeploymentSequences.xml";
 
         //stores the XML configuration, the states and the triggers
-        private FSMVConfig config = new FSMVConfig();
+        private FSMConfig config = new FSMConfig();
 
         //stores the sequences
         private FSMSequenceConfig seq = new FSMSequenceConfig();
@@ -64,7 +64,7 @@ namespace FiniteStateMachineViewer.ViewModel
         /// </summary>
         public void GetTheNodes()
         {
-            foreach (FSMVState item in config.ArrayOfFSMVState)
+            foreach (FSMState item in config.ArrayOfFSMState)
             {
                 CustomVertex vertex = new CustomVertex(item.Name,Colors.Wheat);
                 GraphViewModel.Message=Graph.AddNewVertex(vertex);
@@ -77,11 +77,11 @@ namespace FiniteStateMachineViewer.ViewModel
         public void ViewMachineConfiguration()
         {
             GraphViewModel.Message += "Getting machine configuration...\r\n";
-            FSMVTrigger t = new FSMVTrigger();
-            Graph.LayoutAlgorithmType = "Circular";
+            FSMTrigger t = new FSMTrigger();
+            Graph.LayoutAlgorithmType = "Tree";
             try
             {
-                foreach (FSMVState state in config.ArrayOfFSMVState)
+                foreach (FSMState state in config.ArrayOfFSMState)
                 {
                     foreach (AllowedTrigger trigger in state.ArrayOfAllowedTrigger)
                     {
@@ -128,9 +128,9 @@ namespace FiniteStateMachineViewer.ViewModel
         /// </summary>
         /// <param name="stepp">The stepp that contains trigger SequenceID or CommonID.</param>
         /// <returns></returns>
-        public FSMVTrigger FoundTriggerInList(FSMStep stepp)
+        public FSMTrigger FoundTriggerInList(FSMStep stepp)
         {
-             return config.ArrayOfFSMVTrigger.Where(trig => (string.Compare(trig.SequenceID.Trim(),stepp.Name.Trim())==0)  || string.Compare(trig.CommonID.Trim(),stepp.Name.Trim())==0).FirstOrDefault();
+             return config.ArrayOfFSMTrigger.Where(trig => (string.Compare(trig.SequenceID.Trim(),stepp.Name.Trim())==0)  || string.Compare(trig.CommonID.Trim(),stepp.Name.Trim())==0).FirstOrDefault();
         }
 
         /// <summary>
@@ -138,9 +138,9 @@ namespace FiniteStateMachineViewer.ViewModel
         /// </summary>
         /// <param name="stateName">Name of the state.</param>
         /// <returns></returns>
-        public FSMVState FoundNextState(string stateName)
+        public FSMState FoundNextState(string stateName)
         {
-            return config.ArrayOfFSMVState.Where(state => state.Name.Trim() == stateName.Trim()).FirstOrDefault();
+            return config.ArrayOfFSMState.Where(state => state.Name.Trim() == stateName.Trim()).FirstOrDefault();
         }
 
         /// <summary>
@@ -148,9 +148,9 @@ namespace FiniteStateMachineViewer.ViewModel
         /// </summary>
         /// <param name="trig">The trig.</param>
         /// <returns></returns>
-        public FSMVTrigger FoundTriggerInList(AllowedTrigger trig)
+        public FSMTrigger FoundTriggerInList(AllowedTrigger trig)
         {
-           return  config.ArrayOfFSMVTrigger.Where(t => t.Name == trig.TriggerName || t.Name == trig.StateAndTriggerName || t.CommonID==trig.StateAndTriggerName).FirstOrDefault();
+           return  config.ArrayOfFSMTrigger.Where(t => t.Name == trig.TriggerName || t.Name == trig.StateAndTriggerName || t.CommonID==trig.StateAndTriggerName).FirstOrDefault();
         }
 
         /// <summary>
@@ -170,8 +170,8 @@ namespace FiniteStateMachineViewer.ViewModel
             AllowedTrigger aTrigger = new AllowedTrigger();
 
             //the states to be represented
-            FSMVState initialState = new FSMVState();
-            FSMVState otherState = new FSMVState();
+            FSMState initialState = new FSMState();
+            FSMState otherState = new FSMState();
 
             //verifies if there are steps to be represented
             if (sequence.ArrayOfStep.Count != 0)
@@ -180,7 +180,7 @@ namespace FiniteStateMachineViewer.ViewModel
                 stepp = sequence.ArrayOfStep.First();
                 GraphViewModel.Message += "First step: " + stepp.Name + "\r\n";
 
-                FSMVTrigger tr = new FSMVTrigger();
+                FSMTrigger tr = new FSMTrigger();
 
                 try
                 {
@@ -190,7 +190,7 @@ namespace FiniteStateMachineViewer.ViewModel
                     GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
 
                     //initial state
-                    initialState = config.ArrayOfFSMVState.FirstOrDefault();
+                    initialState = config.ArrayOfFSMState.FirstOrDefault();
 
                     if(oneSequence)
                     {

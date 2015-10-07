@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FiniteStateMachineViewer.DomainModel
 {
-    public class FSMVTrigger
+    public class FSMTrigger
     {
         /// <summary>
         /// The name by which the trigger is identified in the state machine.
@@ -44,9 +44,9 @@ namespace FiniteStateMachineViewer.DomainModel
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FSMVTrigger"/> class.
+        /// Initializes a new instance of the <see cref="FSMTrigger"/> class.
         /// </summary>
-        public FSMVTrigger()
+        public FSMTrigger()
         {
             this.Name = string.Empty;
             this.SequenceID = string.Empty;
@@ -57,7 +57,7 @@ namespace FiniteStateMachineViewer.DomainModel
         /// </summary>
         /// <param name="trigger">The trigger.</param>
         /// <returns></returns>
-        public bool compareTo(FSMVTrigger trigger)
+        public bool compareTo(FSMTrigger trigger)
         {
             if(string.Compare(this.Name.Trim(),trigger.Name.Trim())==0 && string.Compare(this.CommonID.Trim(),trigger.CommonID.Trim())==0 && string.Compare(this.SequenceID,trigger.SequenceID)==0)
                 return true;

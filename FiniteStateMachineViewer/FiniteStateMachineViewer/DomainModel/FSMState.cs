@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FiniteStateMachineViewer.DomainModel
 {
-    public class FSMVState
+    public class FSMState
     {
         /// <summary>
         /// Gets or sets the name.
@@ -57,7 +57,7 @@ namespace FiniteStateMachineViewer.DomainModel
         }
 
         //returneaza numele starii in care duce trigerul cu numele trigName si stare curenta\
-        public AllowedTrigger FoundTriggerInCureentState(FSMVTrigger trig)
+        public AllowedTrigger FoundTriggerInCureentState(FSMTrigger trig)
         {
             AllowedTrigger tr = new AllowedTrigger();
             tr = this.ArrayOfAllowedTrigger.Where(t => (t.TriggerName == trig.Name || t.StateAndTriggerName == trig.CommonID)).FirstOrDefault();

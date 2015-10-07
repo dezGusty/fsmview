@@ -48,7 +48,7 @@ namespace FiniteStateMachineViewer
             layoutAlgorithmTypes.Add("LinLog");
             layoutAlgorithmTypes.Add("Tree");
 
-            LayoutAlgorithmType = "LinLog";
+            LayoutAlgorithmType = "Tree";
         }
 
         /// <summary>

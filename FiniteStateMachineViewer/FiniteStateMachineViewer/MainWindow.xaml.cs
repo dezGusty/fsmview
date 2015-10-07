@@ -79,5 +79,47 @@ namespace FiniteStateMachineViewer
                 this.DataContext = machine.Graph;
             }
         }
+
+        private void add_vertex(object sender, RoutedEventArgs e)
+        {
+          string text = txtaddvertex.Text;
+          if (text.Length.Equals(0))
+          {
+            MessageBox.Show("Invalid name!" + "\n" + "It cannot be empty!");
+          }
+          else
+          {
+            if (machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == text.ToLower()))
+            {
+              MessageBox.Show("A vertex with the name << " + text + " >>  already exists in the graph");
+            }
+            else
+            {
+              CustomVertex vertex = new CustomVertex(text, Colors.Magenta);
+              machine.Graph.AddNewVertex(vertex);
+              this.DataContext = machine.Graph;
+            }
+          }
+        }
+
+        private void add_edge(object sender, RoutedEventArgs e)
+        {
+          string textFrom = from.Text;
+          string textTo = to.Text;
+
+          if(machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == textFrom.ToLower()) ||
+             machine.Graph.existingVertices.Exists(v => v.Text.ToLower() == textTo.ToLower()))
+          {
+            MessageBox.Show("Error. The vertex doesn't exist!!");
+            //Test for both vertex names. 
+          }
+          else
+          {
+              CustomVertex vtxFrom = machine.Graph.GetVertexByName(textFrom);
+              CustomVertex vtxTo = machine.Graph.GetVertexByName(textTo);
+              machine.Graph.AddNewEdge("sth new", vtxFrom, vtxTo, Colors.Yellow);
+              this.DataContext = machine.Graph;
+          }
+        }
     }
 }

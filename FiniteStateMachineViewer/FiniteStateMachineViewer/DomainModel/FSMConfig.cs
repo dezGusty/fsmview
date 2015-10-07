@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FiniteStateMachineViewer.DomainModel
 {
-    public class FSMVConfig
+    public class FSMConfig
     {
         /// <summary>
         /// Gets or sets the array of FSMV trigger.
@@ -15,7 +15,7 @@ namespace FiniteStateMachineViewer.DomainModel
         /// <value>
         /// The array of FSMV trigger.
         /// </value>
-        public Collection<FSMVTrigger> ArrayOfFSMVTrigger
+        public Collection<FSMTrigger> ArrayOfFSMTrigger
         {
             get;
             set;
@@ -27,7 +27,7 @@ namespace FiniteStateMachineViewer.DomainModel
         /// <value>
         /// The state of the array of FSMV.
         /// </value>
-        public Collection<FSMVState> ArrayOfFSMVState
+        public Collection<FSMState> ArrayOfFSMState
         {
             get;
             set;
@@ -72,16 +72,16 @@ namespace FiniteStateMachineViewer.DomainModel
         /// </summary>
         /// <param name="xmlContent">Content of the XML.</param>
         /// <returns></returns>
-        public FSMVConfig LoadFromXML(string xmlContent)
+        public FSMConfig LoadFromXML(string xmlContent)
         {
-            FSMVConfig fsmvConfigs = FSMVUtilities.FromXmlString<FSMVConfig>(xmlContent);
+            FSMConfig fsmvConfigs = FSMVUtilities.FromXmlString<FSMConfig>(xmlContent);
             return fsmvConfigs;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FSMVConfig"/> class.
+        /// Initializes a new instance of the <see cref="FSMConfig"/> class.
         /// </summary>
-        public FSMVConfig()
+        public FSMConfig()
         {
 
         }
