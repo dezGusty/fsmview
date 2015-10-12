@@ -122,10 +122,7 @@
                           Width="150" Height="25" Margin="5" SelectionChanged="ComboBox_SelectionChanged" />
         <Button Content="View machine configuration" Width="173" Height="25" Margin="5" Click="View_Configuration" />
         <Button Content="Add a vertex" Width="120" Height="25" Margin="5" Click="add_vertex" />
-        <TextBox Name="txtaddvertex" Width="80" Height="25" Margin="5" />
         <Button Content="Add an edge" Width="120" Height="25" Margin="5" Click="add_edge" />
-        <TextBox Name="from" Width="50" Height="25" Margin="5" />
-        <TextBox Name="to" Width="50" Height="25" Margin="5" />
         
       </StackPanel>
     </StackPanel>
