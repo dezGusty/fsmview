@@ -1,8 +1,6 @@
 ﻿using FiniteStateMachineViewer.DomainModel;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media;
 
 namespace FiniteStateMachineViewer.ViewModel
@@ -159,174 +157,159 @@ namespace FiniteStateMachineViewer.ViewModel
         /// <param name="color">The color.</param>
         /// <param name="sequence">The sequence.</param>
         /// /// <param name="oneSequence">if is true the Property Represented will be setted true.</param>
-        public OperationResult RepresentSequence(Color color,FSMSequence sequence,bool oneSequence)
+        public OperationResult RepresentSequence(Color color, FSMSequence sequence, bool oneSequence)
         {
-            //the result of operation
-            OperationResult result = new OperationResult(true,"Succesfully represented!");
+          //the result of operation
+          OperationResult result = new OperationResult(true, "Succesfully represented!");
 
-             //current step
-            FSMStep stepp = new FSMStep();
+          //current step
+          FSMStep stepp = new FSMStep();
 
-            AllowedTrigger aTrigger = new AllowedTrigger();
+          AllowedTrigger aTrigger = new AllowedTrigger();
 
-            //the states to be represented
-            FSMState initialState = new FSMState();
-            FSMState otherState = new FSMState();
+          //the states to be represented
+          FSMState initialState = new FSMState();
+          FSMState otherState = new FSMState();
 
-            //verifies if there are steps to be represented
-            if (sequence.ArrayOfStep.Count != 0)
+          //verifies if there are steps to be represented
+          if (sequence.ArrayOfStep.Count != 0)
+          {
+            //get first step
+            stepp = sequence.ArrayOfStep.First();
+            GraphViewModel.Message += "First step: " + stepp.Name + "\r\n";
+
+            FSMTrigger tr = new FSMTrigger();
+
+            try
             {
-                //get first step
-                stepp = sequence.ArrayOfStep.First();
-                GraphViewModel.Message += "First step: " + stepp.Name + "\r\n";
+              //found the trigger in the list of triggers
+              tr = FoundTriggerInList(stepp);
 
-                FSMTrigger tr = new FSMTrigger();
+              GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
 
-                try
+              //initial state
+              initialState = config.ArrayOfFSMState.FirstOrDefault();
+
+              if (oneSequence)
+              {
+                this.Graph.GetVertexByName(initialState.Name).Represented = true;
+              }
+
+              GraphViewModel.Message += "Initial state is always: " + initialState.Name + "\r\n";
+
+              try
+              {
+                aTrigger = new AllowedTrigger();
+                aTrigger = initialState.FoundTriggerInCureentState(tr); //founds the trigger in current state
+                string newState = "";
+                if (String.IsNullOrEmpty(aTrigger.StateName)) //verifies if the trigger has a state name, if it doesn't, then it has a StateandTriggerName
                 {
-                    //found the trigger in the list of triggers
+                  newState = aTrigger.StateAndTriggerName;
+                  CustomEdge edge = new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                  Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);
+                  Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
+                }
+                else
+                {
+                  newState = aTrigger.StateName;
+                  CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                  Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);
+                  Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
+                }
+                Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
+                if (oneSequence)
+                {
+                  this.Graph.GetVertexByName(initialState.Name).Represented = true;
+                  this.Graph.GetVertexByName(newState).Represented = true;
+                }
+
+                //switch to new state
+                otherState = FoundNextState(newState);
+                GraphViewModel.Message += "Next state is:" + otherState.Name + " Allowed triggers: " + otherState.ArrayOfAllowedTrigger.Count.ToString() + "\r\n";
+
+                for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
+                {
+                  stepp = sequence.ArrayOfStep.ElementAt(i);
+                  GraphViewModel.Message += "\nNext step: " + stepp.Name + "\r\n";
+                  try
+                  {
                     tr = FoundTriggerInList(stepp);
-
-                    GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
-
-                    //initial state
-                    initialState = config.ArrayOfFSMState.FirstOrDefault();
-
-                    if(oneSequence)
+                    if (String.IsNullOrEmpty(tr.Name) && (String.IsNullOrEmpty(tr.SequenceID) && String.IsNullOrEmpty(tr.CommonID)))
                     {
-                        this.Graph.GetVertexByName(initialState.Name).Represented = true;
+                      GraphViewModel.Message += "Incorrect trigger!Done representing \r\n ";
                     }
-
-                    GraphViewModel.Message += "Initial state is always: " + initialState.Name + "\r\n";
-
+                    GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
+                    newState = "";
                     try
                     {
-                        aTrigger = new AllowedTrigger();
-                        aTrigger = initialState.FoundTriggerInCureentState(tr); //founds the trigger in current state
-                        string newState = "";
-                        if (String.IsNullOrEmpty(aTrigger.StateName)) //verifies if the trigger has a state name, if it doesn't, then it has a StateandTriggerName
-                        {
-                            newState = aTrigger.StateAndTriggerName;      
-                            CustomEdge edge=new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
-                            Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);
-                            Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
-                        }
-                        else
-                        {
-                            newState = aTrigger.StateName;
-                            CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
-                            Graph.ChangeOneVertexColor(Graph.GetVertexByName(initialState.Name), color);                      
-                            Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
-                        }
-                        Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);  
-                        if (oneSequence)
-                        {
-                           this.Graph.GetVertexByName(initialState.Name).Represented = true;
-                           this.Graph.GetVertexByName(newState).Represented = true;
-                        }
-
-                        //switch to new state
-                        otherState = FoundNextState(newState);
-                        GraphViewModel.Message += "Next state is:" + otherState.Name + " Allowed triggers: " + otherState.ArrayOfAllowedTrigger.Count.ToString() + "\r\n";
-  
-                        for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
-                        {
-                            stepp = sequence.ArrayOfStep.ElementAt(i);
-                            GraphViewModel.Message += "\nNext step: " + stepp.Name + "\r\n";
-                            try
-                            {
-                                tr = FoundTriggerInList(stepp);
-                                if(String.IsNullOrEmpty(tr.Name) && (String.IsNullOrEmpty(tr.SequenceID) && String.IsNullOrEmpty(tr.CommonID)))
-                                {
-                                    GraphViewModel.Message += "Incorrect trigger!Done representing \r\n ";
-                                }
-                                GraphViewModel.Message += "Found trigger: " + tr.Name + "\r\n";
-                                newState = "";
-                                try
-                                {
-                                    aTrigger = otherState.FoundTriggerInCureentState(tr);
-                                    if (String.IsNullOrEmpty(aTrigger.StateName))
-                                    {
-                                        newState = aTrigger.StateAndTriggerName;
-                                        CustomEdge edge = new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
-                                        Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
-                                    }
-                                    else
-                                    {
-                                        newState = aTrigger.StateName;
-                                        CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
-                                        Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);        
-                                    }
-                                    Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
-                                    if (oneSequence)
-                                    {
-                                        this.Graph.GetVertexByName(initialState.Name).Represented = true;
-                                        this.Graph.GetVertexByName(newState).Represented = true;
-                                    }
-                                    initialState = otherState;
-                                    otherState = FoundNextState(newState);
-                                    GraphViewModel.Message += "Takes FSM to state: " + otherState.Name + "\r\n";
-                                }
-                                catch (Exception ex)
-                                {
-                                    GraphViewModel.Message += ex.Message + "\r\nA problem ocurred! Invalid state name!"+newState+"\nDone representing!" + "\r\n";
-                                    Graph.ResetRepresentedToDefault();
-                                    result.Succes = false;
-                                    result.Message= "\r\nA problem ocurred! Invalid state!"+newState+"\nDone representing!";
-                                    result.ResultID = Result.IncorrectSequence;
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                GraphViewModel.Message += ex.Message + "\r\nIncorrect trigger!\r\nDone representing!";
-                                Graph.ResetRepresentedToDefault();
-                                result.Message= "\r\nIncorrect trigger!\r\nDone representing!";
-                                result.Succes = false;
-                                result.ResultID = Result.IncorrectSequence;
-                            }
-                        }
+                      aTrigger = otherState.FoundTriggerInCureentState(tr);
+                      if (String.IsNullOrEmpty(aTrigger.StateName))
+                      {
+                        newState = aTrigger.StateAndTriggerName;
+                        CustomEdge edge = new CustomEdge(aTrigger.StateAndTriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                        Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
+                      }
+                      else
+                      {
+                        newState = aTrigger.StateName;
+                        CustomEdge edge = new CustomEdge(aTrigger.TriggerName, Graph.GetVertexByName(initialState.Name), Graph.GetVertexByName(newState), color);
+                        Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.CompareTo(edge)).FirstOrDefault(), color);
+                      }
+                      Graph.ChangeOneVertexColor(Graph.GetVertexByName(newState), color);
+                      if (oneSequence)
+                      {
+                        this.Graph.GetVertexByName(initialState.Name).Represented = true;
+                        this.Graph.GetVertexByName(newState).Represented = true;
+                      }
+                      initialState = otherState;
+                      otherState = FoundNextState(newState);
+                      GraphViewModel.Message += "Takes FSM to state: " + otherState.Name + "\r\n";
                     }
                     catch (Exception ex)
                     {
-                        GraphViewModel.Message += ex.Message + "\r\nTrigger does not exist in current state!\r\nDone representing!";
-                        Graph.ResetRepresentedToDefault();
-                        result.Message="\r\nTrigger does not exist in current state!\r\nDone representing!";
-                        result.Succes = false;
-                        result.ResultID = Result.IncorrectSequence;
+                      GraphViewModel.Message += ex.Message + "\r\nA problem ocurred! Invalid state name!" + newState + "\nDone representing!" + "\r\n";
+                      Graph.ResetRepresentedToDefault();
+                      result.Succes = false;
+                      result.Message = "\r\nA problem ocurred! Invalid state!" + newState + "\nDone representing!";
+                      result.ResultID = Result.IncorrectSequence;
                     }
-                }
-                catch (Exception ex)
-                {
-                    GraphViewModel.Message += ex.Message + "\r\n Incorrect sequence!";
-                    result.Message= "\r\n Incorrect sequence!";
+                  }
+                  catch (Exception ex)
+                  {
+                    GraphViewModel.Message += ex.Message + "\r\nIncorrect trigger!\r\nDone representing!";
+                    Graph.ResetRepresentedToDefault();
+                    result.Message = "\r\nIncorrect trigger!\r\nDone representing!";
                     result.Succes = false;
                     result.ResultID = Result.IncorrectSequence;
+                  }
                 }
-            }
-            else
-            {
-                GraphViewModel.Message += "\r\n Sequence with no steps!";
+              }
+              catch (Exception ex)
+              {
+                GraphViewModel.Message += ex.Message + "\r\nTrigger does not exist in current state!\r\nDone representing!";
                 Graph.ResetRepresentedToDefault();
-                result.Message = "\r\n Workflow with no steps!";
+                result.Message = "\r\nTrigger does not exist in current state!\r\nDone representing!";
                 result.Succes = false;
-                result.ResultID = Result.NoSteps;
+                result.ResultID = Result.IncorrectSequence;
+              }
             }
-            return result;
-        }
-
-        /// <summary>
-        /// In case of error, takes the machine to the default ErrorState.
-        /// </summary>
-        /// <param name="color">The color.</param>
-        public void ToErrorState(Color color)
-        {
-            CustomVertex v = new CustomVertex();
-            v = this.Graph.existingVertices.Where(ve => ve.BackgroundColor.Equals(color)).Last();
-            CustomEdge ed = new CustomEdge(config.DefaultTriggerOnError, Graph.GetVertexByName(v.Text), Graph.GetVertexByName(config.DefaultTriggerOnError), color);
-            Graph.ChangeOneVertexColor(Graph.GetVertexByName(config.DefaultTriggerOnError), color);
-            Graph.ChangeOneEdgeColor(Graph.Graph.Edges.Where(e => e.Trigger == config.DefaultTriggerOnError && e.Source.CompareTo(v)).FirstOrDefault(), color);
-            Graph.ChangeOneVertexColor(Graph.GetVertexByName(config.DefaultTriggerOnError), color);
+            catch (Exception ex)
+            {
+              GraphViewModel.Message += ex.Message + "\r\n Incorrect sequence!";
+              result.Message = "\r\n Incorrect sequence!";
+              result.Succes = false;
+              result.ResultID = Result.IncorrectSequence;
+            }
+          }
+          else
+          {
+            GraphViewModel.Message += "\r\n Sequence with no steps!";
+            Graph.ResetRepresentedToDefault();
+            result.Message = "\r\n Workflow with no steps!";
+            result.Succes = false;
+            result.ResultID = Result.NoSteps;
+          }
+          return result;
         }
     }
-
 }

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace FiniteStateMachineViewer.DomainModel
 {
+    [Serializable]
     public class FSMTrigger
     {
         /// <summary>

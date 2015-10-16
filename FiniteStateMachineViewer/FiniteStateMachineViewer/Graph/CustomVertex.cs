@@ -13,12 +13,54 @@ namespace FiniteStateMachineViewer
     /// <summary>
     /// Class that implements interface INotifyPropertyChanged
     /// </summary>
+    /// 
+    [Serializable]
     public class CustomVertex : INotifyPropertyChanged
     {
         private string _text;
         private Color _color;
         private bool highlight;
         private bool represented;
+        private double xPos;
+        private double yPos;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="CustomVertex"/> is represented.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if represented; otherwise, <c>false</c>.
+        /// </value>
+        /// 
+        public double X
+        {
+          get
+          {
+            return this.xPos;
+          }
+          set
+          {
+            this.xPos = value;
+          }
+        }
+
+        /// <summary>
+        /// Gets or sets the y position.
+        /// </summary>
+        /// <value>
+        /// The y position.
+        /// </value>
+
+        public double Y
+        {
+          get
+          {
+            return this.yPos;
+          }
+          set
+          {
+            this.yPos = value;
+          }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="CustomVertex"/> is represented.
@@ -101,6 +143,22 @@ namespace FiniteStateMachineViewer
             this._text = "";
             this.highlight = false;
             this.represented = false;
+            this.xPos = 0;
+            this.yPos = 0;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomVertex"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="c">The color.</param>
+        public CustomVertex(string text, Color c, double x, double y)
+        {
+          this._text = text;
+          this.xPos = x;
+          this.yPos = y;
+          this._color = c;
+          this.BackgroundColor = Colors.Beige;
         }
 
         /// <summary>
@@ -110,10 +168,12 @@ namespace FiniteStateMachineViewer
         /// <param name="c">The color.</param>
         public CustomVertex(string text, Color color)
         {
-            this._text = text;
-            this.BackgroundColor= color;
-            this.highlight = false;
-            this.represented = false;
+          this._text = text;
+          this.BackgroundColor = color;
+          this.highlight = false;
+          this.represented = false;
+          this.xPos = 0;
+          this.yPos = 0;
         }
 
         /// <summary>

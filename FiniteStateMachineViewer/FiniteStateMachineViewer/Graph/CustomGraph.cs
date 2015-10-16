@@ -12,11 +12,15 @@ namespace FiniteStateMachineViewer
     /// <summary>
     /// Used for graph layout
     /// </summary>
+    /// 
+    [Serializable]
     public class CustomGraphLayout : GraphLayout<CustomVertex, CustomEdge, CustomGraph> { }
 
     /// <summary>
     /// Class that extends BidirectionalGraph
     /// </summary>
+    /// 
+    [Serializable]
     public class CustomGraph : BidirectionalGraph<CustomVertex, CustomEdge>
     {
         public CustomGraph() { }

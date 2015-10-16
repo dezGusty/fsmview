@@ -7,6 +7,7 @@ using System.Text;
 
 namespace FiniteStateMachineViewer.DomainModel
 {
+    [Serializable]
     public class FSMConfig
     {
         /// <summary>

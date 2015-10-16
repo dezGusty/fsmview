@@ -121,9 +121,10 @@
         <ComboBox  Name="cmbBox" ItemsSource="{Binding Sequences}" DisplayMemberPath="Name"
                           Width="150" Height="25" Margin="5" SelectionChanged="ComboBox_SelectionChanged" />
         <Button Content="View machine configuration" Width="173" Height="25" Margin="5" Click="View_Configuration" />
+        <Button Content="Save graph" Width="86" Height="25" Margin="5" Click="Save" />
+        <Button Content="Open graph" Width="91" Height="25" Margin="5" Click="Open" />
         <Button Content="Add a vertex" Width="120" Height="25" Margin="5" Click="add_vertex" />
         <Button Content="Add an edge" Width="120" Height="25" Margin="5" Click="add_edge" />
-        
       </StackPanel>
     </StackPanel>
 

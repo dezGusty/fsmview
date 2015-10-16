@@ -21,5 +21,17 @@ namespace FiniteStateMachineViewer.DomainModel
             StreamReader streamReader = new StreamReader(xmlData);
             return (T)xmlSerializer.Deserialize(streamReader);
         }
+
+        /// <summary>
+        /// Serializes an object.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="xmlData">The XML data.</param>
+        public static void ToXmlString<T>(string xmlSource, object O)
+        {
+          XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+          StreamWriter streamWriter = new StreamWriter(xmlSource);
+          xmlSerializer.Serialize(streamWriter, O);
+        }
     }
 }

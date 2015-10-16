@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace FiniteStateMachineViewer
 {
@@ -15,6 +16,8 @@ namespace FiniteStateMachineViewer
     /// <summary>
     /// Public CustomEdge class that extens the base class TypedEdge and implements interface INotifyPropertyChanged
     /// </summary>
+    /// 
+    [Serializable]
     public class CustomEdge :TypedEdge<CustomVertex>, INotifyPropertyChanged
     {
         /// <summary>
@@ -52,6 +55,8 @@ namespace FiniteStateMachineViewer
         /// <value>
         /// The trigger.
         /// </value>
+        /// 
+        [XmlAttribute("Trigger")]
         public string Trigger
         {
             get { return trigger; }

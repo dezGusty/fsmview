@@ -1,5 +1,6 @@
 ﻿using FiniteStateMachineViewer.DomainModel;
 using FiniteStateMachineViewer.ViewModel;
+using GraphSharp.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace FiniteStateMachineViewer
           if (result.ResultID == Result.IncorrectSequence)
           {
             machine.RepresentOneSequence(sequence, Colors.Red);
-            machine.ToErrorState(Colors.Red);
+            //machine.ToErrorState(Colors.Red);
           }
         }
         this.DataContext = machine.Graph;
@@ -92,6 +93,65 @@ namespace FiniteStateMachineViewer
       AddEdgeWindow addEdgeWindow = new AddEdgeWindow(machine);
       addEdgeWindow.Show();
       this.DataContext = machine.Graph;
+    }
+
+    private void Save(object sender, RoutedEventArgs e)
+    {
+      foreach (CustomVertex vertex in graphLayout.Graph.Vertices)
+      {
+        double vertexX = GraphLayout.GetX(graphLayout.GetVertexControl(vertex));
+        double vertexY = GraphLayout.GetY(graphLayout.GetVertexControl(vertex));
+      }
+      SetNodesPositionToSave();
+      SerializeHelper.SaveGraph(machine.Graph.Graph, "customgraph");
+      MessageBox.Show("Graph saved!");
+    }
+
+    private void Open(object sender, RoutedEventArgs e)
+    {
+      machine.Graph.Graph = new CustomGraph();
+      machine.Graph.Graph = SerializeHelper.LoadGraph("customgraph");
+      StringBuilder s = new StringBuilder();
+      foreach (CustomVertex vertex in machine.Graph.Graph.Vertices)
+      {
+        s.Append("X:" + vertex.X + " Y:" + vertex.Y + " Name:" + vertex.Text + " Color: " + vertex.BackgroundColor.ToString() + "\r\n");
+      }
+      ListOfCoordinates form = new ListOfCoordinates();
+      ListOfCoordinates.Message = s.ToString();
+      form.Show();
+      //MessageBox.Show(s.ToString());
+      SetNodesPositionFromCustomGraph(machine.Graph.Graph);
+      this.DataContext = machine.Graph;
+    }
+
+    /// <summary>
+    /// Sets the nodes position from custom graph.
+    /// </summary>
+    /// <param name="graph">The graph.</param>
+    private void SetNodesPositionFromCustomGraph(CustomGraph graph)
+    {
+      for (int i = 0; i < graph.Vertices.Count(); i++)
+      {
+        GraphLayout.SetX(graphLayout.GetVertexControl(graph.Vertices.ElementAt(i)), graph.Vertices.ElementAt(i).X);
+        GraphLayout.SetY(graphLayout.GetVertexControl(graph.Vertices.ElementAt(i)), graph.Vertices.ElementAt(i).Y);
+        machine.Graph.Graph.Vertices.Where(v => v.Equals(graph.Vertices.ElementAt(i))).FirstOrDefault().BackgroundColor = graph.Vertices.ElementAt(i).BackgroundColor;
+      }
+      this.DataContext = machine.Graph;
+    }
+
+    /// <summary>
+    /// Sets the nodes position.
+    /// </summary>
+    private void SetNodesPositionToSave()
+    {
+      foreach (CustomVertex vertex in graphLayout.Graph.Vertices)
+      {
+        double vertexX = GraphLayout.GetX(graphLayout.GetVertexControl(vertex));
+        double vertexY = GraphLayout.GetY(graphLayout.GetVertexControl(vertex));
+        graphLayout.Graph.Vertices.Where(var => var.Equals(vertex)).FirstOrDefault().X = vertexX;
+        graphLayout.Graph.Vertices.Where(var => var.Equals(vertex)).FirstOrDefault().Y = vertexY;
+      }
+
     }
   }
 }
