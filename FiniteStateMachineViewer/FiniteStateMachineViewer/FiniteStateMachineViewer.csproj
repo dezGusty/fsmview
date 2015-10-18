@@ -101,11 +101,9 @@
     <Compile Include="DomainModel\FSMState.cs" />
     <Compile Include="DomainModel\FSMTrigger.cs" />
     <Compile Include="DomainModel\FSMVUtilities.cs" />
+    <Compile Include="ViewModel\Helper\FlexibleMessageBox.cs" />
     <Compile Include="Graph\Converters\EdgeColorConverter .cs" />
     <Compile Include="Graph\Helpers\SerializeHelper.cs" />
-    <Compile Include="ListOfCoordinates.xaml.cs">
-      <DependentUpon>ListOfCoordinates.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\GraphViewModel.cs" />
     <Compile Include="ViewModel\Helper\OperationResult.cs" />
     <Compile Include="ViewModel\Helper\Result.cs" />
@@ -115,10 +113,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddVertexWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ListOfCoordinates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

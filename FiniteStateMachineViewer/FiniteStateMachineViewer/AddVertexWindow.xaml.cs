@@ -1,23 +1,13 @@
 ﻿using FiniteStateMachineViewer.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FiniteStateMachineViewer
 {
-  /// <summary>
-  /// Interaction logic for AddVertexWindow.xaml
-  /// </summary>
-  public partial class AddVertexWindow : Window
+    /// <summary>
+    /// Interaction logic for AddVertexWindow.xaml
+    /// </summary>
+    public partial class AddVertexWindow : Window
   {
     private StateMachine machine = new StateMachine();
 

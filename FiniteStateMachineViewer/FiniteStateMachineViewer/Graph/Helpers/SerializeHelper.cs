@@ -1,17 +1,15 @@
 ﻿using QuickGraph.Serialization;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Media;
 using System.Xml;
 
 namespace FiniteStateMachineViewer
 {
-  /// <summary>
-  /// Serializes and deserializes a CustomGraph
-  /// </summary>
-  public static class SerializeHelper
+    /// <summary>
+    /// Serializes and deserializes a CustomGraph
+    /// </summary>
+    public static class SerializeHelper
   {
     /// <summary>
     /// Loads the graph.

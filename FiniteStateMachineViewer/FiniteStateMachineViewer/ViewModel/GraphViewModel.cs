@@ -1,12 +1,7 @@
-﻿using FiniteStateMachineViewer;
-using GraphSharp.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FiniteStateMachineViewer.ViewModel;
 using FiniteStateMachineViewer.DomainModel;
 using System.Windows.Media;
 

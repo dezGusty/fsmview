@@ -215,3 +215,7 @@ D:\[Practica]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debu
 D:\[Practica]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.exe
 D:\[Practica]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.pdb
 D:\[Practica]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\FiniteStateMachineViewer.csprojResolveAssemblyReference.cache
+D:\[Proiect]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\AddEdgeWindow.baml
+D:\[Proiect]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\AddVertexWindow.baml
+D:\[Proiect]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\AddEdgeWindow.g.cs
+D:\[Proiect]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\AddVertexWindow.g.cs
