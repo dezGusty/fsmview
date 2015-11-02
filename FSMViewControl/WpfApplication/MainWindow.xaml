@@ -6,8 +6,8 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <local:FSMControl >
-         
+
         </local:FSMControl>
-        
+
     </Grid>
 </Window>

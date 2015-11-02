@@ -26,10 +26,10 @@ namespace FSMViewControl
         private string xmlSeq = "../../WinCCOADeploymentSequences.xml";
 
         //stores the XML configuration, the states and the triggers
-        private FSMConfig config = new FSMConfig();
+        public FSMConfig config = new FSMConfig();
 
         //stores the sequences
-        private FSMSequenceConfig seq = new FSMSequenceConfig();
+        public FSMSequenceConfig seq = new FSMSequenceConfig();
 
         //the graph
         public GraphViewModel Graph

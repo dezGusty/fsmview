@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace FSMViewControl.DomainModel
 {
@@ -13,6 +15,7 @@ namespace FSMViewControl.DomainModel
         /// The name by which the trigger is identified in the state machine.
         /// Should be unique.
         /// </summary>
+        
         public string Name
         {
             get;
@@ -23,6 +26,7 @@ namespace FSMViewControl.DomainModel
         /// The name or ID by which the trigger is identified in the sequences definition.
         /// Should also be unique.
         /// </summary>
+
         public string SequenceID
         {
             get;

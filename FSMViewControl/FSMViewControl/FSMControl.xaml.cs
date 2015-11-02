@@ -31,18 +31,15 @@ namespace FSMViewControl
 
         public FSMControl()
         {
-            Reset();
+            FSMVUtilities.SerializeSequence(machine.seq);
+            FSMVUtilities.SerializeConfig(machine.config);
+            MessageBox.Show("Graf serializat!");
             InitializeComponent();
+            machine.ViewMachineConfiguration();
+            machine.RepresentThisMachine(Colors.Beige);
+            this.DataContext = machine.Graph;
         }
 
-        /// <summary>
-        /// Resets this instance by creating a new instance of StateMachine and generatin the general configuration.
-        /// </summary>
-        public void Reset()
-        {
-            this.machine = new StateMachine();
-            machine.ViewMachineConfiguration();
-        }
         /// <summary>
         /// Handles the StateMachine event of the Draw control.
         /// </summary>
@@ -50,7 +47,6 @@ namespace FSMViewControl
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Draw_Machine(object sender, RoutedEventArgs e)
         {
-            Reset();
             machine.RepresentThisMachine(Colors.Yellow);
             this.DataContext = machine.Graph;
         }
@@ -60,7 +56,7 @@ namespace FSMViewControl
         /// </summary>
         private void View_Configuration(object sender, RoutedEventArgs e)
         {
-            Reset();
+            machine.ViewMachineConfiguration();
             this.DataContext = machine.Graph;
         }
 
@@ -69,7 +65,7 @@ namespace FSMViewControl
         /// </summary>
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Reset();
+            machine.ViewMachineConfiguration();
             FSMSequence sequence = new FSMSequence();
             OperationResult result = new OperationResult();
             if (cmbBox.SelectedIndex != -1)
@@ -135,7 +131,7 @@ namespace FSMViewControl
             {
                 try
                 {
-                    machine.Graph.Graph = new CustomGraph();
+                    machine = new StateMachine();
                     machine.Graph.Graph = SerializeHelper.LoadGraph(openFileDialog.FileName);
                     graphLayout.Graph = machine.Graph.Graph;
                     MessageBox.Show("Done!");
@@ -144,7 +140,7 @@ namespace FSMViewControl
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message + "\r\nIncorrect file type!");
-                    Reset();
+                    machine.ViewMachineConfiguration();
                 }
                 this.DataContext = machine.Graph;
             }
@@ -175,6 +171,15 @@ namespace FSMViewControl
                 machine.Graph.Graph.Vertices.Where(var => var.CompareTo(vertex)).FirstOrDefault().X = vertexX;
                 machine.Graph.Graph.Vertices.Where(var => var.CompareTo(vertex)).FirstOrDefault().Y = vertexY;
             }
+
+            //StringBuilder s = new StringBuilder();
+            //foreach (CustomVertex vertex in machine.Graph.Graph.Vertices)
+            //{
+            //    s.Append("Name: " + vertex.Text + " X: " + vertex.X + " Y: " + vertex.Y + " Color: " + vertex.BackgroundColor.ToString() + "\r\n");
+
+            //    // machine.Graph.Graph.Vertices.Where(var => var.CompareTo(vertex)).FirstOrDefault().BackgroundColor = vertex.BackgroundColor;
+            //}
+            //MessageBox.Show(s.ToString());
         }
 
         

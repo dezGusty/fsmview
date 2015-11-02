@@ -50,11 +50,14 @@ namespace FSMViewControl
         public static void SaveGraph(CustomGraph graph, string filename)
         {
             //create the xml writer
-            using (var writer = XmlWriter.Create(filename))
+            if (!string.IsNullOrEmpty(filename))
             {
-                var serializer = new GraphMLSerializer<CustomVertex, CustomEdge, CustomGraph>();
-                //serialize the graph
-                serializer.Serialize(writer, graph, v => v.Text + ";" + v.BackgroundColor.ToString() + ";" + v.X.ToString() + ";" + v.Y.ToString(), e => e.EdgeColor.ToString() + ";" + e.Trigger);
+                using (var writer = XmlWriter.Create(filename))
+                {
+                    var serializer = new GraphMLSerializer<CustomVertex, CustomEdge, CustomGraph>();
+                    //serialize the graph
+                    serializer.Serialize(writer, graph, v => v.Text + ";" + v.BackgroundColor.ToString() + ";" + v.X.ToString() + ";" + v.Y.ToString(), e => e.EdgeColor.ToString() + ";" + e.Trigger);
+                }
             }
         }
     }

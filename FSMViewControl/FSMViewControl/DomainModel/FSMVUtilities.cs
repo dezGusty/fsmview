@@ -24,33 +24,19 @@ namespace FSMViewControl.DomainModel
             return (T)xmlSerializer.Deserialize(streamReader);
         }
 
-        /// <summary>
-        /// Serializes an object.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="xmlData">The XML data.</param>
-        public static void ToXmlString<T>(string xmlSource, object O)
+        public static void SerializeConfig(FSMConfig o)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            StreamWriter streamWriter = new StreamWriter(xmlSource);
-            xmlSerializer.Serialize(streamWriter, O);
+            XmlSerializer s = new XmlSerializer(typeof(FSMConfig));
+            TextWriter writer = new StreamWriter("FSMConfigSerialized.xml");
+            s.Serialize(writer, o);
+            writer.Close();
         }
 
-
-        public static void SerializeObject(string filename)
+        public static void SerializeSequence(FSMSequenceConfig o)
         {
-            Console.WriteLine("Writing With XmlTextWriter");
-
-            XmlSerializer serializer =
-            new XmlSerializer(typeof(FSMConfig));
-            FSMConfig i = new FSMConfig();
-            i.LoadFromXML("../../WinCCOADeployment.xml");
-            // Create an XmlTextWriter using a FileStream.
-            Stream fs = new FileStream(filename, FileMode.Create);
-            XmlWriter writer =
-            new XmlTextWriter(fs, Encoding.Unicode);
-            // Serialize using the XmlTextWriter.
-            serializer.Serialize(writer, i);
+            XmlSerializer s = new XmlSerializer(typeof(FSMSequenceConfig));
+            TextWriter writer = new StreamWriter("FSMSequenceSerialized.xml");
+            s.Serialize(writer, o);
             writer.Close();
         }
     }

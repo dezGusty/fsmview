@@ -1,7 +1,6 @@
 D:\Code\FSMViewControl\WpfApplication\bin\Debug\WpfApplication.exe.config
 D:\Code\FSMViewControl\WpfApplication\bin\Debug\WpfApplication.exe
 D:\Code\FSMViewControl\WpfApplication\bin\Debug\WpfApplication.pdb
-D:\Code\FSMViewControl\WpfApplication\bin\Debug\FSMViewControl.dll
 D:\Code\FSMViewControl\WpfApplication\bin\Debug\GraphSharp.Controls.dll
 D:\Code\FSMViewControl\WpfApplication\bin\Debug\GraphSharp.dll
 D:\Code\FSMViewControl\WpfApplication\bin\Debug\QuickGraph.Data.dll

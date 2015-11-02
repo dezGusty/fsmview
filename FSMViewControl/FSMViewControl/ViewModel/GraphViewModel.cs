@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace FSMViewControl
 {
@@ -14,6 +15,8 @@ namespace FSMViewControl
         private string layoutAlgorithmType;
         private CustomGraph graph;
         private List<String> layoutAlgorithmTypes = new List<string>();
+
+        [XmlIgnoreAttribute]
         public List<CustomVertex> existingVertices = new List<CustomVertex>();
 
         /// <summary>
@@ -22,6 +25,7 @@ namespace FSMViewControl
         /// <value>
         /// The message.
         /// </value>
+        [XmlIgnoreAttribute]
         public static String Message
         {
             get;
@@ -97,6 +101,7 @@ namespace FSMViewControl
         /// <value>
         /// The layout algorithm types.
         /// </value>
+        [XmlIgnoreAttribute]
         public List<String> LayoutAlgorithmTypes
         {
             get { return layoutAlgorithmTypes; }
@@ -108,6 +113,7 @@ namespace FSMViewControl
         /// <value>
         /// The type of the layout algorithm.
         /// </value>
+        [XmlIgnoreAttribute]
         public string LayoutAlgorithmType
         {
             get { return layoutAlgorithmType; }
@@ -136,6 +142,7 @@ namespace FSMViewControl
         /// <value>
         /// The graph.
         /// </value>
+        [XmlIgnoreAttribute]
         public CustomGraph Graph
         {
             get { return graph; }

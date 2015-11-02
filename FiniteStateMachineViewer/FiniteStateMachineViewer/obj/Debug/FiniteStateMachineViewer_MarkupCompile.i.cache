@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\[Proiect]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\
+D:\Code\FSMViewProject\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\obj\Debug\
 FiniteStateMachineViewer
 none
 false
 DEBUG;TRACE
-D:\[Proiect]\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\App.xaml
+D:\Code\FSMViewProject\fsmview\FiniteStateMachineViewer\FiniteStateMachineViewer\App.xaml
 3171388027
 
-26113408685
-21399841557
+262084327265
+21-207538235
 AddEdgeWindow.xaml;AddVertexWindow.xaml;MainWindow.xaml;
 
 False
