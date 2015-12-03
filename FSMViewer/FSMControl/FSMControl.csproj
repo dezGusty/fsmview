@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8A5D1B2-E2EC-4848-B480-8667F544E3E4}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FSMControl</RootNamespace>
+    <AssemblyName>FSMControl</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GraphSharp">
+      <HintPath>..\packages\GraphSharp.1.1.0.0\lib\net40\GraphSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GraphSharp.Controls">
+      <HintPath>..\packages\GraphSharp.1.1.0.0\lib\net40\GraphSharp.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Data">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Graphviz">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Graphviz.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Serialization">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFExtensions">
+      <HintPath>..\packages\WPFExtensions.1.0.0\lib\WPFExtensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomainModel\FirstVersion\AllowedTrigger.cs" />
+    <Compile Include="DomainModel\FirstVersion\FirstStateMachine.cs" />
+    <Compile Include="DomainModel\FirstVersion\FSMConfig.cs" />
+    <Compile Include="DomainModel\FirstVersion\FSMSequence.cs" />
+    <Compile Include="DomainModel\FirstVersion\FSMSequenceConfig.cs" />
+    <Compile Include="DomainModel\FirstVersion\FSMState.cs" />
+    <Compile Include="DomainModel\FirstVersion\FSMStep.cs" />
+    <Compile Include="DomainModel\FirstVersion\FSMTrigger.cs" />
+    <Compile Include="DomainModel\Model\Classes\MachineConfig.cs" />
+    <Compile Include="DomainModel\Model\Classes\StateMachine.cs" />
+    <Compile Include="DomainModel\Model\Interfaces\IConfigInterface.cs" />
+    <Compile Include="DomainModel\Model\Interfaces\ISequenceConfigInterface.cs" />
+    <Compile Include="DomainModel\Model\Interfaces\IStateInterface.cs" />
+    <Compile Include="DomainModel\Model\Interfaces\ITriggerInterface.cs" />
+    <Compile Include="DomainModel\SecondVersion\AllowedTrigger.cs" />
+    <Compile Include="DomainModel\SecondVersion\FSMVConfig.cs" />
+    <Compile Include="DomainModel\SecondVersion\FSMSequence.cs" />
+    <Compile Include="DomainModel\SecondVersion\FSMSequenceConfig.cs" />
+    <Compile Include="DomainModel\SecondVersion\FSMVState.cs" />
+    <Compile Include="DomainModel\SecondVersion\FSMStep.cs" />
+    <Compile Include="DomainModel\SecondVersion\FSMVTrigger.cs" />
+    <Compile Include="DomainModel\SecondVersion\SecondStateMachine.cs" />
+    <Compile Include="Graph\Helpers\EdgeColorConverter.cs" />
+    <Compile Include="Graph\Helpers\OperationResult.cs" />
+    <Compile Include="Graph\Helpers\SerializeHelper.cs" />
+    <Compile Include="Graph\Helpers\Serializer.cs" />
+    <Compile Include="Graph\Helpers\Utilities.cs" />
+    <Compile Include="Graph\Helpers\Version.cs" />
+    <Compile Include="Windows\AddEdgeWindow.xaml.cs">
+      <DependentUpon>AddEdgeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddVertexWindow.xaml.cs">
+      <DependentUpon>AddVertexWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="FSMView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="FSMView.xaml.cs">
+      <DependentUpon>FSMView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\AddEdgeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddVertexWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Graph\CustomEdge.cs" />
+    <Compile Include="Graph\CustomGraph.cs" />
+    <Compile Include="Graph\CustomVertex.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Resources\Schemas\ConfigVersion1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Schemas\ConfigVersion2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Schemas\SequenceVersion1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Schemas\SequenceVersion2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\black.jpg" />
+    <Resource Include="Resources\Images\yellow.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

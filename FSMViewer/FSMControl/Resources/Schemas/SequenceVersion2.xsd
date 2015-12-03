@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SequenceVersion2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="FSMSequenceConfig" >
+    <xs:complexType >
+      <xs:sequence>
+        <xs:element name="ArrayOfSequence" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FSMSequence" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Name" type="xs:string" minOccurs="1"/>
+                    <xs:element name="Description" type="xs:string"/>
+                    <xs:element name="FinalDescription" type="xs:string"/>
+                    <xs:element name="ArrayOfStep" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="FSMStep" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Name" type="xs:string"/>
+                                <xs:element name="Weight"/>
+                                <xs:element name="TimeoutInSeconds" type="xs:integer" minOccurs="0" default="0" nillable="true"/>
+                                <xs:element name="SingletonExecution"  minOccurs="0" default="0" nillable="true"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+
+  </xs:element>
+</xs:schema>

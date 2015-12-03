@@ -1,0 +1,10 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:FSMControl="clr-namespace:FSMControl;assembly=FSMControl" x:Class="FSMApplication.MainWindow"
+        Title="MainWindow" Height="780" Width="1350"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <FSMControl:FSMView />
+    </Grid>
+</Window>

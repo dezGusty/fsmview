@@ -1,0 +1,4 @@
+C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\FSMView.g.cs
+C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\FSMControl_MarkupCompile.cache
+C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\FSMControl_MarkupCompile.lref
