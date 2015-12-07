@@ -286,5 +286,17 @@ namespace FSMControl
         {
             OpenNewVersion();
         }
+
+        private void DeleteEdge_Click(object sender, RoutedEventArgs e)
+        {
+          DeleteEdgeWindow deleteEdgeWindow = new DeleteEdgeWindow(machinee);
+          deleteEdgeWindow.Show();
+        }
+
+        private void DeleteVertex_Click(object sender, RoutedEventArgs e)
+        {
+          DeleteVertexWindow deleteVertexWindow = new DeleteVertexWindow(machinee);
+          deleteVertexWindow.Show();
+        }
     }
 }

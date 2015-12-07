@@ -102,6 +102,12 @@
     <Compile Include="Windows\AddVertexWindow.xaml.cs">
       <DependentUpon>AddVertexWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DeleteEdgeWindow.xaml.cs">
+      <DependentUpon>DeleteEdgeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DeleteVertexWindow.xaml.cs">
+      <DependentUpon>DeleteVertexWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="FSMView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +121,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddVertexWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DeleteEdgeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DeleteVertexWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,17 +4,17 @@
 library
 C#
 .cs
-D:\Code\FSMViewProject\fsmview\FSMViewer\FSMControl\obj\Debug\
+D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\
 FSMControl
 none
 false
 DEBUG;TRACE
 
-31176818795
+52100084100
 
-41-256202549
-19-392071162
-FSMView.xaml;Windows\AddEdgeWindow.xaml;Windows\AddVertexWindow.xaml;
+43-720375249
+19-14685470
+FSMView.xaml;Windows\AddEdgeWindow.xaml;Windows\AddVertexWindow.xaml;Windows\DeleteEdgeWindow.xaml;Windows\DeleteVertexWindow.xaml;
 
-True
+False
 
