@@ -40,6 +40,7 @@ namespace FSMControl
         {
             SaveFileDialog save = new SaveFileDialog();
             save.Title = title;
+            save.DefaultExt = ".xml";
             
             bool? userClickedOK= save.ShowDialog();
 

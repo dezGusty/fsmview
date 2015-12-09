@@ -18,10 +18,10 @@ namespace FSMControl
         public static void SerializeConfig(MACHINECONFIG fsmConfig, string fileName)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(MACHINECONFIG));
-            //XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
-           // xmlNamespace.Add("", "");
+            XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
+            xmlNamespace.Add("", "");
             TextWriter writer = new StreamWriter(fileName);
-            xmlSerializer.Serialize(writer, fsmConfig);
+            xmlSerializer.Serialize(writer, fsmConfig, xmlNamespace);
             writer.Close();
         }
 
@@ -33,10 +33,10 @@ namespace FSMControl
         public static void SerializeSequence(SEQCONFIG fsmSequenceConfig, string fileName)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(SEQCONFIG));
-            //XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
-           // xmlNamespace.Add("", "");
+            XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
+            xmlNamespace.Add("", "");
             TextWriter writer = new StreamWriter(fileName);
-            xmlSerializer.Serialize(writer, fsmSequenceConfig);
+            xmlSerializer.Serialize(writer, fsmSequenceConfig, xmlNamespace);
             writer.Close();
         }
     }

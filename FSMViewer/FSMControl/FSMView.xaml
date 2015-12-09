@@ -7,7 +7,8 @@
              xmlns:graphsharp="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
              xmlns:local="clr-namespace:FSMControl"
              xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions" 
-             d:DesignHeight="780" d:DesignWidth="1350">
+             d:DesignHeight="780" d:DesignWidth="1350"
+             Name="fsmWindow">
   <UserControl.Resources>
 
     <Style x:Key="borderStyle"  TargetType="Border">
@@ -113,18 +114,19 @@
     <StackPanel>
       <Menu >
         <MenuItem Header="Machine" Height="35" Width="145" FontSize="18" HorizontalAlignment="Center">
-          <MenuItem Header="Load configuration" Click="LoadConfig_Click"/>
-          <MenuItem Header="Represent this machine" Click="Represent_machine"/>
-          <MenuItem Header="View machine configuration"  Click="View_Configuration"/>
-          <MenuItem Header="Save configuration" Click="SaveConfig_Click"/>
+          <MenuItem Name="load" Header="Load configuration" Click="LoadConfig_Click"/>
+          <MenuItem Name="represent" Header="Represent this machine" Click="Represent_machine"/>
+          <MenuItem Name="view" Header="View machine configuration"  Click="View_Configuration"/>
+          <MenuItem Name="save" Header="Save configuration" Click="SaveConfig_Click"/>
+          <MenuItem Name="close" Header="Close" Click="close_Click" />
         </MenuItem>
         <MenuItem Header="Graph options" Height="35" Width="168" FontSize="18">
-          <MenuItem Header="Save graph"  Click="Save" />
-          <MenuItem Header="Open graph"  Click="Open" />
-          <MenuItem Header="Add a vertex" Click="AddVertex_Click" />
-          <MenuItem Header="Add an edge" Click="AddEdge_Click"/>
-          <MenuItem Header="Delete a vertex" Click="DeleteVertex_Click"/>
-          <MenuItem Header="Delete an edge" Click="DeleteEdge_Click" />
+          <MenuItem Name="saveGraph" Header="Save graph"  Click="Save" />
+          <MenuItem Name="openGraph" Header="Open graph"  Click="Open" />
+          <MenuItem Name="addVertex" Header="Add a vertex" Click="AddVertex_Click" />
+          <MenuItem Name="addEdge" Header="Add an edge" Click="AddEdge_Click"/>
+          <MenuItem Name="deleteVertex" Header="Delete a vertex" Click="DeleteVertex_Click"/>
+          <MenuItem Name="deleteEdge" Header="Delete an edge" Click="DeleteEdge_Click" />
 
         </MenuItem>
 
