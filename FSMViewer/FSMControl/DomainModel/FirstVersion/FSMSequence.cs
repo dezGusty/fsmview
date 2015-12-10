@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.FirstVersion
 {
@@ -17,7 +12,6 @@ namespace FSMControl.DomainModel.FirstVersion
         /// <value>
         /// The name.
         /// </value>
-
         public string Name
         {
             get;

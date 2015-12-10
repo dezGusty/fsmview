@@ -29,13 +29,13 @@ namespace FSMControl.Windows
     {
       if (fsm is FirstStateMachine)
       {
-        this.machine = new FirstStateMachine(fsm.Xml, fsm.XmlSeq, fsm.CurrentVersion);
+        this.machine = new FirstStateMachine(fsm.CurrentVersion);
       }
       else
       {
         if (fsm is SecondStateMachine)
         {
-          this.machine = new SecondStateMachine(fsm.Xml, fsm.XmlSeq, fsm.CurrentVersion);
+          this.machine = new SecondStateMachine(fsm.CurrentVersion);
         }
       }
       this.machine = fsm;
@@ -74,7 +74,7 @@ namespace FSMControl.Windows
         //machine.MyGraph.DeleteEdge(vtxFrom, vtxTo);
         machine.MyGraph.RemoveEdgeIf(v => v.Source.Text.Equals(vtxFrom.Text) && v.Target.Text.Equals(vtxTo.Text));
 
-        foreach (var item in ((FirstStateMachine)machine).config.ArrayOfFSMState)
+        foreach (var item in ((FirstStateMachine)machine).Configuration.ArrayOfFSMState)
         {
           if (item.Name == vtxFrom.Text)
           {
@@ -108,7 +108,7 @@ namespace FSMControl.Windows
         //machine.MyGraph.DeleteEdge(vtxFrom, vtxTo);
         machine.MyGraph.RemoveEdgeIf(v => v.Source.Text.Equals(vtxFrom.Text) && v.Target.Text.Equals(vtxTo.Text));
 
-        foreach (var item in ((SecondStateMachine)machine).config.ArrayOfFSMVState)
+        foreach (var item in ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState)
         {
           if (item.Name == vtxFrom.Text)
           {

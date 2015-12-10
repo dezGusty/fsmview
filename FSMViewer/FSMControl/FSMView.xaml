@@ -127,7 +127,7 @@
           <MenuItem Name="addEdge" Header="Add an edge" Click="AddEdge_Click"/>
           <MenuItem Name="deleteVertex" Header="Delete a vertex" Click="DeleteVertex_Click"/>
           <MenuItem Name="deleteEdge" Header="Delete an edge" Click="DeleteEdge_Click" />
-
+          <MenuItem Name="generateNewSequence" Header="Generate new sequence" Click="Generate_Sequence_Click"/>
         </MenuItem>
 
         <StackPanel>

@@ -29,16 +29,17 @@ namespace FSMControl.Windows
     {
       if (fsm is FirstStateMachine)
       {
-        this.machine = new FirstStateMachine(fsm.Xml, fsm.XmlSeq, fsm.CurrentVersion);
+        this.machine = new FirstStateMachine(fsm.CurrentVersion);
       }
       else
       {
         if (fsm is SecondStateMachine)
         {
-          this.machine = new SecondStateMachine(fsm.Xml, fsm.XmlSeq, fsm.CurrentVersion);
+          this.machine = new SecondStateMachine(fsm.CurrentVersion);
         }
       }
       this.machine = fsm;
+      autocomplete.ItemsSource = machine.MyGraph.Vertices;
     }
 
     public DeleteVertexWindow()
@@ -46,64 +47,10 @@ namespace FSMControl.Windows
       InitializeComponent();
     }
 
-    private void txtDeleteVertex_TextChanged(object sender, TextChangedEventArgs e)
-    {
-      string typedString = txtDeleteVertex.Text;
-      List<string> autoList = new List<string>();
-      autoList.Clear();
-
-      if (machine is FirstStateMachine)
-      {
-        foreach (var item in ((FirstStateMachine)machine).config.ArrayOfFSMState)
-        {
-          if (!string.IsNullOrEmpty(txtDeleteVertex.Text))
-          {
-            if (item.Name.ToLower().StartsWith(typedString))
-            {
-              autoList.Add(item.Name);
-            }
-          }
-        }
-      }
-      else
-      {
-        foreach (var item in ((SecondStateMachine)machine).config.ArrayOfFSMVState)
-        {
-          if (!string.IsNullOrEmpty(txtDeleteVertex.Text))
-          {
-            if (item.Name.ToLower().StartsWith(typedString))
-            {
-              autoList.Add(item.Name);
-            }
-          }
-        }
-      }
-
-      if (autoList.Count > 0)
-      {
-        lbSuggestion.ItemsSource = autoList;
-        lbSuggestion.Focus();
-        lbSuggestion.Visibility = Visibility.Visible;
-      }
-      else
-      {
-        if (txtDeleteVertex.Text.Equals(""))
-        {
-          lbSuggestion.Visibility = Visibility.Collapsed;
-          lbSuggestion.ItemsSource = null;
-        }
-        else
-        {
-          lbSuggestion.Visibility = Visibility.Collapsed;
-          lbSuggestion.ItemsSource = null;
-        }
-      }
-    }
-
     private void btnDeleteVertex(object sender, RoutedEventArgs e)
     {
 
-      string text = txtDeleteVertex.Text;
+      string text = autocomplete.Text;
       if (string.IsNullOrEmpty(text))
       {
         MessageBox.Show("Invalid name!" + "\n" + "It cannot be empty!");
@@ -114,21 +61,21 @@ namespace FSMControl.Windows
         if (machine is FirstStateMachine)
         {
           CustomVertex ctx = machine.MyGraph.GetVertexByName(text);
-          if(ctx == null)
+          if (ctx == null)
           {
             MessageBox.Show(string.Format("A vertex with name {0} doesn't exist in the graph!", text));
             return;
           }
-          foreach (var item in ((FirstStateMachine)machine).config.ArrayOfFSMState)
+          foreach (var item in ((FirstStateMachine)machine).Configuration.ArrayOfFSMState)
           {
             if (item.Name == ctx.Text)
             {
-              ((FirstStateMachine)machine).config.ArrayOfFSMState.Remove(item);
+              ((FirstStateMachine)machine).Configuration.ArrayOfFSMState.Remove(item);
               break;
             }
           }
           machine.MyGraph.RemoveVertex(ctx);
-          foreach (var item in ((FirstStateMachine)machine).config.ArrayOfFSMState)
+          foreach (var item in ((FirstStateMachine)machine).Configuration.ArrayOfFSMState)
           {
             foreach (var it in item.ArrayOfAllowedTrigger.ToList())
             {
@@ -147,16 +94,16 @@ namespace FSMControl.Windows
             MessageBox.Show(string.Format("A vertex with name {0} doesn't exist in the graph!", text));
             return;
           }
-          foreach (var item in ((SecondStateMachine)machine).config.ArrayOfFSMVState)
+          foreach (var item in ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState)
           {
             if (item.Name == ctx.Text)
             {
-              ((SecondStateMachine)machine).config.ArrayOfFSMVState.Remove(item);
+              ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState.Remove(item);
               break;
             }
           }
           machine.MyGraph.RemoveVertex(ctx);
-          foreach (var item in ((SecondStateMachine)machine).config.ArrayOfFSMVState)
+          foreach (var item in ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState)
           {
             foreach (var it in item.ArrayOfAllowedTrigger.ToList())
             {
@@ -176,34 +123,9 @@ namespace FSMControl.Windows
       this.Close();
     }
 
-    private void lbSuggestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void autocomplete_MouseEnter(object sender, MouseEventArgs e)
     {
-      if (lbSuggestion != null)
-      {
-        lbSuggestion.Visibility = Visibility.Collapsed;
-        txtDeleteVertex.TextChanged -= new TextChangedEventHandler(txtDeleteVertex_TextChanged);
-        if (lbSuggestion.SelectedIndex != -1)
-        {
-          txtDeleteVertex.Text = lbSuggestion.SelectedItem.ToString();
-        }
-        txtDeleteVertex.TextChanged += new TextChangedEventHandler(txtDeleteVertex_TextChanged);
-      }
-    }
-
-    private void txtDeleteVertex_LostFocus(object sender, RoutedEventArgs e)
-    {
-      if (string.IsNullOrEmpty(txtDeleteVertex.Text))
-      {
-        txtDeleteVertex.Visibility = System.Windows.Visibility.Collapsed;
-        watermarkedText.Visibility = System.Windows.Visibility.Visible;
-      }
-    }
-
-    private void watermarkedText_GotFocus(object sender, RoutedEventArgs e)
-    {
-      watermarkedText.Visibility = System.Windows.Visibility.Collapsed;
-      txtDeleteVertex.Visibility = System.Windows.Visibility.Visible;
-      txtDeleteVertex.Focus();
+      autocomplete.Text = string.Empty;
     }
   }
 }

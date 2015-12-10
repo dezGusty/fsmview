@@ -4,196 +4,218 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace FSMControl
 {
+  /// <summary>
+  /// Used for graph layout
+  /// </summary>
+  [Serializable]
+  public class CustomGraphLayout : GraphLayout<CustomVertex, CustomEdge, CustomGraph>
+  {
+  }
 
-    /// <summary>
-    /// Used for graph layout
-    /// </summary>
-    [Serializable]
-    public class CustomGraphLayout : GraphLayout<CustomVertex, CustomEdge, CustomGraph> { }
-
-    /// <summary>
-    /// Class that extends BidirectionalGraph
-    /// </summary>
-    [Serializable]
-    public class CustomGraph : BidirectionalGraph<CustomVertex, CustomEdge>,INotifyPropertyChanged
+  /// <summary>
+  /// Class that extends BidirectionalGraph
+  /// </summary>
+  [Serializable]
+  public class CustomGraph : BidirectionalGraph<CustomVertex, CustomEdge>, INotifyPropertyChanged
+  {
+    public CustomGraph()
     {
-        public CustomGraph()
-        {
-            layoutAlgorithmTypes = new List<string>();
-            layoutAlgorithmTypes.Add("BoundedFR");
-            layoutAlgorithmTypes.Add("Circular");
-            layoutAlgorithmTypes.Add("CompoundFDP");
-            layoutAlgorithmTypes.Add("EfficientSugiyama");
-            layoutAlgorithmTypes.Add("FR");
-            layoutAlgorithmTypes.Add("ISOM");
-            layoutAlgorithmTypes.Add("KK");
-            layoutAlgorithmTypes.Add("LinLog");
-            layoutAlgorithmTypes.Add("Tree");
-            LayoutAlgorithmType = "Tree";
-            message = " ";
-        }
-
-        private string message;
-
-        public string Message
-        {
-            get
-            {
-                return this.message;
-            }
-            set
-            {
-                this.message= value;
-                NotifyPropertyChanged("Message");
-            }
-        }
-
-        public CustomGraph(bool allowParallelEdges)
-            : base(allowParallelEdges) { }
-
-        public CustomGraph(bool allowParallelEdges, int vertexCapacity)
-            : base(allowParallelEdges, vertexCapacity) { }
-
-        private string layoutAlgorithmType;
-
-        public List<string> layoutAlgorithmTypes { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of the layout algorithm.
-        /// </summary>
-        /// <value>
-        /// The type of the layout algorithm.
-        /// </value>
-        [XmlIgnoreAttribute]
-        public string LayoutAlgorithmType
-        {
-            get { return layoutAlgorithmType; }
-            set
-            {
-                layoutAlgorithmType = value;
-                NotifyPropertyChanged("LayoutAlgorithmType");
-            }
-        }
-
-        /// <summary>
-        /// Gets the layout algorithm types.
-        /// </summary>
-        /// <value>
-        /// The layout algorithm types.
-        /// </value>
-        [XmlIgnoreAttribute]
-        public List<String> LayoutAlgorithmTypes
-        {
-            get { return layoutAlgorithmTypes; }
-        }
-
-        /// <summary>
-        /// Adds the new edge.
-        /// </summary>
-        /// <param name="trigger">The trigger.</param>
-        /// <param name="from">From.</param>
-        /// <param name="to">To.</param>
-        /// <param name="color">The color.</param>
-        /// <returns></returns>
-        public void AddNewEdge(string trigger, CustomVertex from, CustomVertex to)
-        {
-            if(from!=null && to!=null)
-            {
-                CustomEdge newEdge = new CustomEdge(trigger, from, to);
-                if (!this.Edges.Contains(newEdge))
-                {
-                    if (from.CompareTo(to))
-                    {
-                        this.Vertices.Where(v => v.CompareTo(from)).FirstOrDefault().Highlight = true;
-                        NotifyPropertyChanged("CustomVertex");
-                    }
-                    else
-                    {
-                        this.AddEdge(newEdge);
-                    }
-                    NotifyPropertyChanged("Graph");
-                    Message += "Edge " + newEdge.Source.Text + "--> " + newEdge.Target.Text + " added successfully! \r\n";
-                }
-                else
-                {
-                    Message += "Edge already exists! \r\n";
-                }
-            }
-        }
-
-        public CustomVertex GetVertexByName(string vertexName)
-        {
-            return this.Vertices.Where(v=>String.Compare(v.Text.Trim(),vertexName)==0).FirstOrDefault();
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
-
-        /// <summary>
-        /// Changes the color of the vertices.
-        /// </summary>
-        /// <param name="color">The color.</param>
-        public void ChangeVertexColor(Color color)
-        {
-            for (int i = 0; i < this.VertexCount; i++)
-            {
-                this.Vertices.ElementAt(i).BackgroundColor = color;
-            }
-            NotifyPropertyChanged("Graph");
-        }
-
-        /// <summary>
-        /// Changes the color of the one vertex.
-        /// </summary>
-        /// <param name="vertex">The vertex.</param>
-        /// <param name="color">The color.</param>
-        public void ChangeOneVertexColor(String vertexName, Color color)
-        {
-            this.Vertices.Where(e => e.CompareTo(this.GetVertexByName(vertexName))).FirstOrDefault().BackgroundColor = color;
-            NotifyPropertyChanged("Graph");
-        }
-
-        /// <summary>
-        /// Resets the colors and the highlight to default.
-        /// </summary>
-         public void ResetToDefault()
-        {
-            foreach (CustomVertex v in this.Vertices)
-            {
-                v.BackgroundColor = Colors.Wheat;
-                v.Represented = false;
-                NotifyPropertyChanged("Graph");
-            }
-            foreach (CustomEdge item in this.Edges)
-            {
-                item.EdgeColor = Colors.Black;
-                NotifyPropertyChanged("Graph");
-            }
-        }
-
-         /// <summary>
-         /// Changes the color of the one edge.
-         /// </summary>
-         /// <param name="edge">The edge.</param>
-         /// <param name="c">The color.</param>
-         public void ChangeOneEdgeColor(CustomEdge edge, Color color)
-         {
-             this.Edges.Where(e => e.CompareTo(edge)==true).FirstOrDefault().EdgeColor = color;
-         }
-
+      layoutAlgorithmTypes = new List<string>();
+      layoutAlgorithmTypes.Add("BoundedFR");
+      layoutAlgorithmTypes.Add("Circular");
+      layoutAlgorithmTypes.Add("CompoundFDP");
+      layoutAlgorithmTypes.Add("EfficientSugiyama");
+      layoutAlgorithmTypes.Add("FR");
+      layoutAlgorithmTypes.Add("ISOM");
+      layoutAlgorithmTypes.Add("KK");
+      layoutAlgorithmTypes.Add("LinLog");
+      layoutAlgorithmTypes.Add("Tree");
+      LayoutAlgorithmType = "Tree";
+      message = " ";
     }
+
+    private string message;
+
+    public string Message
+    {
+      get
+      {
+        return this.message;
+      }
+      set
+      {
+        this.message = value;
+        NotifyPropertyChanged("Message");
+      }
+    }
+
+    public CustomGraph(bool allowParallelEdges)
+      : base(allowParallelEdges) { }
+
+    public CustomGraph(bool allowParallelEdges, int vertexCapacity)
+      : base(allowParallelEdges, vertexCapacity) { }
+
+    private string layoutAlgorithmType;
+
+    public List<string> layoutAlgorithmTypes { get; set; }
+
+    /// <summary>
+    /// Gets or sets the type of the layout algorithm.
+    /// </summary>
+    /// <value>
+    /// The type of the layout algorithm.
+    /// </value>
+    [XmlIgnoreAttribute]
+    public string LayoutAlgorithmType
+    {
+      get { return layoutAlgorithmType; }
+      set
+      {
+        layoutAlgorithmType = value;
+        NotifyPropertyChanged("LayoutAlgorithmType");
+      }
+    }
+
+    /// <summary>
+    /// Gets the layout algorithm types.
+    /// </summary>
+    /// <value>
+    /// The layout algorithm types.
+    /// </value>
+    [XmlIgnoreAttribute]
+    public List<String> LayoutAlgorithmTypes
+    {
+      get { return layoutAlgorithmTypes; }
+    }
+
+    /// <summary>
+    /// Adds the new edge.
+    /// </summary>
+    /// <param name="trigger">The trigger.</param>
+    /// <param name="from">From.</param>
+    /// <param name="to">To.</param>
+    /// <param name="color">The color.</param>
+    /// <returns></returns>
+    public void AddNewEdge(string trigger, CustomVertex from, CustomVertex to)
+    {
+      if (from != null && to != null)
+      {
+        CustomEdge newEdge = new CustomEdge(trigger, from, to);
+        if (!this.Edges.Contains(newEdge))
+        {
+          if (from.CompareTo(to))
+          {
+            this.Vertices.Where(v => v.CompareTo(from)).FirstOrDefault().Highlight = true;
+            NotifyPropertyChanged("CustomVertex");
+          }
+          else
+          {
+            this.AddEdge(newEdge);
+          }
+
+          NotifyPropertyChanged("Graph");
+          Message += "Edge " + newEdge.Source.Text + "--> " + newEdge.Target.Text + " added successfully! \r\n";
+        }
+        else
+        {
+          Message += "Edge already exists! \r\n";
+        }
+      }
+    }
+
+    public CustomVertex GetVertexByName(string vertexName)
+    {
+      return this.Vertices.Where(v => String.Compare(v.Text.Trim(), vertexName) == 0).FirstOrDefault();
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    public void NotifyPropertyChanged(String info)
+    {
+      if (PropertyChanged != null)
+      {
+        PropertyChanged(this, new PropertyChangedEventArgs(info));
+      }
+    }
+
+    /// <summary>
+    /// Changes the color of the vertices.
+    /// </summary>
+    /// <param name="color">The color.</param>
+    public void ChangeVertexColor(Color color)
+    {
+      for (int i = 0; i < this.VertexCount; i++)
+      {
+        this.Vertices.ElementAt(i).BackgroundColor = color;
+      }
+      NotifyPropertyChanged("Graph");
+    }
+
+    /// <summary>
+    /// Changes the color of the one vertex.
+    /// </summary>
+    /// <param name="vertex">The vertex.</param>
+    /// <param name="color">The color.</param>
+    public void ChangeOneVertexColor(String vertexName, Color color)
+    {
+      this.Vertices.Where(e => e.CompareTo(this.GetVertexByName(vertexName))).FirstOrDefault().BackgroundColor = color;
+      NotifyPropertyChanged("Graph");
+    }
+
+    /// <summary>
+    /// Resets the colors and the highlight to default.
+    /// </summary>
+    public void ResetToDefault()
+    {
+      foreach (CustomVertex v in this.Vertices)
+      {
+        v.BackgroundColor = Colors.Wheat;
+        v.Represented = false;
+        NotifyPropertyChanged("Graph");
+      }
+      foreach (CustomEdge item in this.Edges)
+      {
+        item.EdgeColor = Colors.Black;
+        NotifyPropertyChanged("Graph");
+      }
+    }
+
+    /// <summary>
+    /// Changes the color of the one edge.
+    /// </summary>
+    /// <param name="edge">The edge.</param>
+    /// <param name="c">The color.</param>
+    public void ChangeOneEdgeColor(CustomEdge edge, Color color)
+    {
+      if (edge != null)
+      {
+        this.Edges.Where(e => e.CompareTo(edge) == true).FirstOrDefault().EdgeColor = color;
+      }
+    }
+
+    /// <summary>
+    /// Gets the edge between two vertices.
+    /// </summary>
+    /// <param name="vOne">The first vertex.</param>
+    /// <param name="vTwo">The second vertex.</param>
+    public CustomEdge GetEdgeBetween(CustomVertex vOne, CustomVertex vTwo)
+    {
+      return this.Edges.Where(e => (e.Source.CompareTo(vOne) && e.Target.CompareTo(vTwo))).FirstOrDefault();
+    }
+
+    /// <summary>
+    /// Gets the edge between two vertices.
+    /// </summary>
+    /// <param name="vOne">The first vertex.</param>
+    /// <param name="vTwo">The second vertex.</param>
+    public CustomEdge GetEdgeBetween(string vOne, string vTwo)
+    {
+      return this.Edges.Where(e => (String.Compare(e.Source.Text, vOne) == 0 && String.Compare(e.Target.Text, vTwo) == 0)).FirstOrDefault();
+    }
+  }
 }

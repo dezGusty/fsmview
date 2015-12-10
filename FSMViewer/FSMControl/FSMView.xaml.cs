@@ -73,6 +73,7 @@ namespace FSMControl
       addVertex.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
       deleteVertex.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
       deleteEdge.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
+      generateNewSequence.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
     }
 
     /// <summary>
@@ -98,17 +99,17 @@ namespace FSMControl
         v = auxVersion;
         if (v.ID == 1)
         {
-          machinee = new FirstStateMachine(v.Xml, v.XmlSeq, v);
+          machinee = new FirstStateMachine(v);
           machinee.GetDates();
-          cmbBox.ItemsSource = ((FirstStateMachine)machinee).seq.ArrayOfSequence.ToList();
+          cmbBox.ItemsSource = ((FirstStateMachine)machinee).Sequences.ArrayOfSequence.ToList();
         }
         else
         {
           if (v.ID == 2)
           {
-            machinee = new SecondStateMachine(v.Xml, v.XmlSeq, v);
+            machinee = new SecondStateMachine(v);
             machinee.GetDates();
-            cmbBox.ItemsSource = ((SecondStateMachine)machinee).seq.ArrayOfSequence.ToList();
+            cmbBox.ItemsSource = ((SecondStateMachine)machinee).Sequences.ArrayOfSequence.ToList();
           }
         }
         this.DataContext = machinee.MyGraph;
@@ -117,6 +118,10 @@ namespace FSMControl
       else
       {
         console.Text += "There is no version for this type of xml!\r\n";
+        this.currentOption = MachineOptions.Uninitialized;
+        this.currentOptionGraph = GraphOptions.Uninitialized;
+        EnableButtonStates();
+        EnableButtonStatesForGraph();
       }
     }
 
@@ -291,13 +296,13 @@ namespace FSMControl
     {
       if (v.ID == 1)
       {
-        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)machinee).config, Utilities.SavePath("Configuration"));
-        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)machinee).seq, Utilities.SavePath("Sequences"));
+        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)machinee).Configuration, Utilities.SavePath("Configuration"));
+        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)machinee).Sequences, Utilities.SavePath("Sequences"));
       }
       else
       {
-        Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)machinee).config, Utilities.SavePath("Configuration"));
-        Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)machinee).seq, Utilities.SavePath("Sequences"));
+        Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)machinee).Configuration, Utilities.SavePath("Configuration"));
+        Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)machinee).Sequences, Utilities.SavePath("Sequences"));
       }
       console.Text += "Configuration succesfully saved!\r\n";
     }
@@ -356,6 +361,17 @@ namespace FSMControl
     {
       var myWindow = Window.GetWindow(this);
       myWindow.Close();
+    }
+
+    private void Generate_Sequence_Click(object sender, RoutedEventArgs e)
+    {
+      this.currentOptionGraph = GraphOptions.Initialized;
+      EnableButtonStatesForGraph();
+      if (v.ID != 0)
+      {
+        GenerateSequenceWindow window = new GenerateSequenceWindow(machinee);
+        window.Show();
+      }
     }
   }
 }

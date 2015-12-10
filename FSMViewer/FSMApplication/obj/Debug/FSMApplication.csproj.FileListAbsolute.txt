@@ -105,3 +105,4 @@ C:\Users\paula.trifanov\Desktop\02.12.2015\FSMApplication\obj\Debug\FSMApplicati
 D:\Code\FSMViewProject\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.exe.config
 D:\Code\FSMViewProject\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.exe
 D:\Code\FSMViewProject\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.exe.config

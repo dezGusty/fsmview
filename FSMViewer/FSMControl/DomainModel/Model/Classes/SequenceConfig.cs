@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSMControl
+namespace FSMControl.DomainModel.Model.Classes
 {
-    [Serializable]
-    public class MachineConfig
-    {
-    }
+  [Serializable]
+  public class SequenceConfig
+  {
+  }
 }
