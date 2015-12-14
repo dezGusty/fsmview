@@ -1,9 +1,9 @@
-﻿using FSMControl.DomainModel.FirstVersion;
-using FSMControl.DomainModel.SecondVersion;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using FSMControl.DomainModel.FirstVersion;
+using FSMControl.DomainModel.SecondVersion;
 
 namespace FSMControl.Windows
 {
@@ -16,7 +16,7 @@ namespace FSMControl.Windows
 
     public AddVertexWindow()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
     public AddVertexWindow(StateMachine fsm)
@@ -33,22 +33,24 @@ namespace FSMControl.Windows
           this.machine = new SecondStateMachine(fsm.CurrentVersion);
         }
       }
+
       this.machine = fsm;
     }
 
     private void BtnAddVertex(object sender, RoutedEventArgs e)
     {
-      if (machine != null)
+      if (this.machine != null)
       {
-        if (machine is FirstStateMachine)
+        if (this.machine is FirstStateMachine)
         {
-          MessageBox.Show(((FirstStateMachine)machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
+          MessageBox.Show(((FirstStateMachine)this.machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
         }
         else
         {
-          MessageBox.Show(((SecondStateMachine)machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
+          MessageBox.Show(((SecondStateMachine)this.machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
         }
-        this.DataContext = machine.MyGraph;
+
+        this.DataContext = this.machine.MyGraph;
       }
     }
 

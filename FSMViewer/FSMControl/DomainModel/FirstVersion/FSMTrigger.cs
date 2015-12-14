@@ -51,7 +51,7 @@ namespace FSMControl.DomainModel.FirstVersion
     {
       if (this.Name == null && this.SequenceID == null)
       {
-        if (!String.IsNullOrEmpty(trigger.CommonID))
+        if (!string.IsNullOrEmpty(trigger.CommonID))
         {
           if (string.Compare(this.CommonID.Trim(), trigger.CommonID.Trim()) == 0)
           {
@@ -61,7 +61,7 @@ namespace FSMControl.DomainModel.FirstVersion
       }
       else
       {
-        if (!String.IsNullOrEmpty(trigger.Name) && !String.IsNullOrEmpty(trigger.SequenceID))
+        if (!string.IsNullOrEmpty(trigger.Name) && !string.IsNullOrEmpty(trigger.SequenceID))
         {
           if (string.Compare(this.Name.Trim(), trigger.Name.Trim()) == 0 && string.Compare(this.SequenceID, trigger.SequenceID) == 0)
           {

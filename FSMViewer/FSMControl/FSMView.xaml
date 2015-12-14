@@ -118,7 +118,7 @@
           <MenuItem Name="represent" Header="Represent this machine" Click="Represent_machine"/>
           <MenuItem Name="view" Header="View machine configuration"  Click="View_Configuration"/>
           <MenuItem Name="save" Header="Save configuration" Click="SaveConfig_Click"/>
-          <MenuItem Name="close" Header="Close" Click="close_Click" />
+          <MenuItem Name="close" Header="Close" Click="Close_Click" />
         </MenuItem>
         <MenuItem Header="Graph options" Height="35" Width="168" FontSize="18">
           <MenuItem Name="saveGraph" Header="Save graph"  Click="Save" />

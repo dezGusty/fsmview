@@ -1,18 +1,7 @@
-﻿using FSMControl.DomainModel.FirstVersion;
-using FSMControl.DomainModel.SecondVersion;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using FSMControl.DomainModel.FirstVersion;
+using FSMControl.DomainModel.SecondVersion;
 
 namespace FSMControl.Windows
 {
@@ -21,7 +10,6 @@ namespace FSMControl.Windows
   /// </summary>
   public partial class DeleteVertexWindow : Window
   {
-
     private StateMachine machine;
 
     public DeleteVertexWindow(StateMachine fsm)
@@ -38,83 +26,30 @@ namespace FSMControl.Windows
           this.machine = new SecondStateMachine(fsm.CurrentVersion);
         }
       }
+
       this.machine = fsm;
-      autocomplete.ItemsSource = machine.MyGraph.Vertices;
+      this.autocomplete.ItemsSource = this.machine.MyGraph.Vertices;
     }
 
     public DeleteVertexWindow()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
-    private void btnDeleteVertex(object sender, RoutedEventArgs e)
+    private void BtnDeleteVertex(object sender, RoutedEventArgs e)
     {
-
-      string text = autocomplete.Text;
-      if (string.IsNullOrEmpty(text))
+      if (this.machine != null)
       {
-        MessageBox.Show("Invalid name!" + "\n" + "It cannot be empty!");
-        Close();
-      }
-      else
-      {
-        if (machine is FirstStateMachine)
+        if (this.machine is FirstStateMachine)
         {
-          CustomVertex ctx = machine.MyGraph.GetVertexByName(text);
-          if (ctx == null)
-          {
-            MessageBox.Show(string.Format("A vertex with name {0} doesn't exist in the graph!", text));
-            return;
-          }
-          foreach (var item in ((FirstStateMachine)machine).Configuration.ArrayOfFSMState)
-          {
-            if (item.Name == ctx.Text)
-            {
-              ((FirstStateMachine)machine).Configuration.ArrayOfFSMState.Remove(item);
-              break;
-            }
-          }
-          machine.MyGraph.RemoveVertex(ctx);
-          foreach (var item in ((FirstStateMachine)machine).Configuration.ArrayOfFSMState)
-          {
-            foreach (var it in item.ArrayOfAllowedTrigger.ToList())
-            {
-              if (it.StateAndTriggerName == ctx.Text || it.StateName == ctx.Text)
-              {
-                item.ArrayOfAllowedTrigger.Remove(it);
-              }
-            }
-          }
+          MessageBox.Show(((FirstStateMachine)this.machine).DeleteVertex(autocomplete.Text));
         }
         else
         {
-          CustomVertex ctx = machine.MyGraph.GetVertexByName(text);
-          if (ctx == null)
-          {
-            MessageBox.Show(string.Format("A vertex with name {0} doesn't exist in the graph!", text));
-            return;
-          }
-          foreach (var item in ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState)
-          {
-            if (item.Name == ctx.Text)
-            {
-              ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState.Remove(item);
-              break;
-            }
-          }
-          machine.MyGraph.RemoveVertex(ctx);
-          foreach (var item in ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState)
-          {
-            foreach (var it in item.ArrayOfAllowedTrigger.ToList())
-            {
-              if (it.StateAndTriggerName == ctx.Text || it.StateName == ctx.Text)
-              {
-                item.ArrayOfAllowedTrigger.Remove(it);
-              }
-            }
-          }
+          MessageBox.Show(((SecondStateMachine)this.machine).DeleteVertex(autocomplete.Text));
         }
-        DataContext = machine.MyGraph;
+
+        this.DataContext = this.machine.MyGraph;
       }
     }
 
@@ -123,7 +58,7 @@ namespace FSMControl.Windows
       this.Close();
     }
 
-    private void autocomplete_MouseEnter(object sender, MouseEventArgs e)
+    private void Autocomplete_MouseEnter(object sender, MouseEventArgs e)
     {
       autocomplete.Text = string.Empty;
     }

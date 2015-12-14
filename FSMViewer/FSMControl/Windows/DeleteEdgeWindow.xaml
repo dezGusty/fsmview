@@ -14,7 +14,7 @@ Title="Delete Edge Window" Background="#3D5C5C" Height="300" Width="345"
       <RowDefinition Height="*"/>
       <RowDefinition Height="100"/>
     </Grid.RowDefinitions>
-    <Button Content="OK!" HorizontalAlignment="Left" Margin="137,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="49" Click="btnDeleteEdge"/>
+    <Button Content="OK!" HorizontalAlignment="Left" Margin="137,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="49" Click="BtnDeleteEdge"/>
     <Label Content="Source Vertex&#xD;&#xA;     Name:" Foreground="White" HorizontalAlignment="Left" Margin="4,62,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="50"/>
     <TextBox Name="txtFrom" Margin="119,70,11,67" Grid.Row="1" KeyboardNavigation.ControlTabNavigation="Once" />
     <Label Content="Target Vertex &#xD;&#xA;      Name:" Foreground="White" HorizontalAlignment="Left" Margin="4,112,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="50"/>

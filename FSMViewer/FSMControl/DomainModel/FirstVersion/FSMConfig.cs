@@ -186,5 +186,28 @@ namespace FSMControl.DomainModel.FirstVersion
 
       return null;
     }
+
+    public FSMTrigger FoundStringTriggerList(string triggerName)
+    {
+      foreach (FSMTrigger item in this.ArrayOfFSMTrigger)
+      {
+        if (string.IsNullOrEmpty(item.CommonID))
+        {
+          if (string.Compare(item.Name, triggerName) == 0)
+          {
+            return item;
+          }
+        }
+        else
+        {
+          if (string.Compare(item.CommonID, triggerName) == 0)
+          {
+            return item;
+          }
+        }
+      }
+
+      return null;
+    }
   }
 }

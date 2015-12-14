@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace FSMControl
 {
-    public class Serializer<MACHINECONFIG,SEQCONFIG>
+    public class Serializer<MACHINECONFIG, SEQCONFIG>
     {
         /// <summary>
         /// Serializes the configuration.
@@ -19,7 +19,7 @@ namespace FSMControl
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(MACHINECONFIG));
             XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
-            xmlNamespace.Add("", "");
+            xmlNamespace.Add(string.Empty, string.Empty);
             TextWriter writer = new StreamWriter(fileName);
             xmlSerializer.Serialize(writer, fsmConfig, xmlNamespace);
             writer.Close();
@@ -34,7 +34,7 @@ namespace FSMControl
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(SEQCONFIG));
             XmlSerializerNamespaces xmlNamespace = new XmlSerializerNamespaces();
-            xmlNamespace.Add("", "");
+            xmlNamespace.Add(string.Empty, string.Empty);
             TextWriter writer = new StreamWriter(fileName);
             xmlSerializer.Serialize(writer, fsmSequenceConfig, xmlNamespace);
             writer.Close();

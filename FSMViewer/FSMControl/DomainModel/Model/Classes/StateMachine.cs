@@ -4,7 +4,11 @@ namespace FSMControl
 {
   public class StateMachine
   {
-    public CustomGraph MyGraph;
+    public CustomGraph MyGraph
+    {
+      get;
+      set;
+    }
 
     public Version CurrentVersion
     {
@@ -38,11 +42,21 @@ namespace FSMControl
 
     public virtual string AddNewState(string stateName, string stateDefaultHandler, string stateReentryTrigger)
     {
-      return null;
+      return string.Empty;
     }
 
     public virtual void AddNewEdge(CustomVertex vertexFrom, string trigger, CustomVertex vertexTo)
     {
+    }
+
+    public virtual string DeleteVertex(string text)
+    {
+      return string.Empty;
+    }
+
+    public virtual string DeleteEdge(string sourceText, string targetText)
+    {
+      return string.Empty;
     }
   }
 }

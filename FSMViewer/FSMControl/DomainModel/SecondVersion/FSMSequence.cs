@@ -12,7 +12,6 @@ namespace FSMControl.DomainModel.SecondVersion
         /// <value>
         /// The name.
         /// </value>
-
         public string Name
         {
             get;

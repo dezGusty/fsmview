@@ -1,9 +1,9 @@
-﻿using FSMControl.DomainModel.FirstVersion;
-using FSMControl.DomainModel.SecondVersion;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using FSMControl.DomainModel.FirstVersion;
+using FSMControl.DomainModel.SecondVersion;
 
 namespace FSMControl.Windows
 {
@@ -16,7 +16,7 @@ namespace FSMControl.Windows
 
     public AddEdgeWindow()
     {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
     public AddEdgeWindow(StateMachine fsm)
@@ -33,8 +33,9 @@ namespace FSMControl.Windows
           this.machine = new SecondStateMachine(fsm.CurrentVersion);
         }
       }
+
       this.machine = fsm;
-      this.DataContext = machine.MyGraph;
+      this.DataContext = this.machine.MyGraph;
     }
 
     private void BtnAddEdge(object sender, RoutedEventArgs e)
@@ -54,15 +55,15 @@ namespace FSMControl.Windows
 
         string trigger = txtTrigger.Text.Trim();
 
-        if (machine is FirstStateMachine)
+        if (this.machine is FirstStateMachine)
         {
-          ((FirstStateMachine)machine).AddNewEdge(vertexFrom, trigger, vertexTo);
-          this.DataContext = machine.MyGraph;
+          ((FirstStateMachine)this.machine).AddNewEdge(vertexFrom, trigger, vertexTo);
+          this.DataContext = this.machine.MyGraph;
         }
         else
         {
-          ((SecondStateMachine)machine).AddNewEdge(vertexFrom, trigger, vertexTo);
-          this.DataContext = machine.MyGraph;
+          ((SecondStateMachine)this.machine).AddNewEdge(vertexFrom, trigger, vertexTo);
+          this.DataContext = this.machine.MyGraph;
         }
       }
     }

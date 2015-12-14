@@ -31,7 +31,7 @@ namespace FSMControl
     /// <value>
     /// The configuration validation string.
     /// </value>
-    public String configValidationString
+    public string ConfigValidationString
     {
       get;
       set;
@@ -40,7 +40,7 @@ namespace FSMControl
     /// <value>
     /// The sequence validation string.
     /// </value>
-    public String sequenceValidationString
+    public string SequenceValidationString
     {
       get;
       set;
@@ -53,17 +53,17 @@ namespace FSMControl
     public static List<Version> GetListOfVersions()
     {
       List<Version> list = new List<Version>();
-      Version A = new Version();
-      A.ID = 1;
-      A.configValidationString = @"..\..\..\FSMControl\Resources\Schemas\ConfigVersion1.xsd";
-      A.sequenceValidationString = @"..\..\..\FSMControl\Resources\Schemas\SequenceVersion1.xsd";
-      list.Add(A);
+      Version versionA = new Version();
+      versionA.ID = 1;
+      versionA.ConfigValidationString = @"..\..\..\FSMControl\Resources\Schemas\ConfigVersion1.xsd";
+      versionA.SequenceValidationString = @"..\..\..\FSMControl\Resources\Schemas\SequenceVersion1.xsd";
+      list.Add(versionA);
 
-      Version B = new Version();
-      B.ID = 2;
-      B.configValidationString = @"..\..\..\FSMControl\Resources\Schemas\ConfigVersion2.xsd";
-      B.sequenceValidationString = @"..\..\..\FSMControl\Resources\Schemas\SequenceVersion2.xsd";
-      list.Add(B);
+      Version versionB = new Version();
+      versionB.ID = 2;
+      versionB.ConfigValidationString = @"..\..\..\FSMControl\Resources\Schemas\ConfigVersion2.xsd";
+      versionB.SequenceValidationString = @"..\..\..\FSMControl\Resources\Schemas\SequenceVersion2.xsd";
+      list.Add(versionB);
       return list;
     }
 
@@ -89,26 +89,20 @@ namespace FSMControl
         foreach (Version v in Version.GetListOfVersions())
         {
           schema = new XmlSchemaSet();
-          schema.Add(null, v.configValidationString);
+          schema.Add(null, v.ConfigValidationString);
           XDocument document = XDocument.Load(this.Xml);
           bool validationErrorConfig = true;
-          document.Validate(schema, (s, ex) =>
-          {
-            validationErrorConfig = false;
-          });
+          document.Validate(schema, (s, ex) => { validationErrorConfig = false; });
           schema = new XmlSchemaSet();
-          schema.Add(null, v.sequenceValidationString);
+          schema.Add(null, v.SequenceValidationString);
           document = XDocument.Load(this.XmlSeq);
           bool validationErrorSeq = true;
-          document.Validate(schema, (s, ex) =>
-          {
-            validationErrorSeq = false;
-          });
+          document.Validate(schema, (s, ex) => { validationErrorSeq = false; });
           if (validationErrorConfig && validationErrorSeq)
           {
             this.ID = v.ID;
-            this.sequenceValidationString = v.sequenceValidationString;
-            this.configValidationString = v.configValidationString;
+            this.SequenceValidationString = v.SequenceValidationString;
+            this.ConfigValidationString = v.ConfigValidationString;
           }
         }
       }

@@ -8,21 +8,31 @@ namespace FSMControl.DomainModel.FirstVersion
   public class FirstStateMachine : StateMachine
   {
     ////stores the XML configuration, the states and the triggers
-    public FSMConfig Configuration = new FSMConfig();
+    public FSMConfig Configuration
+    {
+      get;
+      set;
+    }
 
     ////stores the sequences
-    public FSMSequenceConfig Sequences = new FSMSequenceConfig();
+    public FSMSequenceConfig Sequences
+    {
+      get;
+      set;
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FirstStateMachine"/> class.
     /// </summary>
-    /// <param name="v">The version.</param>
-    public FirstStateMachine(Version v)
+    /// <param name="version">The version.</param>
+    public FirstStateMachine(Version version)
     {
       this.MyGraph = new CustomGraph();
-      this.Xml = v.Xml;
-      this.XmlSeq = v.XmlSeq;
-      this.CurrentVersion = v;
+      this.Configuration = new FSMConfig();
+      this.Sequences = new FSMSequenceConfig();
+      this.Xml = version.Xml;
+      this.XmlSeq = version.XmlSeq;
+      this.CurrentVersion = version;
     }
 
     /// <summary>
@@ -254,6 +264,101 @@ namespace FSMControl.DomainModel.FirstVersion
 
       this.Configuration.AddNewTrigger(trig);
       this.MyGraph.Message += string.Format("Edge from {0} to {1} added successfully!", vertexFrom, vertexTo);
+    }
+
+    public override string DeleteEdge(string sourceText, string targetText)
+    {
+      CustomVertex source = this.MyGraph.GetVertexByName(sourceText);
+      CustomVertex target = this.MyGraph.GetVertexByName(targetText);
+
+      if (source == null)
+      {
+        return string.Format("Vertex with name {0} doesn't exist!", sourceText);
+      }
+
+      if (target == null)
+      {
+        return string.Format("Vertex with name {0} doesn't exist!", targetText);
+      }
+
+      this.MyGraph.RemoveEdgeIf(v => v.Source.Text.Equals(source.Text) && v.Target.Text.Equals(target.Text));
+
+      foreach (var item in this.Configuration.ArrayOfFSMState)
+      {
+        if (string.Compare(item.Name, sourceText) == 0)
+        {
+          foreach (var it in item.ArrayOfAllowedTrigger.ToList())
+          {
+            if (string.Compare(it.StateAndTriggerName, targetText) == 0 || string.Compare(it.StateName, targetText) == 0)
+            {
+              item.ArrayOfAllowedTrigger.Remove(it);
+            }
+          }
+        }
+      }
+
+      return string.Format("Successfully deleted an edge between {0} and {1}", source.Text, target.Text);
+    }
+
+    public override string DeleteVertex(string text)
+    {
+      if (string.IsNullOrEmpty(text))
+      {
+        return "Invalid name \n It cannot be empty!";
+      }
+
+      CustomVertex vertex = this.MyGraph.GetVertexByName(text);
+      if (vertex == null)
+      {
+        return string.Format("A vertex with name {0} doesn't exist in the graph!", text);
+      }
+
+      foreach (var item in this.Configuration.ArrayOfFSMState)
+      {
+        if (string.Compare(item.Name, text) == 0)
+        {
+          this.Configuration.ArrayOfFSMState.Remove(item);
+          break;
+        }
+      }
+
+      this.MyGraph.RemoveVertex(vertex);
+      foreach (var item in this.Configuration.ArrayOfFSMState)
+      {
+        foreach (var it in item.ArrayOfAllowedTrigger.ToList())
+        {
+          if (string.Compare(it.StateAndTriggerName, vertex.Text) == 0 || string.Compare(it.StateName, vertex.Text) == 0)
+          {
+            item.ArrayOfAllowedTrigger.Remove(it);
+          }
+        }
+      }
+
+      return string.Format("Successfully deleted vertex {0}!", text);
+    }
+
+    public FSMSequence AddNewStep(FSMSequence sequence, string steppTrigger)
+    {
+      FSMStep step = new FSMStep();
+      FSMTrigger triig = new FSMTrigger();
+      triig = this.Configuration.FoundStringTriggerList(steppTrigger);
+      if (string.IsNullOrEmpty(triig.SequenceID))
+      {
+        step.Name = triig.CommonID;
+      }
+      else
+      {
+        step.Name = triig.SequenceID;
+      }
+
+      step.Weight = "2";
+      step.TimeoutInSeconds = " 2";
+      if (!string.IsNullOrEmpty(step.Name))
+      {
+        sequence.ArrayOfStep.Add(step);
+      }
+
+      return sequence;
     }
   }
 }

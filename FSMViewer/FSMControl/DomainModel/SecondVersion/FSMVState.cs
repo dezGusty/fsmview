@@ -1,6 +1,6 @@
-﻿using FSMControl.DomainModel.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.SecondVersion
 {
@@ -55,14 +55,14 @@ namespace FSMControl.DomainModel.SecondVersion
       set;
     }
 
-    //returneaza numele starii in care duce trigerul cu numele trigName si stare curenta\
+    ////returneaza numele starii in care duce trigerul cu numele trigName si stare curenta\
     public AllowedTrigger FoundTriggerInCureentState(FSMVTrigger trig)
     {
       if (trig != null)
       {
         foreach (AllowedTrigger item in this.ArrayOfAllowedTrigger)
         {
-          if (String.IsNullOrEmpty(item.TriggerName))
+          if (string.IsNullOrEmpty(item.TriggerName))
           {
             if (string.Compare(item.StateAndTriggerName, trig.CommonID) == 0)
             {

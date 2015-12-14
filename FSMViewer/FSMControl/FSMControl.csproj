@@ -92,7 +92,9 @@
     <Compile Include="DomainModel\Model\Classes\SequenceConfig.cs" />
     <Compile Include="DomainModel\Model\Classes\StateMachine.cs" />
     <Compile Include="DomainModel\Model\Interfaces\IConfigInterface.cs" />
-    <Compile Include="DomainModel\Model\Interfaces\ISequenceConfigInterface.cs" />
+    <Compile Include="DomainModel\Model\Interfaces\ISequenceConfigInterface.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="DomainModel\Model\Interfaces\IStateInterface.cs" />
     <Compile Include="DomainModel\Model\Interfaces\ITriggerInterface.cs" />
     <Compile Include="DomainModel\SecondVersion\AllowedTrigger.cs" />
@@ -155,7 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graph\CustomEdge.cs" />
-    <Compile Include="Graph\CustomGraph.cs" />
+    <Compile Include="Graph\CustomGraph.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Graph\CustomVertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

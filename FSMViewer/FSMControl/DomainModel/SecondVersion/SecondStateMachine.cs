@@ -7,14 +7,24 @@ namespace FSMControl.DomainModel.SecondVersion
 {
   public class SecondStateMachine : StateMachine
   {
-    //stores the XML configuration, the states and the triggers
-    public FSMVConfig Configuration = new FSMVConfig();
+    ////stores the XML configuration, the states and the triggers
+    public FSMVConfig Configuration
+    {
+      get;
+      set;
+    }
 
-    //stores the sequences
-    public FSMSequenceConfig Sequences = new FSMSequenceConfig();
+    ////stores the sequences
+    public FSMSequenceConfig Sequences
+    {
+      get;
+      set;
+    }
 
     public SecondStateMachine(Version v)
     {
+      this.Configuration = new FSMVConfig();
+      this.Sequences = new FSMSequenceConfig();
       this.MyGraph = new CustomGraph();
       this.Xml = v.Xml;
       this.XmlSeq = v.XmlSeq;
@@ -24,10 +34,10 @@ namespace FSMControl.DomainModel.SecondVersion
     public override void GetDates()
     {
       this.Sequences = new FSMSequenceConfig();
-      Configuration = new FSMVConfig();
-      Sequences = Sequences.LoadFromXML(this.XmlSeq);  //load sequences from XML
-      Configuration = Configuration.LoadFromXML(this.Xml); //load XML configuration
-      SetGraphNodes();
+      this.Configuration = new FSMVConfig();
+      this.Sequences = this.Sequences.LoadFromXML(this.XmlSeq);  ////load sequences from XML
+      this.Configuration = this.Configuration.LoadFromXML(this.Xml); ////load XML configuration
+      this.SetGraphNodes();
     }
 
     /// <summary>
@@ -35,7 +45,7 @@ namespace FSMControl.DomainModel.SecondVersion
     /// </summary>
     public override void SetGraphNodes()
     {
-      foreach (FSMVState item in Configuration.ArrayOfFSMVState)
+      foreach (FSMVState item in this.Configuration.ArrayOfFSMVState)
       {
         CustomVertex vertex = new CustomVertex(item.Name, Colors.Wheat);
         this.MyGraph.AddVertex(vertex);
@@ -44,12 +54,12 @@ namespace FSMControl.DomainModel.SecondVersion
       FSMVTrigger t = new FSMVTrigger();
       try
       {
-        foreach (FSMVState state in Configuration.ArrayOfFSMVState)
+        foreach (FSMVState state in this.Configuration.ArrayOfFSMVState)
         {
           foreach (AllowedTrigger trigger in state.ArrayOfAllowedTrigger)
           {
             t = this.Configuration.FoundTriggerInList(trigger);
-            if (String.IsNullOrEmpty(trigger.TriggerName))
+            if (string.IsNullOrEmpty(trigger.TriggerName))
             {
               this.MyGraph.AddNewEdge(trigger.StateAndTriggerName, this.MyGraph.GetVertexByName(state.Name), this.MyGraph.GetVertexByName(trigger.StateAndTriggerName));
             }
@@ -92,6 +102,7 @@ namespace FSMControl.DomainModel.SecondVersion
           {
             newState = this.Configuration.FoundNextState(allowedTrigger.StateName);
           }
+
           if (newState != null)
           {
             this.MyGraph.ChangeOneVertexColor(newState.Name, color);
@@ -100,12 +111,13 @@ namespace FSMControl.DomainModel.SecondVersion
             {
               this.MyGraph.Vertices.Where(v => (string.Compare(v.Text, currentState.Name) == 0)).FirstOrDefault().Represented = true;
             }
+
             edge = this.MyGraph.GetEdgeBetween(currentState.Name, newState.Name);
             this.MyGraph.ChangeOneEdgeColor(edge, Colors.Yellow);
-
           }
         }
       }
+
       return newState;
     }
 
@@ -131,7 +143,7 @@ namespace FSMControl.DomainModel.SecondVersion
       {
         initialState = this.Configuration.ArrayOfFSMVState.FirstOrDefault();
         stepp = sequence.ArrayOfStep.First();
-        otherState = OneStep(stepp, initialState, Colors.Yellow);
+        otherState = this.OneStep(stepp, initialState, Colors.Yellow);
 
         for (int i = 1; i < sequence.ArrayOfStep.Count; i++)
         {
@@ -142,7 +154,7 @@ namespace FSMControl.DomainModel.SecondVersion
             FSMVState auxState = new FSMVState();
             auxState = otherState;
             otherState = new FSMVState();
-            otherState = OneStep(step, auxState, Colors.Yellow);
+            otherState = this.OneStep(step, auxState, Colors.Yellow);
           }
         }
       }
@@ -172,9 +184,9 @@ namespace FSMControl.DomainModel.SecondVersion
 
     public override string AddNewState(string stateName, string stateDefaultHandler, string stateReentryTrigger)
     {
-      if (!String.IsNullOrEmpty(stateName) && !String.IsNullOrEmpty(stateDefaultHandler) && !String.IsNullOrEmpty(stateReentryTrigger))
+      if (!string.IsNullOrEmpty(stateName) && !string.IsNullOrEmpty(stateDefaultHandler) && !string.IsNullOrEmpty(stateReentryTrigger))
       {
-        if ((this.MyGraph.Vertices.Where(v => String.Compare(v.Text.ToLower(), stateName.ToLower()) == 0).FirstOrDefault() != null))
+        if (this.MyGraph.Vertices.Where(v => string.Compare(v.Text.ToLower(), stateName.ToLower()) == 0).FirstOrDefault() != null)
         {
           return "A vertex with the name " + stateName + "   already exists in the graph!";
         }
@@ -190,6 +202,7 @@ namespace FSMControl.DomainModel.SecondVersion
           return "Vertex " + stateName + "   successfully added!";
         }
       }
+
       return "Please complete the fields first!";
     }
 
@@ -205,7 +218,7 @@ namespace FSMControl.DomainModel.SecondVersion
       AllowedTrigger aw = new AllowedTrigger();
       FSMVTrigger trig = new FSMVTrigger();
       state.Name = vertexFrom.Text;
-      if (String.IsNullOrEmpty(trigger))
+      if (string.IsNullOrEmpty(trigger))
       {
         CustomEdge edge = new CustomEdge(vertexTo.Text, vertexFrom, vertexTo);
         this.MyGraph.AddEdge(edge);
@@ -220,6 +233,7 @@ namespace FSMControl.DomainModel.SecondVersion
         trig.Name = vertexTo.Text;
         trig.SequenceID = trigger;
       }
+
       foreach (var item in this.Configuration.ArrayOfFSMVState)
       {
         if (item.Name == state.Name)
@@ -228,12 +242,109 @@ namespace FSMControl.DomainModel.SecondVersion
           {
             item.ArrayOfAllowedTrigger = new Collection<AllowedTrigger>();
           }
+
           item.ArrayOfAllowedTrigger.Add(aw);
           break;
         }
       }
+
       this.Configuration.AddNewTrigger(trig);
       this.MyGraph.Message += string.Format("Edge from {0} to {1} added successfully!", vertexFrom, vertexTo);
+    }
+
+    public override string DeleteEdge(string sourceText, string targetText)
+    {
+      CustomVertex source = this.MyGraph.GetVertexByName(sourceText);
+      CustomVertex target = this.MyGraph.GetVertexByName(targetText);
+
+      if (source == null)
+      {
+        return string.Format("Vertex with name {0} doesn't exist!", sourceText);
+      }
+
+      if (target == null)
+      {
+        return string.Format("Vertex with name {0} doesn't exist!", targetText);
+      }
+
+      this.MyGraph.RemoveEdgeIf(v => v.Source.Text.Equals(source.Text) && v.Target.Text.Equals(target.Text));
+
+      foreach (var item in this.Configuration.ArrayOfFSMVState)
+      {
+        if (string.Compare(item.Name, sourceText) == 0)
+        {
+          foreach (var it in item.ArrayOfAllowedTrigger.ToList())
+          {
+            if (string.Compare(it.StateAndTriggerName, targetText) == 0 || string.Compare(it.StateName, targetText) == 0)
+            {
+              item.ArrayOfAllowedTrigger.Remove(it);
+            }
+          }
+        }
+      }
+
+      return string.Format("Successfully deleted an edge between {0} and {1}", source.Text, target.Text);
+    }
+
+    public override string DeleteVertex(string text)
+    {
+      if (string.IsNullOrEmpty(text))
+      {
+        return "Invalid name \n It cannot be empty!";
+      }
+
+      CustomVertex vertex = this.MyGraph.GetVertexByName(text);
+      if (vertex == null)
+      {
+        return string.Format("A vertex with name {0} doesn't exist in the graph!", text);
+      }
+
+      foreach (var item in this.Configuration.ArrayOfFSMVState)
+      {
+        if (string.Compare(item.Name, text) == 0)
+        {
+          this.Configuration.ArrayOfFSMVState.Remove(item);
+          break;
+        }
+      }
+
+      this.MyGraph.RemoveVertex(vertex);
+      foreach (var item in this.Configuration.ArrayOfFSMVState)
+      {
+        foreach (var it in item.ArrayOfAllowedTrigger.ToList())
+        {
+          if (string.Compare(it.StateAndTriggerName, vertex.Text) == 0 || string.Compare(it.StateName, vertex.Text) == 0)
+          {
+            item.ArrayOfAllowedTrigger.Remove(it);
+          }
+        }
+      }
+
+      return string.Format("Successfully deleted vertex {0}!", text);
+    }
+
+    public FSMSequence AddNewStep(FSMSequence sequence, string steppTrigger)
+    {
+      FSMControl.DomainModel.SecondVersion.FSMStep step = new FSMControl.DomainModel.SecondVersion.FSMStep();
+      FSMVTrigger triig = new FSMVTrigger();
+      triig = this.Configuration.FoundStringTriggerList(steppTrigger);
+      if (string.IsNullOrEmpty(triig.SequenceID))
+      {
+        step.Name = triig.CommonID;
+      }
+      else
+      {
+        step.Name = triig.SequenceID;
+      }
+
+      step.Weight = "2";
+      step.TimeoutInSeconds = " 2";
+      if (!string.IsNullOrEmpty(step.Name))
+      {
+        sequence.ArrayOfStep.Add(step);
+      }
+
+      return sequence;
     }
   }
 }

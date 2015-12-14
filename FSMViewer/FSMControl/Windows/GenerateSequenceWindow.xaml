@@ -1,16 +1,23 @@
 ﻿<Window x:Class="FSMControl.Windows.GenerateSequenceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Generate New Sequence" Height="300" Width="500"
+        Title="Generate New Sequence" Height="370" Width="500"
         Background="#3D5C5C"
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
         ResizeMode="NoResize">
   <Grid>
-    <TextBlock  Name="firstStep" TextWrapping="Wrap"  FontSize="20" Foreground="White" Margin="40,10,40,198"/>
-    <ComboBox  Name="veritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="175,84,40,147" SelectionChanged="veritces_SelectionChanged"/>
-    <Button Name="undo" Content="Undo" Margin="61,186,258,51" Click="undo_Click"></Button>
-    <Button Name="done" Content="Save sequence!" Margin="267,186,40,51" Click="done_Click"></Button>
-    <Label Content="Next state:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="40,84,0,0" VerticalAlignment="Top" Width="130" Height="46"/>
+    <TextBlock  Name="firstStep" TextWrapping="Wrap"  FontSize="20" Foreground="White" Margin="29,190,0,111"/>
+    <ComboBox  Name="veritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="175,236,40,71" SelectionChanged="Vertices_SelectionChanged"/>
+    <Button Name="undo" Content="Undo" Margin="175,293,179,10" Click="Undo_Click"></Button>
+    <Button Name="done" Content="Save sequence" Margin="339,293,10,10" Click="Done_Click"></Button>
+    <Button Name="reset" Content="New sequence" Margin="10,293,344,10" Click="Reset_Click"></Button>
+    <Label Content="Next state:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="40,236,0,0" VerticalAlignment="Top" Width="130" Height="40"/>
+    <Label Content="Sequence name:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,28,0,0" VerticalAlignment="Top" Width="160" Height="40"/>
+    <Label Content="Description:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,96,0,0" VerticalAlignment="Top" Width="160" Height="40"/>
+    <Label Content="Final description:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,141,0,0" VerticalAlignment="Top" Width="160" Height="44"/>
+    <TextBox HorizontalAlignment="Left" Height="40" Margin="175,28,0,0" TextWrapping="Wrap" Name="seqName" VerticalAlignment="Top" Width="294"/>
+    <TextBox HorizontalAlignment="Left" Height="40" Margin="175,150,0,0" TextWrapping="Wrap" Name="seqFinalDesc" VerticalAlignment="Top" Width="294"/>
+    <TextBox HorizontalAlignment="Left" Height="40" Margin="175,96,0,0" TextWrapping="Wrap" Name="seqDesc" VerticalAlignment="Top" Width="294"/>
   </Grid>
 </Window>

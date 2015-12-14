@@ -1,9 +1,9 @@
-﻿using FSMControl.DomainModel.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.SecondVersion
 {
@@ -106,7 +106,7 @@ namespace FSMControl.DomainModel.SecondVersion
     {
       foreach (FSMVTrigger trigger in this.ArrayOfFSMVTrigger)
       {
-        if (String.IsNullOrEmpty(trigger.CommonID))
+        if (string.IsNullOrEmpty(trigger.CommonID))
         {
           if (string.Compare(trigger.SequenceID.Trim(), stepp.Name.Trim()) == 0)
           {
@@ -141,11 +141,13 @@ namespace FSMControl.DomainModel.SecondVersion
           break;
         }
       }
+
       if (exists == false)
       {
         this.ArrayOfFSMVTrigger.Add(triggerToAdd);
         return true;
       }
+
       return false;
     }
 
@@ -168,6 +170,30 @@ namespace FSMControl.DomainModel.SecondVersion
           }
         }
       }
+
+      return null;
+    }
+
+    public FSMVTrigger FoundStringTriggerList(string triggerName)
+    {
+      foreach (FSMVTrigger item in this.ArrayOfFSMVTrigger)
+      {
+        if (string.IsNullOrEmpty(item.CommonID))
+        {
+          if (string.Compare(item.Name, triggerName) == 0)
+          {
+            return item;
+          }
+        }
+        else
+        {
+          if (string.Compare(item.CommonID, triggerName) == 0)
+          {
+            return item;
+          }
+        }
+      }
+
       return null;
     }
   }

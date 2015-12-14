@@ -1,5 +1,5 @@
-﻿using FSMControl.DomainModel.Model.Interfaces;
-using System;
+﻿using System;
+using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.SecondVersion
 {
@@ -51,7 +51,7 @@ namespace FSMControl.DomainModel.SecondVersion
     {
       if (this.Name == null && this.SequenceID == null)
       {
-        if (!String.IsNullOrEmpty(trigger.CommonID))
+        if (!string.IsNullOrEmpty(trigger.CommonID))
         {
           if (string.Compare(this.CommonID.Trim(), trigger.CommonID.Trim()) == 0)
           {
@@ -61,7 +61,7 @@ namespace FSMControl.DomainModel.SecondVersion
       }
       else
       {
-        if (!String.IsNullOrEmpty(trigger.Name) && !String.IsNullOrEmpty(trigger.SequenceID))
+        if (!string.IsNullOrEmpty(trigger.Name) && !string.IsNullOrEmpty(trigger.SequenceID))
         {
           if (string.Compare(this.Name.Trim(), trigger.Name.Trim()) == 0 && string.Compare(this.SequenceID, trigger.SequenceID) == 0)
           {
@@ -69,6 +69,7 @@ namespace FSMControl.DomainModel.SecondVersion
           }
         }
       }
+
       return false;
     }
   }

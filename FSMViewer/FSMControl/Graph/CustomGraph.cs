@@ -1,11 +1,11 @@
-﻿using GraphSharp.Controls;
-using QuickGraph;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using GraphSharp.Controls;
+using QuickGraph;
 
 namespace FSMControl
 {
@@ -25,18 +25,18 @@ namespace FSMControl
   {
     public CustomGraph()
     {
-      layoutAlgorithmTypes = new List<string>();
-      layoutAlgorithmTypes.Add("BoundedFR");
-      layoutAlgorithmTypes.Add("Circular");
-      layoutAlgorithmTypes.Add("CompoundFDP");
-      layoutAlgorithmTypes.Add("EfficientSugiyama");
-      layoutAlgorithmTypes.Add("FR");
-      layoutAlgorithmTypes.Add("ISOM");
-      layoutAlgorithmTypes.Add("KK");
-      layoutAlgorithmTypes.Add("LinLog");
-      layoutAlgorithmTypes.Add("Tree");
-      LayoutAlgorithmType = "Tree";
-      message = " ";
+     this.ListOfLayoutAlgorithmTypes = new List<string>();
+     this.ListOfLayoutAlgorithmTypes.Add("BoundedFR");
+     this.ListOfLayoutAlgorithmTypes.Add("Circular");
+     this.ListOfLayoutAlgorithmTypes.Add("CompoundFDP");
+     this.ListOfLayoutAlgorithmTypes.Add("EfficientSugiyama");
+     this.ListOfLayoutAlgorithmTypes.Add("FR");
+     this.ListOfLayoutAlgorithmTypes.Add("ISOM");
+     this.ListOfLayoutAlgorithmTypes.Add("KK");
+     this.ListOfLayoutAlgorithmTypes.Add("LinLog");
+     this.ListOfLayoutAlgorithmTypes.Add("Tree");
+      this.LayoutAlgorithmType = "Tree";
+      this.message = " ";
     }
 
     private string message;
@@ -47,22 +47,27 @@ namespace FSMControl
       {
         return this.message;
       }
+
       set
       {
         this.message = value;
-        NotifyPropertyChanged("Message");
+        this.NotifyPropertyChanged("Message");
       }
     }
 
     public CustomGraph(bool allowParallelEdges)
-      : base(allowParallelEdges) { }
+      : base(allowParallelEdges) 
+    { 
+    }
 
     public CustomGraph(bool allowParallelEdges, int vertexCapacity)
-      : base(allowParallelEdges, vertexCapacity) { }
+      : base(allowParallelEdges, vertexCapacity) 
+    { 
+    }
 
     private string layoutAlgorithmType;
 
-    public List<string> layoutAlgorithmTypes { get; set; }
+    public List<string> ListOfLayoutAlgorithmTypes { get; set; }
 
     /// <summary>
     /// Gets or sets the type of the layout algorithm.
@@ -73,11 +78,15 @@ namespace FSMControl
     [XmlIgnoreAttribute]
     public string LayoutAlgorithmType
     {
-      get { return layoutAlgorithmType; }
+      get 
+      { 
+        return this.layoutAlgorithmType; 
+      }
+
       set
       {
-        layoutAlgorithmType = value;
-        NotifyPropertyChanged("LayoutAlgorithmType");
+        this.layoutAlgorithmType = value;
+        this.NotifyPropertyChanged("LayoutAlgorithmType");
       }
     }
 
@@ -88,9 +97,9 @@ namespace FSMControl
     /// The layout algorithm types.
     /// </value>
     [XmlIgnoreAttribute]
-    public List<String> LayoutAlgorithmTypes
+    public List<string> LayoutAlgorithmTypes
     {
-      get { return layoutAlgorithmTypes; }
+      get { return this.ListOfLayoutAlgorithmTypes; }
     }
 
     /// <summary>
@@ -111,35 +120,35 @@ namespace FSMControl
           if (from.CompareTo(to))
           {
             this.Vertices.Where(v => v.CompareTo(from)).FirstOrDefault().Highlight = true;
-            NotifyPropertyChanged("CustomVertex");
+            this.NotifyPropertyChanged("CustomVertex");
           }
           else
           {
             this.AddEdge(newEdge);
           }
 
-          NotifyPropertyChanged("Graph");
-          Message += "Edge " + newEdge.Source.Text + "--> " + newEdge.Target.Text + " added successfully! \r\n";
+          this.NotifyPropertyChanged("Graph");
+          this.Message += "Edge " + newEdge.Source.Text + "--> " + newEdge.Target.Text + " added successfully! \r\n";
         }
         else
         {
-          Message += "Edge already exists! \r\n";
+          this.Message += "Edge already exists! \r\n";
         }
       }
     }
 
     public CustomVertex GetVertexByName(string vertexName)
     {
-      return this.Vertices.Where(v => String.Compare(v.Text.Trim(), vertexName) == 0).FirstOrDefault();
+      return this.Vertices.Where(v => string.Compare(v.Text.Trim(), vertexName) == 0).FirstOrDefault();
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public void NotifyPropertyChanged(String info)
+    public void NotifyPropertyChanged(string info)
     {
-      if (PropertyChanged != null)
+      if (this.PropertyChanged != null)
       {
-        PropertyChanged(this, new PropertyChangedEventArgs(info));
+        this.PropertyChanged(this, new PropertyChangedEventArgs(info));
       }
     }
 
@@ -153,7 +162,8 @@ namespace FSMControl
       {
         this.Vertices.ElementAt(i).BackgroundColor = color;
       }
-      NotifyPropertyChanged("Graph");
+
+      this.NotifyPropertyChanged("Graph");
     }
 
     /// <summary>
@@ -161,10 +171,10 @@ namespace FSMControl
     /// </summary>
     /// <param name="vertex">The vertex.</param>
     /// <param name="color">The color.</param>
-    public void ChangeOneVertexColor(String vertexName, Color color)
+    public void ChangeOneVertexColor(string vertexName, Color color)
     {
       this.Vertices.Where(e => e.CompareTo(this.GetVertexByName(vertexName))).FirstOrDefault().BackgroundColor = color;
-      NotifyPropertyChanged("Graph");
+      this.NotifyPropertyChanged("Graph");
     }
 
     /// <summary>
@@ -176,12 +186,13 @@ namespace FSMControl
       {
         v.BackgroundColor = Colors.Wheat;
         v.Represented = false;
-        NotifyPropertyChanged("Graph");
+        this.NotifyPropertyChanged("Graph");
       }
+
       foreach (CustomEdge item in this.Edges)
       {
         item.EdgeColor = Colors.Black;
-        NotifyPropertyChanged("Graph");
+        this.NotifyPropertyChanged("Graph");
       }
     }
 
@@ -201,21 +212,21 @@ namespace FSMControl
     /// <summary>
     /// Gets the edge between two vertices.
     /// </summary>
-    /// <param name="vOne">The first vertex.</param>
-    /// <param name="vTwo">The second vertex.</param>
-    public CustomEdge GetEdgeBetween(CustomVertex vOne, CustomVertex vTwo)
+    /// <param name="source">The first vertex.</param>
+    /// <param name="target">The second vertex.</param>
+    public CustomEdge GetEdgeBetween(CustomVertex source, CustomVertex target)
     {
-      return this.Edges.Where(e => (e.Source.CompareTo(vOne) && e.Target.CompareTo(vTwo))).FirstOrDefault();
+      return this.Edges.Where(e => (e.Source.CompareTo(source) && e.Target.CompareTo(target))).FirstOrDefault();
     }
 
     /// <summary>
     /// Gets the edge between two vertices.
     /// </summary>
     /// <param name="vOne">The first vertex.</param>
-    /// <param name="vTwo">The second vertex.</param>
-    public CustomEdge GetEdgeBetween(string vOne, string vTwo)
+    /// <param name="target">The second vertex.</param>
+    public CustomEdge GetEdgeBetween(string source, string target)
     {
-      return this.Edges.Where(e => (String.Compare(e.Source.Text, vOne) == 0 && String.Compare(e.Target.Text, vTwo) == 0)).FirstOrDefault();
+      return this.Edges.Where(e => (string.Compare(e.Source.Text, source) == 0 && string.Compare(e.Target.Text, target) == 0)).FirstOrDefault();
     }
   }
 }

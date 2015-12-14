@@ -1,7 +1,7 @@
-﻿using GraphSharp;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows.Media;
+using GraphSharp;
 
 namespace FSMControl
 {
@@ -19,7 +19,7 @@ namespace FSMControl
     /// <summary>
     /// The color of edge
     /// </summary>
-    public Color color;
+    private Color color;
 
     /// <summary>
     /// Gets or sets the color of the edge.
@@ -31,13 +31,13 @@ namespace FSMControl
     {
       get
       {
-        return color;
+        return this.color;
       }
 
       set
       {
-        color = value;
-        NotifyPropertyChanged("EdgeColor");
+        this.color = value;
+        this.NotifyPropertyChanged("EdgeColor");
       }
     }
 
@@ -51,12 +51,13 @@ namespace FSMControl
     {
       get
       {
-        return trigger;
+        return this.trigger;
       }
+
       set
       {
-        trigger = value;
-        NotifyPropertyChanged("Trigger");
+        this.trigger = value;
+        this.NotifyPropertyChanged("Trigger");
       }
     }
 
@@ -116,6 +117,7 @@ namespace FSMControl
           }
         }
       }
+
       return false;
     }
 
@@ -123,18 +125,19 @@ namespace FSMControl
 
     private void NotifyPropertyChanged(string info)
     {
-      if (PropertyChanged != null)
+      if (this.PropertyChanged != null)
       {
-        PropertyChanged(this, new PropertyChangedEventArgs(info));
+        this.PropertyChanged(this, new PropertyChangedEventArgs(info));
       }
     }
 
     internal bool IsSelfEdge()
     {
-      if (String.Compare(this.Source.Text, this.Target.Text) == 0)
+      if (string.Compare(this.Source.Text, this.Target.Text) == 0)
       {
         return true;
       }
+
       return false;
     }
   }

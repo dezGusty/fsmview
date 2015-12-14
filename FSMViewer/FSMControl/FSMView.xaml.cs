@@ -1,12 +1,4 @@
-﻿using FSMControl;
-using FSMControl.DomainModel.FirstVersion;
-using FSMControl.DomainModel.Model.Interfaces;
-using FSMControl.DomainModel.SecondVersion;
-using FSMControl.Windows;
-using GraphSharp.Controls;
-using Microsoft.Win32;
-using QuickGraph;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FSMControl;
+using FSMControl.DomainModel.FirstVersion;
+using FSMControl.DomainModel.Model.Interfaces;
+using FSMControl.DomainModel.SecondVersion;
+using FSMControl.Windows;
+using GraphSharp.Controls;
+using Microsoft.Win32;
+using QuickGraph;
 
 namespace FSMControl
 {
-
   public enum MachineOptions
   {
     Uninitialized,
@@ -41,24 +40,23 @@ namespace FSMControl
   /// </summary>
   public partial class FSMView : UserControl
   {
-
     private MachineOptions currentOption;
     private GraphOptions currentOptionGraph;
 
-    StateMachine machinee = new StateMachine();
-    Version v = new Version();
+    private StateMachine machinee = new StateMachine();
+    private Version v = new Version();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FSMView"/> class.
     /// </summary>
     public FSMView()
     {
-      InitializeComponent();
+      this.InitializeComponent();
 
-      currentOptionGraph = GraphOptions.Uninitialized;
-      currentOption = MachineOptions.Uninitialized;
-      EnableButtonStates();
-      EnableButtonStatesForGraph();
+      this.currentOptionGraph = GraphOptions.Uninitialized;
+      this.currentOption = MachineOptions.Uninitialized;
+      this.EnableButtonStates();
+      this.EnableButtonStatesForGraph();
     }
 
     /// <summary>
@@ -66,14 +64,14 @@ namespace FSMControl
     /// </summary>
     private void EnableButtonStatesForGraph()
     {
-      saveGraph.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
-      openGraph.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
-      addVertex.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
-      addEdge.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
-      addVertex.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
-      deleteVertex.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
-      deleteEdge.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
-      generateNewSequence.IsEnabled = (this.currentOptionGraph != GraphOptions.Uninitialized);
+      saveGraph.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
+      openGraph.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
+      addVertex.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
+      addEdge.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
+      addVertex.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
+      deleteVertex.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
+      deleteEdge.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
+      generateNewSequence.IsEnabled = this.currentOptionGraph != GraphOptions.Uninitialized;
     }
 
     /// <summary>
@@ -82,9 +80,9 @@ namespace FSMControl
     private void EnableButtonStates()
     {
       load.IsEnabled = true;
-      represent.IsEnabled = (this.currentOption != MachineOptions.Uninitialized);
-      save.IsEnabled = (this.currentOption != MachineOptions.Uninitialized);
-      view.IsEnabled = (this.currentOption != MachineOptions.Uninitialized);
+      represent.IsEnabled = this.currentOption != MachineOptions.Uninitialized;
+      save.IsEnabled = this.currentOption != MachineOptions.Uninitialized;
+      view.IsEnabled = this.currentOption != MachineOptions.Uninitialized;
     }
 
     /// <summary>
@@ -92,27 +90,28 @@ namespace FSMControl
     /// </summary>
     private void OpenNewVersion()
     {
-      Version auxVersion = new Version(); //fac o noua versiune
+      Version auxVersion = new Version(); ////make a new version
       auxVersion.GetVersion();
       if (auxVersion.ID != 0)
       {
-        v = auxVersion;
-        if (v.ID == 1)
+        this.v = auxVersion;
+        if (this.v.ID == 1)
         {
-          machinee = new FirstStateMachine(v);
-          machinee.GetDates();
-          cmbBox.ItemsSource = ((FirstStateMachine)machinee).Sequences.ArrayOfSequence.ToList();
+          this.machinee = new FirstStateMachine(this.v);
+          this.machinee.GetDates();
+          cmbBox.ItemsSource = ((FirstStateMachine)this.machinee).Sequences.ArrayOfSequence.ToList();
         }
         else
         {
-          if (v.ID == 2)
+          if (this.v.ID == 2)
           {
-            machinee = new SecondStateMachine(v);
-            machinee.GetDates();
-            cmbBox.ItemsSource = ((SecondStateMachine)machinee).Sequences.ArrayOfSequence.ToList();
+            this.machinee = new SecondStateMachine(this.v);
+            this.machinee.GetDates();
+            cmbBox.ItemsSource = ((SecondStateMachine)this.machinee).Sequences.ArrayOfSequence.ToList();
           }
         }
-        this.DataContext = machinee.MyGraph;
+
+        this.DataContext = this.machinee.MyGraph;
         console.Text += "A new version opened successfully!\r\n";
       }
       else
@@ -120,8 +119,8 @@ namespace FSMControl
         console.Text += "There is no version for this type of xml!\r\n";
         this.currentOption = MachineOptions.Uninitialized;
         this.currentOptionGraph = GraphOptions.Uninitialized;
-        EnableButtonStates();
-        EnableButtonStatesForGraph();
+        this.EnableButtonStates();
+        this.EnableButtonStatesForGraph();
       }
     }
 
@@ -130,13 +129,13 @@ namespace FSMControl
     /// </summary>
     private void Show_Version(object sender, RoutedEventArgs e)
     {
-      if (v.ID == 0)
+      if (this.v.ID == 0)
       {
         MessageBox.Show("There is no version for this type of xml!");
       }
       else
       {
-        MessageBox.Show("This is version " + v.ID.ToString() + " of application!");
+        MessageBox.Show("This is version " + this.v.ID.ToString() + " of application!");
       }
     }
 
@@ -145,9 +144,9 @@ namespace FSMControl
     /// </summary>
     private void Represent_machine(object sender, RoutedEventArgs e)
     {
-      if (v.ID != 0)
+      if (this.v.ID != 0)
       {
-        machinee.RepresentThisMachine(Colors.Yellow);
+        this.machinee.RepresentThisMachine(Colors.Yellow);
         console.Text += "Machine represented successfully!\r\n";
       }
       else
@@ -163,7 +162,7 @@ namespace FSMControl
     {
       if (cmbBox.SelectedIndex != -1)
       {
-        switch (v.ID)
+        switch (this.v.ID)
         {
           case 1:
             {
@@ -175,13 +174,15 @@ namespace FSMControl
               }
               else
               {
-                ((FirstStateMachine)machinee).MyGraph.ResetToDefault();
-                ((FirstStateMachine)machinee).RepresentSequence(Colors.Yellow, seq, true);
+                ((FirstStateMachine)this.machinee).MyGraph.ResetToDefault();
+                ((FirstStateMachine)this.machinee).RepresentSequence(Colors.Yellow, seq, true);
                 console.Text += "Sequence represented successfully!\r\n";
-                this.DataContext = machinee.MyGraph;
+                this.DataContext = this.machinee.MyGraph;
               }
+
               break;
             }
+
           case 2:
             {
               FSMControl.DomainModel.SecondVersion.FSMSequence seq = new FSMControl.DomainModel.SecondVersion.FSMSequence();
@@ -192,20 +193,22 @@ namespace FSMControl
               }
               else
               {
-                ((SecondStateMachine)machinee).MyGraph.ResetToDefault();
-                if (((SecondStateMachine)machinee).RepresentSequence(Colors.Yellow, seq, true).Succes)
+                ((SecondStateMachine)this.machinee).MyGraph.ResetToDefault();
+                if (((SecondStateMachine)this.machinee).RepresentSequence(Colors.Yellow, seq, true).Succes)
                 {
-                  ((SecondStateMachine)machinee).RepresentSequence(Colors.Yellow, seq, true);
+                  ((SecondStateMachine)this.machinee).RepresentSequence(Colors.Yellow, seq, true);
                   console.Text += "Sequence represented successfully!\r\n";
-                  this.DataContext = machinee.MyGraph;
+                  this.DataContext = this.machinee.MyGraph;
                 }
                 else
-                  MessageBox.Show(((SecondStateMachine)machinee).RepresentSequence(Colors.Red, seq, true).Message);
+                {
+                  MessageBox.Show(((SecondStateMachine)this.machinee).RepresentSequence(Colors.Red, seq, true).Message);
+                }
               }
+
               break;
             }
         }
-
       }
     }
 
@@ -217,7 +220,7 @@ namespace FSMControl
       if (this.machinee != null)
       {
         this.machinee.MyGraph.ResetToDefault();
-        this.DataContext = machinee.MyGraph;
+        this.DataContext = this.machinee.MyGraph;
       }
     }
 
@@ -228,10 +231,10 @@ namespace FSMControl
     /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
     private void Save(object sender, RoutedEventArgs e)
     {
-      EnableButtonStatesForGraph();
+      this.EnableButtonStatesForGraph();
 
-      SetNodesPositionToSave(machinee.MyGraph);
-      SerializeHelper.SaveGraph(machinee.MyGraph, Utilities.SavePath("Save this graph"));
+      this.SetNodesPositionToSave(this.machinee.MyGraph);
+      SerializeHelper.SaveGraph(this.machinee.MyGraph, Utilities.SavePath("Save this graph"));
       console.Text += "Graph succesfully saved!\r\n";
     }
 
@@ -251,7 +254,7 @@ namespace FSMControl
           graph = SerializeHelper.LoadGraph(path);
           this.DataContext = graph;
           MessageBox.Show("Graph opened succesfully!");
-          SetNodesPositionFromCustomGraph(SerializeHelper.LoadGraph(path));
+          this.SetNodesPositionFromCustomGraph(SerializeHelper.LoadGraph(path));
         }
         catch (Exception ex)
         {
@@ -294,16 +297,17 @@ namespace FSMControl
     /// </summary>
     private void SaveConfig_Click(object sender, RoutedEventArgs e)
     {
-      if (v.ID == 1)
+      if (this.v.ID == 1)
       {
-        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)machinee).Configuration, Utilities.SavePath("Configuration"));
-        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)machinee).Sequences, Utilities.SavePath("Sequences"));
+        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)this.machinee).Configuration, Utilities.SavePath("Configuration"));
+        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)this.machinee).Sequences, Utilities.SavePath("Sequences"));
       }
       else
       {
-        Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)machinee).Configuration, Utilities.SavePath("Configuration"));
-        Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)machinee).Sequences, Utilities.SavePath("Sequences"));
+        Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)this.machinee).Configuration, Utilities.SavePath("Configuration"));
+        Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)this.machinee).Sequences, Utilities.SavePath("Sequences"));
       }
+
       console.Text += "Configuration succesfully saved!\r\n";
     }
 
@@ -320,7 +324,7 @@ namespace FSMControl
     /// </summary>
     private void AddVertex_Click(object sender, RoutedEventArgs e)
     {
-      AddVertexWindow addVertexWindow = new AddVertexWindow(machinee);
+      AddVertexWindow addVertexWindow = new AddVertexWindow(this.machinee);
       addVertexWindow.Show();
     }
 
@@ -329,7 +333,7 @@ namespace FSMControl
     /// </summary>
     private void AddEdge_Click(object sender, RoutedEventArgs e)
     {
-      AddEdgeWindow addEdgeWindow = new AddEdgeWindow(machinee);
+      AddEdgeWindow addEdgeWindow = new AddEdgeWindow(this.machinee);
       addEdgeWindow.Show();
     }
 
@@ -339,25 +343,25 @@ namespace FSMControl
     private void LoadConfig_Click(object sender, RoutedEventArgs e)
     {
       this.currentOption = MachineOptions.Initialized;
-      EnableButtonStates();
+      this.EnableButtonStates();
       this.currentOptionGraph = GraphOptions.Initialized;
-      EnableButtonStatesForGraph();
-      OpenNewVersion();
+      this.EnableButtonStatesForGraph();
+      this.OpenNewVersion();
     }
 
     private void DeleteEdge_Click(object sender, RoutedEventArgs e)
     {
-      DeleteEdgeWindow deleteEdgeWindow = new DeleteEdgeWindow(machinee);
+      DeleteEdgeWindow deleteEdgeWindow = new DeleteEdgeWindow(this.machinee);
       deleteEdgeWindow.Show();
     }
 
     private void DeleteVertex_Click(object sender, RoutedEventArgs e)
     {
-      DeleteVertexWindow deleteVertexWindow = new DeleteVertexWindow(machinee);
+      DeleteVertexWindow deleteVertexWindow = new DeleteVertexWindow(this.machinee);
       deleteVertexWindow.Show();
     }
 
-    private void close_Click(object sender, RoutedEventArgs e)
+    private void Close_Click(object sender, RoutedEventArgs e)
     {
       var myWindow = Window.GetWindow(this);
       myWindow.Close();
@@ -366,10 +370,10 @@ namespace FSMControl
     private void Generate_Sequence_Click(object sender, RoutedEventArgs e)
     {
       this.currentOptionGraph = GraphOptions.Initialized;
-      EnableButtonStatesForGraph();
-      if (v.ID != 0)
+      this.EnableButtonStatesForGraph();
+      if (this.v.ID != 0)
       {
-        GenerateSequenceWindow window = new GenerateSequenceWindow(machinee);
+        GenerateSequenceWindow window = new GenerateSequenceWindow(this.machinee);
         window.Show();
       }
     }
