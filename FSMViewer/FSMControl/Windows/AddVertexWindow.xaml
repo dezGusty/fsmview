@@ -6,22 +6,22 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
         ResizeMode="NoResize">
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="1093*" />
-      <ColumnDefinition Width="250*" />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="100" />
-    </Grid.RowDefinitions>
-    <Button Content="Add it to the Graph" HorizontalAlignment="Left" Margin="85,47,0,10" Grid.Row="2" Width="193" Click="BtnAddVertex" />
-    <Label Content="Name of the Vertex: " Foreground="White" HorizontalAlignment="Left" Margin="15,53,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="35" />
-    <TextBox Name="txtAddVertex" Margin="130,53,41,89" Grid.Row="1" KeyboardNavigation.ControlTabNavigation="Once" Grid.ColumnSpan="2" />
-    <Label Content="Reentry Using &#xA;Trigger:" Foreground="White" HorizontalAlignment="Left" Margin="15,107,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="50" />
-    <TextBox x:Name="txt_Reentry" Margin="130,110,41,31" Grid.Row="1" KeyboardNavigation.ControlTabNavigation="Once" Grid.ColumnSpan="2" />
-    <TextBox x:Name="txt_DefaultHandler" Margin="130,167,41,75" Grid.Row="1" KeyboardNavigation.ControlTabNavigation="Once" Grid.ColumnSpan="2" Grid.RowSpan="2" />
-    <Label Content="Default Handler:" Foreground="White" HorizontalAlignment="Left" Margin="15,167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="50" Grid.RowSpan="2" />
-  </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1093*" />
+            <ColumnDefinition Width="250*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Button Content="Add it to the Graph" HorizontalAlignment="Left" Margin="85,47,0,10" Grid.Row="2" Width="193" Click="BtnAddVertex" />
+        <Label Content="Name of the Vertex: " Foreground="White" HorizontalAlignment="Left" Margin="15,53,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="35" />
+        <TextBox Name="txtAddVertex" Margin="130,53,41,89" Grid.Row="1" KeyboardNavigation.ControlTabNavigation="Once" Grid.ColumnSpan="2" />
+        <Label Content="Reentry Using &#xA;Trigger:" Foreground="White" HorizontalAlignment="Left" Margin="15,107,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="50" />
+        <TextBox x:Name="txt_Reentry" Margin="130,110,41,31" Grid.Row="1" KeyboardNavigation.ControlTabNavigation="Once" Grid.ColumnSpan="2" />
+        <TextBox x:Name="txt_DefaultHandler" Margin="130,167,41,75" Grid.Row="1" KeyboardNavigation.ControlTabNavigation="Once" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <Label Content="Default Handler:" Foreground="White" HorizontalAlignment="Left" Margin="15,167,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="50" Grid.RowSpan="2" />
+    </Grid>
 </Window>

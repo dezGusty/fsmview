@@ -13,9 +13,9 @@
               <xs:element name="FSMTrigger" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="Name" type="xs:string" minOccurs="0"/>
-                    <xs:element name="SequenceID" type="xs:string" minOccurs="0"/>
-                    <xs:element name="CommonID" type="xs:string" minOccurs="0"/>
+                    <xs:element name="Name" type="xs:string" minOccurs="0" />
+                    <xs:element name="SequenceID" type="xs:string" minOccurs="0" />
+                    <xs:element name="CommonID" type="xs:string" minOccurs="0" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
@@ -29,25 +29,25 @@
               <xs:element name="FSMState" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="Name" type="xs:string" minOccurs="1"/>
-                    <xs:element name="Description" type="xs:string" nillable="true" minOccurs="0"/>
-                    <xs:element name="ReentryUsingTrigger" type="xs:string" nillable="true" default=" " minOccurs="0"/>
+                    <xs:element name="Name" type="xs:string" minOccurs="1" />
+                    <xs:element name="Description" type="xs:string" nillable="true" minOccurs="0" />
+                    <xs:element name="ReentryUsingTrigger" type="xs:string" nillable="true" default=" " minOccurs="0" />
                     <xs:element name="ArrayOfAllowedTrigger" maxOccurs="unbounded" minOccurs="0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="AllowedTrigger" maxOccurs="unbounded" minOccurs="0">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="TriggerName" type="xs:string" minOccurs="0"/>
-                                <xs:element name="StateName" type="xs:string" minOccurs="0"/>
-                                <xs:element name="StateAndTriggerName" type="xs:string" minOccurs="0"/>
+                                <xs:element name="TriggerName" type="xs:string" minOccurs="0" />
+                                <xs:element name="StateName" type="xs:string" minOccurs="0" />
+                                <xs:element name="StateAndTriggerName" type="xs:string" minOccurs="0" />
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="DefaultHandler" type="xs:string"/>
+                    <xs:element name="DefaultHandler" type="xs:string" />
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>

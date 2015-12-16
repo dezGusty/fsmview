@@ -1,62 +1,59 @@
-﻿using System;
-using System.Linq;
-using System.Windows;
-using System.Windows.Media;
-using FSMControl.DomainModel.FirstVersion;
+﻿using FSMControl.DomainModel.FirstVersion;
 using FSMControl.DomainModel.SecondVersion;
+using System.Windows;
 
 namespace FSMControl.Windows
 {
-  /// <summary>
-  /// Interaction logic for AddVertexWindow.xaml
-  /// </summary>
-  public partial class AddVertexWindow : Window
-  {
-    private StateMachine machine;
-
-    public AddVertexWindow()
+    /// <summary>
+    /// Interaction logic for AddVertexWindow.xaml
+    /// </summary>
+    public partial class AddVertexWindow : Window
     {
-      this.InitializeComponent();
-    }
+        private StateMachine machine;
 
-    public AddVertexWindow(StateMachine fsm)
-      : this()
-    {
-      if (fsm is FirstStateMachine)
-      {
-        this.machine = new FirstStateMachine(fsm.CurrentVersion);
-      }
-      else
-      {
-        if (fsm is SecondStateMachine)
+        public AddVertexWindow()
         {
-          this.machine = new SecondStateMachine(fsm.CurrentVersion);
-        }
-      }
-
-      this.machine = fsm;
-    }
-
-    private void BtnAddVertex(object sender, RoutedEventArgs e)
-    {
-      if (this.machine != null)
-      {
-        if (this.machine is FirstStateMachine)
-        {
-          MessageBox.Show(((FirstStateMachine)this.machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
-        }
-        else
-        {
-          MessageBox.Show(((SecondStateMachine)this.machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
+            this.InitializeComponent();
         }
 
-        this.DataContext = this.machine.MyGraph;
-      }
-    }
+        public AddVertexWindow(StateMachine fsm)
+            : this()
+        {
+            if (fsm is FirstStateMachine)
+            {
+                this.machine = new FirstStateMachine(fsm.CurrentVersion);
+            }
+            else
+            {
+                if (fsm is SecondStateMachine)
+                {
+                    this.machine = new SecondStateMachine(fsm.CurrentVersion);
+                }
+            }
 
-    private void Cancel(object sender, RoutedEventArgs e)
-    {
-      this.Close();
+            this.machine = fsm;
+        }
+
+        private void BtnAddVertex(object sender, RoutedEventArgs e)
+        {
+            if (this.machine != null)
+            {
+                if (this.machine is FirstStateMachine)
+                {
+                    MessageBox.Show(((FirstStateMachine)this.machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
+                }
+                else
+                {
+                    MessageBox.Show(((SecondStateMachine)this.machine).AddNewState(txtAddVertex.Text, txt_DefaultHandler.Text, txt_Reentry.Text));
+                }
+
+                this.DataContext = this.machine.MyGraph;
+            }
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
-  }
 }

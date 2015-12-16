@@ -7,17 +7,17 @@
         WindowStyle="ToolWindow"
         ResizeMode="NoResize">
     <Grid>
-        <TextBlock  Name="firstStep" TextWrapping="Wrap"  FontSize="18" Foreground="White" Margin="10,178,25,116"/>
-        <ComboBox  Name="veritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="175,231,25,71" SelectionChanged="veritces_SelectionChanged"/>
-        <Button Name="undo" Content="Undo" Margin="166,293,188,10" Click="undo_Click"></Button>
-        <Button Name="done" Content="Save sequence" Margin="329,293,25,10" Click="done_Click"></Button>
-        <Button Name="reset" Content="New sequence" Margin="10,293,344,10" Click="reset_Click"></Button>
-        <Label Content="Next state:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,231,0,0" VerticalAlignment="Top" Width="160" Height="45"/>
-        <Label Content="Sequence name:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,28,0,0" VerticalAlignment="Top" Width="160" Height="45"/>
-        <Label Content="Description:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,78,0,0" VerticalAlignment="Top" Width="160" Height="45"/>
-        <Label Content="Final description:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,128,0,0" VerticalAlignment="Top" Width="160" Height="45"/>
-        <TextBox HorizontalAlignment="Left" Height="45" Margin="175,28,0,0" TextWrapping="Wrap" Name="seqName" VerticalAlignment="Top" Width="294"/>
-        <TextBox HorizontalAlignment="Left" Height="45" Margin="175,128,0,0" TextWrapping="Wrap" Name="seqFinalDesc" VerticalAlignment="Top" Width="294"/>
-        <TextBox HorizontalAlignment="Left" Height="45" Margin="175,78,0,0" TextWrapping="Wrap" Name="seqDesc" VerticalAlignment="Top" Width="294"/>
+        <TextBlock  Name="firstStep" TextWrapping="Wrap"  FontSize="18" Foreground="White" Margin="10,178,25,116" />
+        <ComboBox  Name="veritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="175,231,25,71" SelectionChanged="Veritces_SelectionChanged" />
+        <Button Name="undo" Content="Undo" Margin="166,293,188,10" Click="Undo_Click"></Button>
+        <Button Name="done" Content="Save sequence" Margin="329,293,25,10" Click="Done_Click"></Button>
+        <Button Name="reset" Content="New sequence" Margin="10,293,344,10" Click="Reset_Click"></Button>
+        <Label Content="Next state:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,231,0,0" VerticalAlignment="Top" Width="160" Height="45" />
+        <Label Content="Sequence name:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,28,0,0" VerticalAlignment="Top" Width="160" Height="45" />
+        <Label Content="Description:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,78,0,0" VerticalAlignment="Top" Width="160" Height="45" />
+        <Label Content="Final description:" HorizontalAlignment="Left" FontSize="20" Foreground="White" Margin="10,128,0,0" VerticalAlignment="Top" Width="160" Height="45" />
+        <TextBox HorizontalAlignment="Left" Height="45" Margin="175,28,0,0" TextWrapping="Wrap" Name="seqName" VerticalAlignment="Top" Width="294" />
+        <TextBox HorizontalAlignment="Left" Height="45" Margin="175,128,0,0" TextWrapping="Wrap" Name="seqFinalDesc" VerticalAlignment="Top" Width="294" />
+        <TextBox HorizontalAlignment="Left" Height="45" Margin="175,78,0,0" TextWrapping="Wrap" Name="seqDesc" VerticalAlignment="Top" Width="294" />
     </Grid>
 </Window>

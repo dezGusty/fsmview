@@ -5,29 +5,29 @@
         Background="#3D5C5C"
         WindowStyle="ToolWindow"
         ResizeMode="NoResize">
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="1093*" />
-      <ColumnDefinition Width="250*" />
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="100" />
-    </Grid.RowDefinitions>
-    <!--solution explorer-->
-    <Label Content="Source Vertex: " Foreground="White" HorizontalAlignment="Left" Margin="30,30,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" />
-    <Label Foreground="White" HorizontalAlignment="Left" Margin="30,80,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140">
-      <CheckBox Name="checkSN" Content="Target Vertex :&#xD;&#xA;(StateName)" Foreground="White" />
-    </Label>
-    <Label Foreground="White" HorizontalAlignment="Left" Margin="30,130,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" Height="67" Grid.RowSpan="2">
-      <CheckBox Name="checkSATN" Content="Trigger Name:&#xD;&#xA;(StateAndTrigger)" Foreground="White" />
-    </Label>
-    <TextBox x:Name="txtFromVertex" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="170,34,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-    <ComboBox  Name="sourceVeritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="170,34,40,109"  Grid.RowSpan="2" Grid.ColumnSpan="2" />
-    <TextBox x:Name="txtToVertex"  Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="170,84,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-    <ComboBox  Name="targetVeritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="170,84,40,55"  Grid.RowSpan="2" Grid.ColumnSpan="2" />
-    <TextBox x:Name="txtTrigger" HorizontalAlignment="Left" Height="33" Margin="170,134,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Grid.ColumnSpan="2" />
-    <Button Content="Add it to the Graph" HorizontalAlignment="Left" Margin="122,30,0,0" Grid.Row="2" VerticalAlignment="Top" Width="125" Click="BtnAddEdge" />
-  </Grid>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1093*" />
+            <ColumnDefinition Width="250*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <!--solution explorer-->
+        <Label Content="Source Vertex: " Foreground="White" HorizontalAlignment="Left" Margin="30,30,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" />
+        <Label Foreground="White" HorizontalAlignment="Left" Margin="30,80,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140">
+            <CheckBox Name="checkSN" Content="Target Vertex :&#xD;&#xA;(StateName)" Foreground="White" />
+        </Label>
+        <Label Foreground="White" HorizontalAlignment="Left" Margin="30,130,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" Height="67" Grid.RowSpan="2">
+            <CheckBox Name="checkSATN" Content="Trigger Name:&#xD;&#xA;(StateAndTrigger)" Foreground="White" />
+        </Label>
+        <TextBox x:Name="txtFromVertex" Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="170,34,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <ComboBox  Name="sourceVeritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="170,34,40,109"  Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <TextBox x:Name="txtToVertex"  Visibility="Hidden" HorizontalAlignment="Left" Height="23" Margin="170,84,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <ComboBox  Name="targetVeritces" ItemsSource="{Binding Vertices}" DisplayMemberPath="Text" Margin="170,84,40,55"  Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <TextBox x:Name="txtTrigger" HorizontalAlignment="Left" Height="33" Margin="170,134,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Grid.ColumnSpan="2" />
+        <Button Content="Add it to the Graph" HorizontalAlignment="Left" Margin="122,30,0,0" Grid.Row="2" VerticalAlignment="Top" Width="125" Click="BtnAddEdge" />
+    </Grid>
 </Window>

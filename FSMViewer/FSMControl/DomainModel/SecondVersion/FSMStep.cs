@@ -3,7 +3,7 @@
 namespace FSMControl.DomainModel.SecondVersion
 {
     [Serializable]
-     public class FSMStep
+    public class FSMStep
     {
         /// <summary>
         /// Gets or sets the name.

@@ -2,8 +2,8 @@
 {
     public interface ISequenceConfigInterface<T>
     {
-       void LoadFromXMLFileAbsolute(string absoluteFilePath);
+        void LoadFromXMLFileAbsolute(string absoluteFilePath);
 
-       T LoadFromXML(string xmlContent);
+        T LoadFromXML(string xmlContent);
     }
 }

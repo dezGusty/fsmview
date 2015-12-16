@@ -1,18 +1,10 @@
 ﻿using FSMControl.DomainModel.FirstVersion;
 using FSMControl.DomainModel.SecondVersion;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FSMControl.Windows
 {
@@ -22,15 +14,19 @@ namespace FSMControl.Windows
     public partial class GenerateSequenceWindow : Window
     {
         private StateMachine machine;
-        FSMControl.DomainModel.SecondVersion.FSMSequence sequenceSecondVersion;
-        FSMControl.DomainModel.FirstVersion.FSMSequence sequenceFirstVersion;
-        Stack<CustomVertex> listOfVertices;
+        private FSMControl.DomainModel.SecondVersion.FSMSequence sequenceSecondVersion;
+        private FSMControl.DomainModel.FirstVersion.FSMSequence sequenceFirstVersion;
+        private Stack<CustomVertex> listOfVertices;
 
         public GenerateSequenceWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateSequenceWindow"/> class.
+        /// </summary>
+        /// <param name="fsm">The Finite State Machine.</param>
         public GenerateSequenceWindow(StateMachine fsm)
             : this()
         {
@@ -38,34 +34,37 @@ namespace FSMControl.Windows
             {
                 fsm.MyGraph.ResetToDefault();
                 this.DataContext = fsm;
-                listOfVertices = new Stack<CustomVertex>();
+                this.listOfVertices = new Stack<CustomVertex>();
             }
+
             if (fsm is FirstStateMachine)
             {
                 this.machine = new FirstStateMachine(fsm.CurrentVersion);
                 this.machine = fsm;
-                firstStep.Text = "First state is " + ((FirstStateMachine)machine).Configuration.ArrayOfFSMState.FirstOrDefault().Name + "! Select next sequence!";
-                sequenceFirstVersion = new FSMControl.DomainModel.FirstVersion.FSMSequence();
-                sequenceFirstVersion.ArrayOfStep = new System.Collections.ObjectModel.Collection<DomainModel.FirstVersion.FSMStep>();
+                firstStep.Text = "First state is " + ((FirstStateMachine)this.machine).Configuration.ArrayOfFSMState.FirstOrDefault().Name + "! Select next sequence!";
+                this.sequenceFirstVersion = new FSMControl.DomainModel.FirstVersion.FSMSequence();
+                this.sequenceFirstVersion.ArrayOfStep = new System.Collections.ObjectModel.Collection<DomainModel.FirstVersion.FSMStep>();
             }
             else
             {
                 this.machine = new SecondStateMachine(fsm.CurrentVersion);
                 this.machine = fsm;
-                firstStep.Text = "First state is " + ((SecondStateMachine)machine).Configuration.ArrayOfFSMVState.FirstOrDefault().Name + "! Select next sequence!";
-                sequenceSecondVersion = new FSMControl.DomainModel.SecondVersion.FSMSequence();
-                sequenceSecondVersion.ArrayOfStep = new System.Collections.ObjectModel.Collection<DomainModel.SecondVersion.FSMStep>();
+                firstStep.Text = "First state is " + ((SecondStateMachine)this.machine).Configuration.ArrayOfFSMVState.FirstOrDefault().Name + "! Select next sequence!";
+                this.sequenceSecondVersion = new FSMControl.DomainModel.SecondVersion.FSMSequence();
+                this.sequenceSecondVersion.ArrayOfStep = new System.Collections.ObjectModel.Collection<DomainModel.SecondVersion.FSMStep>();
             }
-            listOfVertices.Push(machine.MyGraph.Vertices.FirstOrDefault());
-            this.DataContext = machine.MyGraph;
+
+            this.listOfVertices.Push(this.machine.MyGraph.Vertices.FirstOrDefault());
+            this.DataContext = this.machine.MyGraph;
         }
 
         /// <summary>
         /// Handles the Click event of the done control.
+        /// Saves generated sequence to current finite state machine
         /// </summary>
-        private void done_Click(object sender, RoutedEventArgs e)
+        private void Done_Click(object sender, RoutedEventArgs e)
         {
-            if (machine is FirstStateMachine)
+            if (this.machine is FirstStateMachine)
             {
                 if (string.IsNullOrEmpty(seqName.Text) || string.IsNullOrEmpty(seqDesc.Text))
                 {
@@ -73,10 +72,10 @@ namespace FSMControl.Windows
                 }
                 else
                 {
-                    sequenceFirstVersion.Name = seqName.Text;
-                    sequenceFirstVersion.Description = seqDesc.Text;
-                    sequenceFirstVersion.FinalDescription = seqFinalDesc.Text;
-                    ((FirstStateMachine)machine).Sequences.ArrayOfSequence.Add(this.sequenceFirstVersion);
+                    this.sequenceFirstVersion.Name = seqName.Text;
+                    this.sequenceFirstVersion.Description = seqDesc.Text;
+                    this.sequenceFirstVersion.FinalDescription = seqFinalDesc.Text;
+                    ((FirstStateMachine)this.machine).Sequences.ArrayOfSequence.Add(this.sequenceFirstVersion);
                     MessageBox.Show("Sequence added!");
                     this.sequenceFirstVersion = new DomainModel.FirstVersion.FSMSequence();
                     this.Close();
@@ -90,13 +89,13 @@ namespace FSMControl.Windows
                 }
                 else
                 {
-                    sequenceSecondVersion.Name = seqName.Text;
-                    sequenceSecondVersion.Description = seqDesc.Text;
-                    sequenceSecondVersion.FinalDescription = seqFinalDesc.Text;
-                    ((SecondStateMachine)machine).Sequences.ArrayOfSequence.Add(this.sequenceSecondVersion);
+                    this.sequenceSecondVersion.Name = seqName.Text;
+                    this.sequenceSecondVersion.Description = seqDesc.Text;
+                    this.sequenceSecondVersion.FinalDescription = seqFinalDesc.Text;
+                    ((SecondStateMachine)this.machine).Sequences.ArrayOfSequence.Add(this.sequenceSecondVersion);
                     MessageBox.Show("Sequence added!");
                     this.sequenceSecondVersion = new DomainModel.SecondVersion.FSMSequence();
-                    this.DataContext = machine.MyGraph;
+                    this.DataContext = this.machine.MyGraph;
                     this.Close();
                 }
             }
@@ -104,42 +103,45 @@ namespace FSMControl.Windows
 
         /// <summary>
         /// Handles the Click event of the undo control.
+        /// Removes last selected vertex and edge
         /// </summary>
-        private void undo_Click(object sender, RoutedEventArgs e)
+        private void Undo_Click(object sender, RoutedEventArgs e)
         {
-            if (machine is FirstStateMachine)
+            if (this.machine is FirstStateMachine)
             {
                 if (this.sequenceFirstVersion.ArrayOfStep.Count > 0)
                 {
-                    this.sequenceFirstVersion.ArrayOfStep.RemoveAt(sequenceFirstVersion.ArrayOfStep.Count - 1);
+                    this.sequenceFirstVersion.ArrayOfStep.RemoveAt(this.sequenceFirstVersion.ArrayOfStep.Count - 1);
                 }
             }
             else
             {
                 if (this.sequenceSecondVersion.ArrayOfStep.Count > 0)
                 {
-                    this.sequenceSecondVersion.ArrayOfStep.RemoveAt(sequenceSecondVersion.ArrayOfStep.Count - 1);
+                    this.sequenceSecondVersion.ArrayOfStep.RemoveAt(this.sequenceSecondVersion.ArrayOfStep.Count - 1);
                 }
             }
-            if (listOfVertices.Count > 1)
+
+            if (this.listOfVertices.Count > 1)
             {
-                machine.MyGraph.ChangeOneVertexColor(listOfVertices.Peek().Text, Colors.Wheat);
-                CustomEdge edge = new CustomEdge(listOfVertices.ElementAt(1), listOfVertices.Peek());
-                edge = machine.MyGraph.GetEdgeBetween(listOfVertices.ElementAt(1), listOfVertices.Pop());
-                if (listOfVertices.Count == 1)
+                this.machine.MyGraph.ChangeOneVertexColor(this.listOfVertices.Peek().Text, Colors.Wheat);
+                CustomEdge edge = new CustomEdge(this.listOfVertices.ElementAt(1), this.listOfVertices.Peek());
+                edge = this.machine.MyGraph.GetEdgeBetween(this.listOfVertices.ElementAt(1), this.listOfVertices.Pop());
+                if (this.listOfVertices.Count == 1)
                 {
-                    machine.MyGraph.ChangeOneVertexColor(listOfVertices.Peek().Text, Colors.Wheat);
+                    this.machine.MyGraph.ChangeOneVertexColor(this.listOfVertices.Peek().Text, Colors.Wheat);
                 }
-                machine.MyGraph.ChangeOneEdgeColor(edge, Colors.Wheat);
+
+                this.machine.MyGraph.ChangeOneEdgeColor(edge, Colors.Wheat);
             }
         }
 
         /// <summary>
         /// Handles the Click event of the reset control.
         /// </summary>
-        private void reset_Click(object sender, RoutedEventArgs e)
+        private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            if (machine is FirstStateMachine)
+            if (this.machine is FirstStateMachine)
             {
                 this.sequenceFirstVersion.ArrayOfStep.Clear();
             }
@@ -147,41 +149,44 @@ namespace FSMControl.Windows
             {
                 this.sequenceSecondVersion.ArrayOfStep.Clear();
             }
-            listOfVertices.Clear();
-            listOfVertices.Push(machine.MyGraph.Vertices.FirstOrDefault());
-            machine.MyGraph.ResetToDefault();
+
+            this.listOfVertices.Clear();
+            this.listOfVertices.Push(this.machine.MyGraph.Vertices.FirstOrDefault());
+            this.machine.MyGraph.ResetToDefault();
         }
 
         /// <summary>
         /// Handles the SelectionChanged event of the veritces control.
+        /// Adds the selected vertex to current sequence
         /// </summary>
-        private void veritces_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Veritces_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            listOfVertices.Push((CustomVertex)veritces.SelectedItem);
-            if (listOfVertices.Count > 1)
+            this.listOfVertices.Push((CustomVertex)veritces.SelectedItem);
+            if (this.listOfVertices.Count > 1)
             {
-                CustomEdge edge = new CustomEdge(listOfVertices.ElementAt(1), listOfVertices.Peek());
-                edge = machine.MyGraph.GetEdgeBetween(listOfVertices.ElementAt(1), listOfVertices.Peek());
+                CustomEdge edge = new CustomEdge(this.listOfVertices.ElementAt(1), this.listOfVertices.Peek());
+                edge = this.machine.MyGraph.GetEdgeBetween(this.listOfVertices.ElementAt(1), this.listOfVertices.Peek());
                 if (edge != null)
                 {
-                    machine.MyGraph.ChangeOneVertexColor(listOfVertices.ElementAt(listOfVertices.Count - 1).Text, Colors.Red);
-                    machine.MyGraph.ChangeOneVertexColor(listOfVertices.Peek().Text, Colors.Red);
-                    machine.MyGraph.ChangeOneEdgeColor(edge, Colors.Red);
-                    if (machine is FirstStateMachine)
+                    this.machine.MyGraph.ChangeOneVertexColor(this.listOfVertices.ElementAt(this.listOfVertices.Count - 1).Text, Colors.Red);
+                    this.machine.MyGraph.ChangeOneVertexColor(this.listOfVertices.Peek().Text, Colors.Red);
+                    this.machine.MyGraph.ChangeOneEdgeColor(edge, Colors.Red);
+                    if (this.machine is FirstStateMachine)
                     {
-                        ((FirstStateMachine)machine).AddNewStep(this.sequenceFirstVersion, edge.Trigger);
+                        ((FirstStateMachine)this.machine).AddNewStep(this.sequenceFirstVersion, edge.Trigger);
                     }
                     else
                     {
-                        ((SecondStateMachine)machine).AddNewStep(this.sequenceSecondVersion, edge.Trigger);
+                        ((SecondStateMachine)this.machine).AddNewStep(this.sequenceSecondVersion, edge.Trigger);
                     }
                 }
                 else
                 {
                     MessageBox.Show("There is no edge between these vertices! \r\n Please choose another one!");
-                    listOfVertices.Pop();
+                    this.listOfVertices.Pop();
                 }
-                this.DataContext = machine.MyGraph;
+
+                this.DataContext = this.machine.MyGraph;
             }
         }
     }
