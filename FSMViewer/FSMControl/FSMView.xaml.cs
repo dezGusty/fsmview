@@ -374,7 +374,15 @@ namespace FSMControl
       if (this.v.ID != 0)
       {
         GenerateSequenceWindow window = new GenerateSequenceWindow(this.machinee);
-        window.Show();
+        window.ShowDialog();
+        if (machinee is FirstStateMachine)
+        {
+            cmbBox.ItemsSource = ((FirstStateMachine)machinee).Sequences.ArrayOfSequence.ToList();
+        }
+        else
+        {
+            cmbBox.ItemsSource = ((SecondStateMachine)machinee).Sequences.ArrayOfSequence.ToList();
+        }
       }
     }
   }

@@ -1,0 +1,20 @@
+﻿FSMControl
+
+
+library
+C#
+.cs
+D:\Code\New folder\fsmview\FSMViewer\FSMControl\obj\Debug\
+FSMControl
+none
+false
+DEBUG;TRACE
+
+6781641399
+
+41-2113128026
+22-379238372
+FSMView.xaml;Windows\AddEdgeWindow.xaml;Windows\AddVertexWindow.xaml;Windows\DeleteEdgeWindow.xaml;Windows\DeleteVertexWindow.xaml;Windows\GenerateSequenceWindow.xaml;
+
+False
+

@@ -105,3 +105,31 @@ C:\Users\paula.trifanov\Desktop\02.12.2015\FSMApplication\obj\Debug\FSMApplicati
 D:\Code\FSMViewProject\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.exe.config
 D:\Code\FSMViewProject\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.exe
 D:\Code\FSMViewProject\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.pdb
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.exe.config
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.exe
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.exe
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.pdb
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMControl.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\GraphSharp.Controls.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\GraphSharp.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Data.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Graphviz.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Serialization.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\WPFExtensions.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\WPFToolkit.dll
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMControl.pdb
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.xml
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Data.xml
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Graphviz.xml
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Serialization.xml
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.csprojResolveAssemblyReference.cache
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\MainWindow.baml
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\MainWindow.g.cs
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\App.g.cs
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication_MarkupCompile.cache
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.g.resources
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.Properties.Resources.resources
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.csproj.GenerateResource.Cache
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.pdb
