@@ -373,5 +373,21 @@ namespace FSMControl
                 }
             }
         }
+
+        private void Delete_This_Vertex(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Vertex deleted!");
+        }
+
+        private void Delete_This_Edge(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Edge deleted!");
+        }
+
+        private void Add_Edge_To(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Add edge to another vertex!");
+        }
+
     }
 }

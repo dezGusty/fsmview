@@ -11,7 +11,7 @@
              Name="fsmWindow">
     <UserControl.Resources>
 
-        <Style x:Key="borderStyle"  TargetType="Border">
+        <Style x:Key="borderStyle" x:Name="vertexBorder" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="1.5" />
             <Setter Property="CornerRadius" Value="20" />
@@ -26,18 +26,25 @@
             <Setter Property="Width" Value="28" />
             <Setter Property="Visibility" Value="Collapsed" />
         </Style>
+        
+        <Style TargetType="{x:Type ContextMenu}" x:Key="ContextMenuStyle">
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="Padding" Value="-1"></Setter>
+            <Setter Property="FontSize" Value="13"></Setter>
+            <Setter Property="FontWeight" Value="4"></Setter>
+        </Style>
 
         <Style TargetType="{x:Type graphsharp:VertexControl}">
             <Style.Resources>
                 <local:EdgeColorConverter x:Key="edgeToEdgeColorConverter" />
-                <DataTemplate x:Key="customVertex" DataType="{x:Type local:CustomVertex}">
+                <DataTemplate x:Key="customVertex" x:Name="customVertex" DataType="{x:Type local:CustomVertex}">
                     <DataTemplate.Resources>
                         <local:EdgeColorConverter x:Key="edgeToEdgeColorConverter" />
                     </DataTemplate.Resources>
-                    <Border Background="{Binding BackgroundColor, Converter={StaticResource edgeToEdgeColorConverter}}" />
+                    <Border Background="{Binding BackgroundColor, Converter={StaticResource edgeToEdgeColorConverter}}"/>
                 </DataTemplate>
             </Style.Resources>
-
+           
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type graphsharp:VertexControl}">
@@ -49,12 +56,21 @@
 
                             <Border Grid.Column="0" Style="{StaticResource borderStyle}"
                               Background="{TemplateBinding Background}">
-                                <ContentPresenter Content="{TemplateBinding Vertex}" />
-                            </Border>
+                                <ContentPresenter Content="{TemplateBinding Vertex}">
+                                </ContentPresenter>
+                            </Border>                                                                            
                             <Image Name="img" Grid.Column="1" Style="{StaticResource imageStyle}" />
+                            <Grid.ContextMenu>
+                                <ContextMenu Style="{StaticResource ContextMenuStyle}">
+                                    <MenuItem x:Name="MenuItem1" Header="Delete" Click="Delete_This_Vertex">
+                                    </MenuItem>
+                                    <MenuItem x:Name="MenuItem2" Header="Add edge to" Click="Add_Edge_To" >
+                                    </MenuItem>                                                     
+                                </ContextMenu>
+                            </Grid.ContextMenu>
                         </Grid>
+                        
                         <ControlTemplate.Triggers>
-
                             <DataTrigger Binding="{Binding Highlight}" Value="true">
                                 <Setter  TargetName="img" Property="Source" Value="pack://application:,,,/FSMControl;component/Resources/Images/black.jpg" />
                                 <Setter  TargetName="img" Property="Visibility" Value="Visible" />
@@ -80,6 +96,7 @@
                     <Setter Property="Background" Value="Coral" />
                 </Trigger>
             </Style.Triggers>
+                
         </Style>
 
         <Style TargetType="{x:Type graphsharp:EdgeControl}">
@@ -91,11 +108,18 @@
                         <TextBlock FontSize="13" FontWeight="Bold" Text="Trigger" />
                         <TextBlock  FontSize="15" Text="{Binding Trigger}" />
                     </StackPanel>
+                    <ToolTip.ContextMenu>
+                        <ContextMenu Style="{StaticResource ContextMenuStyle}">
+                            <MenuItem x:Name="MenuIt" Header="Delete">
+                                                
+                            </MenuItem>
+                        </ContextMenu>
+                    </ToolTip.ContextMenu>
                 </ToolTip>
             </Style.Resources>
+            
             <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self},Path=Edge.EdgeColor, Converter={StaticResource edgeToEdgeColorConverter}}" />
             <Setter Property="ToolTip" Value="{StaticResource ToolTipContent}" />
-           
         </Style>
     </UserControl.Resources>
 
