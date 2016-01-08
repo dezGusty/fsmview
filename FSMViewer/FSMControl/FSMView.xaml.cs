@@ -376,17 +376,25 @@ namespace FSMControl
 
         private void Delete_This_Vertex(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Vertex deleted!");
+          Button button = sender as Button;
+          if (this.machinee != null)
+          {
+            if (this.machinee is FirstStateMachine)
+            {
+              MessageBox.Show(((FirstStateMachine)this.machinee).DeleteVertex(button.Content.ToString()));
+            }
+            else
+            {
+              MessageBox.Show(((SecondStateMachine)this.machinee).DeleteVertex(button.Content.ToString()));
+            }
+
+            this.DataContext = this.machinee.MyGraph;
+          }
         }
 
         private void Delete_This_Edge(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Edge deleted!");
-        }
-
-        private void Add_Edge_To(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Add edge to another vertex!");
         }
 
     }

@@ -133,3 +133,31 @@ D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.g.r
 D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.Properties.Resources.resources
 D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.csproj.GenerateResource.Cache
 D:\Code\New folder\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.exe.config
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.exe
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.exe
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMApplication.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMControl.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\GraphSharp.Controls.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\GraphSharp.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Data.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Graphviz.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Serialization.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\WPFExtensions.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\WPFToolkit.dll
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\FSMControl.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.xml
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Data.xml
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Graphviz.xml
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\bin\Debug\QuickGraph.Serialization.xml
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.csprojResolveAssemblyReference.cache
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\MainWindow.baml
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\MainWindow.g.cs
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\App.g.cs
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication_MarkupCompile.cache
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.g.resources
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.Properties.Resources.resources
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.csproj.GenerateResource.Cache
