@@ -1,6 +1,6 @@
-﻿using FSMControl.DomainModel.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.SecondVersion
 {

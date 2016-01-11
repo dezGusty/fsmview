@@ -1,5 +1,5 @@
-﻿using FSMControl.DomainModel.Model.Interfaces;
-using System;
+﻿using System;
+using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.FirstVersion
 {

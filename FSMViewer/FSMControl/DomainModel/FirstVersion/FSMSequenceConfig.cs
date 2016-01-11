@@ -1,8 +1,8 @@
-﻿using FSMControl.DomainModel.Model.Classes;
-using FSMControl.DomainModel.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using FSMControl.DomainModel.Model.Classes;
+using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.FirstVersion
 {

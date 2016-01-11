@@ -1,6 +1,6 @@
-﻿using Microsoft.Win32;
-using System.IO;
+﻿using System.IO;
 using System.Xml.Serialization;
+using Microsoft.Win32;
 
 namespace FSMControl
 {

@@ -34,6 +34,14 @@
       <Setter Property="FontWeight" Value="4"></Setter>
     </Style>
 
+    <Style TargetType="{x:Type ContextMenu}" x:Key="ContextMenuStyleForDelete">
+      <Setter Property="BorderThickness" Value="1"></Setter>
+      <Setter Property="Padding" Value="-1"></Setter>
+      <Setter Property="FontSize" Value="13"></Setter>
+      <Setter Property="FontWeight" Value="4"></Setter>
+      <EventSetter Event="MenuItem.Click" Handler="Click_DeleteEdge" />
+    </Style>
+
     <Style TargetType="{x:Type graphsharp:VertexControl}">
       <Style.Resources>
         <local:EdgeColorConverter x:Key="edgeToEdgeColorConverter" />
@@ -41,7 +49,8 @@
           <DataTemplate.Resources>
             <local:EdgeColorConverter x:Key="edgeToEdgeColorConverter" />
           </DataTemplate.Resources>
-          <Border Background="{Binding BackgroundColor, Converter={StaticResource edgeToEdgeColorConverter}}"/>
+
+          <Border Background="{Binding BackgroundColor, Converter={StaticResource edgeToEdgeColorConverter}}" />
         </DataTemplate>
       </Style.Resources>
 
@@ -57,22 +66,17 @@
               <Border Grid.Column="0" Style="{StaticResource borderStyle}"
                               Background="{TemplateBinding Background}">
                 <ContentPresenter Content="{TemplateBinding Vertex}">
+                  <ContentPresenter.ContextMenu>
+                    <ContextMenu Style="{StaticResource ContextMenuStyle}">
+                      <MenuItem x:Name="MenuItem1" Header="Delete" Click="Delete_This_Vertex">
+                      </MenuItem>
+                      <MenuItem x:Name="MenuItem2" Header="Add edge to" Click="Add_Edge_To">
+                      </MenuItem>
+                    </ContextMenu>
+                  </ContentPresenter.ContextMenu>
                 </ContentPresenter>
               </Border>
               <Image Name="img" Grid.Column="1" Style="{StaticResource imageStyle}" />
-              <Grid.ContextMenu>
-                <ContextMenu Style="{StaticResource ContextMenuStyle}">
-                  <StackPanel Orientation="Horizontal">
-                    <Label Content="Delete: " Margin="5"/>
-                    <Button Click="Delete_This_Vertex" Content="{Binding Text}"/>
-                  </StackPanel>
-                  <StackPanel Orientation="Horizontal">
-                    <Label Content="Add edge to: " Margin="5"/>
-                    <TextBox Name="txtAddEdge" Height="30" Width="75" Margin="5"/>
-                    <Button Margin="5" Content="Add"/>
-                  </StackPanel>
-                </ContextMenu>
-              </Grid.ContextMenu>
             </Grid>
 
             <ControlTemplate.Triggers>
@@ -94,14 +98,13 @@
           </ControlTemplate>
         </Setter.Value>
       </Setter>
-
+      <EventSetter Event="MouseEnter" Handler="MouseEnter_Event" />
       <Setter Property="Background" Value="{Binding BackgroundColor, Converter={StaticResource edgeToEdgeColorConverter}}" />
       <Style.Triggers>
         <Trigger Property="graphsharp:GraphElementBehaviour.IsHighlighted" Value="True">
           <Setter Property="Background" Value="Coral" />
         </Trigger>
       </Style.Triggers>
-
     </Style>
 
     <Style TargetType="{x:Type graphsharp:EdgeControl}">
@@ -113,18 +116,17 @@
             <TextBlock FontSize="13" FontWeight="Bold" Text="Trigger" />
             <TextBlock  FontSize="15" Text="{Binding Trigger}" />
           </StackPanel>
-          <ToolTip.ContextMenu>
-            <ContextMenu Style="{StaticResource ContextMenuStyle}">
-              <MenuItem x:Name="MenuIt" Header="Delete">
-
-              </MenuItem>
-            </ContextMenu>
-          </ToolTip.ContextMenu>
         </ToolTip>
-      </Style.Resources>
 
+        <ContextMenu x:Key="ContextMenuStyle" Style="{StaticResource ContextMenuStyleForDelete}">
+          <MenuItem Header="Delete">
+          </MenuItem>
+        </ContextMenu>
+      </Style.Resources>
+      <EventSetter Event="MouseEnter" Handler="MouseEnter_EventEdge" />
       <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self},Path=Edge.EdgeColor, Converter={StaticResource edgeToEdgeColorConverter}}" />
       <Setter Property="ToolTip" Value="{StaticResource ToolTipContent}" />
+      <Setter Property="ContextMenu" Value="{StaticResource ContextMenuStyle}" />
     </Style>
   </UserControl.Resources>
 

@@ -1,7 +1,7 @@
-﻿using QuickGraph.Serialization;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Media;
 using System.Xml;
+using QuickGraph.Serialization;
 
 namespace FSMControl
 {

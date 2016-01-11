@@ -199,3 +199,5 @@ D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.Properties.Resou
 D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.csproj.GenerateResource.Cache
 D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.dll
 D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.baml
+D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.g.cs

@@ -1,10 +1,10 @@
-﻿using FSMControl.DomainModel.FirstVersion;
-using FSMControl.DomainModel.SecondVersion;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FSMControl.DomainModel.FirstVersion;
+using FSMControl.DomainModel.SecondVersion;
 
 namespace FSMControl.Windows
 {

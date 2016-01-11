@@ -1,8 +1,8 @@
-﻿using FSMControl.DomainModel.Model.Interfaces;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using FSMControl.DomainModel.Model.Interfaces;
 
 namespace FSMControl.DomainModel.FirstVersion
 {

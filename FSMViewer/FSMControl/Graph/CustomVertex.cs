@@ -211,6 +211,5 @@ namespace FSMControl
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
     }
 }

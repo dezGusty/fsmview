@@ -1,7 +1,7 @@
-﻿using FSMControl.DomainModel.FirstVersion;
-using FSMControl.DomainModel.SecondVersion;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
+using FSMControl.DomainModel.FirstVersion;
+using FSMControl.DomainModel.SecondVersion;
 
 namespace FSMControl.Windows
 {
