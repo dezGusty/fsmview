@@ -287,18 +287,26 @@ namespace FSMControl
     /// </summary>
     private void SaveConfig_Click(object sender, RoutedEventArgs e)
     {
-      if (this.v.ID == 1)
+      try
       {
-        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)this.machinee).Configuration, Utilities.SavePath("Configuration"));
-        Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)this.machinee).Sequences, Utilities.SavePath("Sequences"));
+        if (this.v.ID == 1)
+        {
+          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)this.machinee).Configuration, Utilities.SavePath("Configuration"));
+          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)this.machinee).Sequences, Utilities.SavePath("Sequences"));
+        }
+        else
+        {
+          Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)this.machinee).Configuration, Utilities.SavePath("Configuration"));
+          Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)this.machinee).Sequences, Utilities.SavePath("Sequences"));
+        }
+
+        console.Text += "Configuration succesfully saved!\r\n";
       }
-      else
+      catch
       {
-        Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)this.machinee).Configuration, Utilities.SavePath("Configuration"));
-        Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)this.machinee).Sequences, Utilities.SavePath("Sequences"));
+        console.Text += "\nYou didn't save anything!\r\n";
       }
 
-      console.Text += "Configuration succesfully saved!\r\n";
     }
 
     /// <summary>

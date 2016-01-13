@@ -44,17 +44,74 @@
     <FSMVState>
       <Name>WaitingForInput</Name>
       <ReentryUsingTrigger>Reset</ReentryUsingTrigger>
-      <ArrayOfAllowedTrigger />
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>NameTrigger1</TriggerName>
+          <StateName>State1</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ToSelf</TriggerName>
+          <StateName>State1</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>state_5.db_loading</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
       <DefaultHandler>CallbackFunctionOnReset</DefaultHandler>
+    </FSMVState>
+    <FSMVState>
+      <Name>State1</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>NameTrigger2</TriggerName>
+          <StateName>State2</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>state_5.db_loading</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ToSelf</TriggerName>
+          <StateName>State1</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>CallbackFunction1</DefaultHandler>
     </FSMVState>
     <FSMVState>
       <Name>State2</Name>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
+          <TriggerName>NameTrigger3</TriggerName>
+          <StateName>State3</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
         </AllowedTrigger>
       </ArrayOfAllowedTrigger>
       <DefaultHandler>CallbackFunction2</DefaultHandler>
+    </FSMVState>
+    <FSMVState>
+      <Name>State3</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>CallbackFunction3</DefaultHandler>
     </FSMVState>
     <FSMVState>
       <Name>state_5.db_loading</Name>
