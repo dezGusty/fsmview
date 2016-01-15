@@ -317,7 +317,7 @@ namespace FSMControl
     }
 
     /// <summary>
-    /// Handles the Click event of the AddVertex control.
+    /// Shows window AddVertexWindow
     /// </summary>
     private void AddVertex_Click(object sender, RoutedEventArgs e)
     {
@@ -326,7 +326,7 @@ namespace FSMControl
     }
 
     /// <summary>
-    /// Handles the Click event of the AddEdge control.
+    /// Shows windodow AddEdgeWindow
     /// </summary>
     private void AddEdge_Click(object sender, RoutedEventArgs e)
     {
@@ -335,7 +335,7 @@ namespace FSMControl
     }
 
     /// <summary>
-    /// Handles the Click event of the LoadConfig control and loads a new configuration
+    /// Loads new configuration
     /// </summary>
     private void LoadConfig_Click(object sender, RoutedEventArgs e)
     {
@@ -346,24 +346,36 @@ namespace FSMControl
       this.OpenNewVersion();
     }
 
+    /// <summary>
+    /// Shows DeleteEdgeWindow window
+    /// </summary>
     private void DeleteEdge_Click(object sender, RoutedEventArgs e)
     {
       DeleteEdgeWindow deleteEdgeWindow = new DeleteEdgeWindow(this.machinee);
       deleteEdgeWindow.Show();
     }
 
+    /// <summary>
+    /// Shows DeleteVertexWindow window
+    /// </summary>
     private void DeleteVertex_Click(object sender, RoutedEventArgs e)
     {
       DeleteVertexWindow deleteVertexWindow = new DeleteVertexWindow(this.machinee);
       deleteVertexWindow.Show();
     }
 
+    /// <summary>
+    /// Closes the application
+    /// </summary>
     private void Close_Click(object sender, RoutedEventArgs e)
     {
       var myWindow = Window.GetWindow(this);
       myWindow.Close();
     }
 
+    /// <summary>
+    /// Generates new sequence
+    /// </summary>
     private void Generate_Sequence_Click(object sender, RoutedEventArgs e)
     {
       this.currentOptionGraph = GraphOptions.Initialized;
@@ -383,27 +395,38 @@ namespace FSMControl
       }
     }
 
+    /// <summary>
+    /// Deletes the selected vertex
+    /// </summary>
     private void Delete_This_Vertex(object sender, RoutedEventArgs e)
     {
       if (this.machinee != null)
       {
         MessageBox.Show(this.machinee.DeleteVertex(this.selectedVertex.Text));
       }
-
       this.DataContext = this.machinee.MyGraph;
     }
 
+    /// <summary>
+    /// Shows AddEdgeToWindow window
+    /// </summary>
     private void Add_Edge_To(object sender, RoutedEventArgs e)
     {
       AddEdgeToWindow window = new AddEdgeToWindow(this.machinee, this.selectedVertex);
       window.Show();
     }
 
-    void MyMouseRightButtonDownHandler(object sender, MouseButtonEventArgs e)
+    /// <summary>
+    /// Get selected vertex
+    /// </summary>
+    private void MyMouseRightButtonDownHandler(object sender, MouseButtonEventArgs e)
     {
         this.selectedVertex = (CustomVertex)(sender as VertexControl).Vertex;
     }
 
+    /// <summary>
+    /// Get selected edge
+    /// </summary>
     private void MouseEnter_EventEdge(object sender, RoutedEventArgs e)
     {
       this.selectedEdge = (CustomEdge)(sender as EdgeControl).Edge;

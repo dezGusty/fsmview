@@ -191,3 +191,5 @@ C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMApplication\obj
 C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.Properties.Resources.resources
 C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.csproj.GenerateResource.Cache
 C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMApplication\obj\Debug\FSMApplication.exe
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\System.Windows.Controls.Input.Toolkit.pdb
+D:\Code\New folder\fsmview\FSMViewer\FSMApplication\bin\Debug\WPFToolkit.pdb
