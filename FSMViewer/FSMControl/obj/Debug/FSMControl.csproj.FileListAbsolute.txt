@@ -204,3 +204,45 @@ D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.g.c
 D:\Code\New folder\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.csprojResolveAssemblyReference.cache
 D:\Code\New folder\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.baml
 D:\Code\New folder\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\FSMControl.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\FSMControl.pdb
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\GraphSharp.Controls.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\GraphSharp.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.Data.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.Graphviz.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.Serialization.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\WPFExtensions.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\WPFToolkit.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.xml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.Data.xml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.Graphviz.xml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\QuickGraph.Serialization.xml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\System.Windows.Controls.Input.Toolkit.pdb
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\System.Windows.Controls.Layout.Toolkit.pdb
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\bin\Debug\WPFToolkit.pdb
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.csprojResolveAssemblyReference.cache
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.baml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeWindow.baml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddVertexWindow.baml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\DeleteEdgeWindow.baml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\DeleteVertexWindow.baml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\GenerateSequenceWindow.baml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMView.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeWindow.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddVertexWindow.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\DeleteEdgeWindow.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\DeleteVertexWindow.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\GenerateSequenceWindow.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl_MarkupCompile.cache
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl_MarkupCompile.lref
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMView.baml
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.g.resources
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.Properties.Resources.resources
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.csproj.GenerateResource.Cache
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.dll
+C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.pdb

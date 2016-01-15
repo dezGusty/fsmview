@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using FSMControl.DomainModel.FirstVersion;
 using FSMControl.DomainModel.SecondVersion;
 
@@ -27,6 +28,8 @@ namespace FSMControl.Windows
       }
 
       this.machine = fsm;
+      this.autocompleteSource.ItemsSource = this.machine.MyGraph.Vertices;
+      this.autocompleteTarget.ItemsSource = this.machine.MyGraph.Vertices;
     }
 
     public DeleteEdgeWindow()
@@ -36,7 +39,7 @@ namespace FSMControl.Windows
 
     private void BtnDeleteEdge(object sender, RoutedEventArgs e)
     {
-      if (txtTo.Text.Equals(string.Empty) || txtFrom.Text.Equals(string.Empty))
+      if (autocompleteSource.Text.Equals(string.Empty) || autocompleteTarget.Text.Equals(string.Empty))
       {
         MessageBox.Show("Invalid name!" + "\n" + "It cannot be empty!");
         return;
@@ -47,11 +50,11 @@ namespace FSMControl.Windows
         {
           if (this.machine is FirstStateMachine)
           {
-            MessageBox.Show(((FirstStateMachine)this.machine).DeleteEdge(txtFrom.Text, txtTo.Text));
+            MessageBox.Show(((FirstStateMachine)this.machine).DeleteEdge(autocompleteSource.Text, autocompleteTarget.Text));
           }
           else
           {
-            MessageBox.Show(((SecondStateMachine)this.machine).DeleteEdge(txtFrom.Text, txtTo.Text));
+            MessageBox.Show(((SecondStateMachine)this.machine).DeleteEdge(autocompleteSource.Text, autocompleteTarget.Text));
           }
 
           this.DataContext = this.machine.MyGraph;
@@ -62,6 +65,16 @@ namespace FSMControl.Windows
     private void Cancel(object sender, RoutedEventArgs e)
     {
       this.Close();
+    }
+
+    private void autocompleteSource_MouseEnter(object sender, MouseEventArgs e)
+    {
+      autocompleteSource.Text = string.Empty;
+    }
+
+    private void autocompleteTarget_MouseEnter(object sender, MouseEventArgs e)
+    {
+      autocompleteTarget.Text = string.Empty;
     }
   }
 }
