@@ -2,8 +2,8 @@
 
 namespace FSMControl
 {
-    [Serializable]
-    public class MachineConfig
-    {
-    }
+  [Serializable]
+  public class MachineConfig
+  {
+  }
 }

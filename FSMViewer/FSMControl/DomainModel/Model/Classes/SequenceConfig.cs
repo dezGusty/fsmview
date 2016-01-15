@@ -2,8 +2,8 @@
 
 namespace FSMControl.DomainModel.Model.Classes
 {
-    [Serializable]
-    public class SequenceConfig
-    {
-    }
+  [Serializable]
+  public class SequenceConfig
+  {
+  }
 }

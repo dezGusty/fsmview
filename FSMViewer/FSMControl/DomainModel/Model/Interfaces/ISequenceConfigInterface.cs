@@ -1,9 +1,9 @@
 ﻿namespace FSMControl.DomainModel.Model.Interfaces
 {
-    public interface ISequenceConfigInterface<T>
-    {
-        void LoadFromXMLFileAbsolute(string absoluteFilePath);
+  public interface ISequenceConfigInterface<T>
+  {
+    void LoadFromXMLFileAbsolute(string absoluteFilePath);
 
-        T LoadFromXML(string xmlContent);
-    }
+    T LoadFromXML(string xmlContent);
+  }
 }

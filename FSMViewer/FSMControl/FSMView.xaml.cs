@@ -222,7 +222,6 @@ namespace FSMControl
     private void Save(object sender, RoutedEventArgs e)
     {
       this.EnableButtonStatesForGraph();
-
       this.SetNodesPositionToSave(this.machinee.MyGraph);
       SerializeHelper.SaveGraph(this.machinee.MyGraph, Utilities.SavePath("Save this graph"));
       console.Text += "Graph succesfully saved!\r\n";
@@ -306,7 +305,6 @@ namespace FSMControl
       {
         console.Text += "\nYou didn't save anything!\r\n";
       }
-
     }
 
     /// <summary>
@@ -410,6 +408,36 @@ namespace FSMControl
       this.selectedEdge = (CustomEdge)(sender as EdgeControl).Edge;
     }
 
+    /// <summary>
+    /// Deletes itself edge of the selected vertex, if there is any.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+    private void Delete_My_Edge(object sender, RoutedEventArgs e)
+    {
+      if (this.selectedVertex != null)
+      {
+        if (this.machinee != null)
+        {
+          if (this.machinee is FirstStateMachine)
+          {
+            MessageBox.Show(((FirstStateMachine)this.machinee).DeleteEdge(this.selectedVertex.Text, this.selectedVertex.Text));
+          }
+          else
+          {
+            MessageBox.Show(((SecondStateMachine)this.machinee).DeleteEdge(this.selectedVertex.Text, this.selectedVertex.Text));
+          }
+
+          this.DataContext = this.machinee.MyGraph;
+        }
+      }
+    }
+
+    /// <summary>
+    /// Delete the selected edge
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
     private void Click_DeleteEdge(object sender, RoutedEventArgs e)
     {
       if (this.selectedEdge != null)

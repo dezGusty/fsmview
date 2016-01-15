@@ -16,5 +16,5 @@ DEBUG;TRACE
 221920957390
 FSMView.xaml;Windows\AddEdgeToWindow.xaml;Windows\AddEdgeWindow.xaml;Windows\AddVertexWindow.xaml;Windows\DeleteEdgeWindow.xaml;Windows\DeleteVertexWindow.xaml;Windows\GenerateSequenceWindow.xaml;
 
-False
+True
 

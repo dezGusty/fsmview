@@ -204,10 +204,10 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\Images\black.jpg" />
-    <Resource Include="Resources\Images\yellow.jpg" />
+    <Resource Include="Resources\Images\black1.png" />
+    <Resource Include="Resources\Images\try.png" />
+    <Resource Include="Resources\Images\yell.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
