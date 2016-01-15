@@ -8,6 +8,7 @@ using FSMControl.DomainModel.FirstVersion;
 using FSMControl.DomainModel.SecondVersion;
 using FSMControl.Windows;
 using GraphSharp.Controls;
+using System.Windows.Input;
 
 namespace FSMControl
 {
@@ -398,9 +399,9 @@ namespace FSMControl
       window.Show();
     }
 
-    private void MouseEnter_Event(object sender, RoutedEventArgs e)
+    void MyMouseRightButtonDownHandler(object sender, MouseButtonEventArgs e)
     {
-      this.selectedVertex = (CustomVertex)(sender as VertexControl).Vertex;
+        this.selectedVertex = (CustomVertex)(sender as VertexControl).Vertex;
     }
 
     private void MouseEnter_EventEdge(object sender, RoutedEventArgs e)

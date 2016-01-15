@@ -201,3 +201,6 @@ D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.dll
 D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.pdb
 D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.baml
 D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.g.cs
+D:\Code\New folder\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.csprojResolveAssemblyReference.cache
+D:\Code\New folder\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.baml
+D:\Code\New folder\fsmview\FSMViewer\FSMControl\obj\Debug\Windows\AddEdgeToWindow.g.cs

@@ -100,7 +100,7 @@
           </ControlTemplate>
         </Setter.Value>
       </Setter>
-      <EventSetter Event="MouseEnter" Handler="MouseEnter_Event" />
+            <EventSetter Event="MouseRightButtonDown" Handler="MyMouseRightButtonDownHandler"/>
       <Setter Property="Background" Value="{Binding BackgroundColor, Converter={StaticResource edgeToEdgeColorConverter}}" />
       <Style.Triggers>
         <Trigger Property="graphsharp:GraphElementBehaviour.IsHighlighted" Value="True">
