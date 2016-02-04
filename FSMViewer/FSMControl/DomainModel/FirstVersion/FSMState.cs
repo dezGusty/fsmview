@@ -32,6 +32,20 @@ namespace FSMControl.DomainModel.FirstVersion
     }
 
     /// <summary>
+    /// Shoulds the serialize reentry using trigger.
+    /// </summary>
+    /// <returns></returns>
+    public bool ShouldSerializeReentryUsingTrigger()
+    {
+      if (string.IsNullOrEmpty(this.ReentryUsingTrigger))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    /// <summary>
     /// Gets or sets the array of allowed trigger.
     /// </summary>
     /// <value>
@@ -55,6 +69,25 @@ namespace FSMControl.DomainModel.FirstVersion
       set;
     }
 
+    /// <summary>
+    /// Shoulds the serialize default handler.
+    /// </summary>
+    /// <returns></returns>
+    public bool ShouldSerializeDefaultHandler()
+    {
+      if (string.IsNullOrEmpty(this.DefaultHandler))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    /// <summary>
+    /// Founds the state of the trigger in cureent.
+    /// </summary>
+    /// <param name="trig">The trig.</param>
+    /// <returns></returns>
     public AllowedTrigger FoundTriggerInCureentState(FSMTrigger trig)
     {
       if (trig != null)

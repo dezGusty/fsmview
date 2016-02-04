@@ -182,9 +182,16 @@ namespace FSMControl.DomainModel.SecondVersion
       }
     }
 
+    /// <summary>
+    /// Adds the new state.
+    /// </summary>
+    /// <param name="stateName">Name of the state.</param>
+    /// <param name="stateDefaultHandler">The state default handler.</param>
+    /// <param name="stateReentryTrigger">The state reentry trigger.</param>
+    /// <returns></returns>
     public override string AddNewState(string stateName, string stateDefaultHandler, string stateReentryTrigger)
     {
-      if (!string.IsNullOrEmpty(stateName) && !string.IsNullOrEmpty(stateDefaultHandler) && !string.IsNullOrEmpty(stateReentryTrigger))
+      if (!string.IsNullOrEmpty(stateName))
       {
         if (this.MyGraph.Vertices.Where(v => string.Compare(v.Text.ToLower(), stateName.ToLower()) == 0).FirstOrDefault() != null)
         {
@@ -249,7 +256,7 @@ namespace FSMControl.DomainModel.SecondVersion
       }
 
       this.Configuration.AddNewTrigger(trig);
-      this.MyGraph.Message += string.Format("Edge from {0} to {1} added successfully!", vertexFrom, vertexTo);
+      ////this.MyGraph.Message += string.Format("Edge from {0} to {1} added successfully!", vertexFrom, vertexTo);
     }
 
     public override string DeleteEdge(string sourceText, string targetText)

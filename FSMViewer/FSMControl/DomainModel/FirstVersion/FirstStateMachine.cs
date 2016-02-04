@@ -198,7 +198,7 @@ namespace FSMControl.DomainModel.FirstVersion
     /// <returns></returns>
     public override string AddNewState(string stateName, string stateDefaultHandler, string stateReentryTrigger)
     {
-      if (!string.IsNullOrEmpty(stateName) && !string.IsNullOrEmpty(stateDefaultHandler) && !string.IsNullOrEmpty(stateReentryTrigger))
+      if (!string.IsNullOrEmpty(stateName))
       {
         if (this.MyGraph.Vertices.Where(v => string.Compare(v.Text.ToLower(), stateName.ToLower()) == 0).FirstOrDefault() != null)
         {

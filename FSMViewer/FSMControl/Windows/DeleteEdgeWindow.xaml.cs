@@ -67,12 +67,12 @@ namespace FSMControl.Windows
       this.Close();
     }
 
-    private void autocompleteSource_MouseEnter(object sender, MouseEventArgs e)
+    private void AutocompleteSource_MouseEnter(object sender, MouseEventArgs e)
     {
       autocompleteSource.Text = string.Empty;
     }
 
-    private void autocompleteTarget_MouseEnter(object sender, MouseEventArgs e)
+    private void AutocompleteTarget_MouseEnter(object sender, MouseEventArgs e)
     {
       autocompleteTarget.Text = string.Empty;
     }

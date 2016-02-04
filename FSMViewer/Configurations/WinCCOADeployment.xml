@@ -1,53 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FSMConfig>
-	<ArrayOfFSMTrigger>
-		<!--
-    This is an array of triggers that are available in the state machine.
-    If you need a new trigger, add it here.
-    Each trigger shall follow the name convention:
-        Name: the unique name to use in the state machine for configuring states
-        SequenceID: (in theory, it can be the same as the name). This is also unique
-            and it identifies the name to use for the trigger in the sequences.
-            (see the sequences definition file; E.g. WinCCOADeploymentSequences.xml)
-        
-        (alternative notation)
-        CommonID: is used when the Name and the SequenceID have the same value to allow writing a single value.
-    -->
-		<FSMTrigger>
-			<Name>CheckTargetDS</Name>
-			<SequenceID>check_target_ds</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>CheckSupportDS</Name>
-			<SequenceID>check_support_ds</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>CheckTargetWinCCOAVersion</Name>
-			<SequenceID>check_target_winccoa_ver</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>CreateConfigFile</Name>
-			<SequenceID>create_config_file_on_db_svr</SequenceID>
-		</FSMTrigger>
-    <!--States dealing with the handling of project data on the Oracle host.-->
-		<FSMTrigger>
-			<CommonID>db.get_temp_dir</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+  <ArrayOfFSMTrigger>
+    <FSMTrigger>
+      <Name>CheckTargetDS</Name>
+      <SequenceID>check_target_ds</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>CheckSupportDS</Name>
+      <SequenceID>check_support_ds</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>CheckTargetWinCCOAVersion</Name>
+      <SequenceID>check_target_winccoa_ver</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>CreateConfigFile</Name>
+      <SequenceID>create_config_file_on_db_svr</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <CommonID>db.get_temp_dir</CommonID>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>db.checkout_dir</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>db.grant_file_access</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>db.generate_project_config_files</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<CommonID>db.put_config_files_to_repo</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
+      <CommonID>db.put_config_files_to_repo</CommonID>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>db.remove_temp_dir</CommonID>
-		</FSMTrigger>
+    </FSMTrigger>
     <FSMTrigger>
       <CommonID>db.remove_temp_plant_topo_dir</CommonID>
     </FSMTrigger>
@@ -56,129 +43,128 @@
     </FSMTrigger>
     <FSMTrigger>
       <CommonID>db.generate_plant_topo_item</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>db.put_plant_topo_files_to_repo</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>CreateConfigFileFinished</Name>
-			<SequenceID>create_config_file_on_db_svr_finished</SequenceID>
-		</FSMTrigger>
-    <!--Other states dealing with the deployment target machine.-->
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>CreateConfigFileFinished</Name>
+      <SequenceID>create_config_file_on_db_svr_finished</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>target.get_temp_dir</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>target.remove_temp_dir</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>target.stop_project_if_running</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>target.checkout_plant_topo_dir</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>VCSCheckoutProject</Name>
-			<SequenceID>vcs_checkout_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>VCSCheckoutPatch</Name>
-			<SequenceID>vcs_checkout_patch</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>VCSUpdateProject</Name>
-			<SequenceID>vcs_update_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>VCSUpdateIgnoreList</Name>
-			<SequenceID>update_vcs_ignore_list</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>UpdateTargetConfigFiles</Name>
-			<SequenceID>update_config_files</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>SetUpProject</Name>
-			<SequenceID>set_up_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>StartProject</Name>
-			<SequenceID>start_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>ImportAsciiFiles</Name>
-			<SequenceID>import_ascii_files</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>VCSCheckoutProject</Name>
+      <SequenceID>vcs_checkout_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>VCSCheckoutPatch</Name>
+      <SequenceID>vcs_checkout_patch</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>VCSUpdateProject</Name>
+      <SequenceID>vcs_update_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>VCSUpdateIgnoreList</Name>
+      <SequenceID>update_vcs_ignore_list</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>UpdateTargetConfigFiles</Name>
+      <SequenceID>update_config_files</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>SetUpProject</Name>
+      <SequenceID>set_up_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>StartProject</Name>
+      <SequenceID>start_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>ImportAsciiFiles</Name>
+      <SequenceID>import_ascii_files</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>target.import_plant_topology_items</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>StopProject</Name>
-			<SequenceID>stop_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>RemoveProject</Name>
-			<SequenceID>remove_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>StartRegisteredProject</Name>
-			<SequenceID>start_registered_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>StopRegisteredProject</Name>
-			<SequenceID>stop_registered_project</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>LclExportAsciiFiles</Name>
-			<SequenceID>lcl_export_ascii_files</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>StopProject</Name>
+      <SequenceID>stop_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>RemoveProject</Name>
+      <SequenceID>remove_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>StartRegisteredProject</Name>
+      <SequenceID>start_registered_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>StopRegisteredProject</Name>
+      <SequenceID>stop_registered_project</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>LclExportAsciiFiles</Name>
+      <SequenceID>lcl_export_ascii_files</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
       <CommonID>target.do_online_backup</CommonID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>GetBackups</Name>
-			<SequenceID>get_backups</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>ImportOnlineBackup</Name>
-			<SequenceID>import_online_backup</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>ExtractPatchFile</Name>
-			<SequenceID>extract_patch_file</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>InstallPatchFile</Name>
-			<SequenceID>install_patch_file</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>RemovePatchTempOnTargetHost</Name>
-			<SequenceID>remove_patch_dir_target</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>GetInstalledPatchVersionOnTargetHost</Name>
-			<SequenceID>installed_patch_version_target</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>KillWccoaOnTargetHost</Name>
-			<SequenceID>kill_wccoa_target</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>CallupCheckoutDir</Name>
-			<SequenceID>callup.checkout_dir</SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>CallupCheckInAscii</Name>
-			<SequenceID>callup.checkin_ascii</SequenceID>
-		</FSMTrigger>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>GetBackups</Name>
+      <SequenceID>get_backups</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>ImportOnlineBackup</Name>
+      <SequenceID>import_online_backup</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>ExtractPatchFile</Name>
+      <SequenceID>extract_patch_file</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>InstallPatchFile</Name>
+      <SequenceID>install_patch_file</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>RemovePatchTempOnTargetHost</Name>
+      <SequenceID>remove_patch_dir_target</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>GetInstalledPatchVersionOnTargetHost</Name>
+      <SequenceID>installed_patch_version_target</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>KillWccoaOnTargetHost</Name>
+      <SequenceID>kill_wccoa_target</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>CallupCheckoutDir</Name>
+      <SequenceID>callup.checkout_dir</SequenceID>
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>CallupCheckInAscii</Name>
+      <SequenceID>callup.checkin_ascii</SequenceID>
+    </FSMTrigger>
     <FSMTrigger>
       <Name>CallupLinkDpsToPlantTopo</Name>
       <SequenceID>callup.callup_link_dps</SequenceID>
     </FSMTrigger>
     <FSMTrigger>
-			<Name>CallupCheckoutAsciiOnDbServer</Name>
-			<SequenceID>callup.checkout_ascii_on_db_server</SequenceID>
-		</FSMTrigger>
+      <Name>CallupCheckoutAsciiOnDbServer</Name>
+      <SequenceID>callup.checkout_ascii_on_db_server</SequenceID>
+    </FSMTrigger>
     <FSMTrigger>
       <Name>CallupCheckoutAsciiOnLocalhost</Name>
       <SequenceID>callup.checkout_ascii_on_localhost</SequenceID>
@@ -187,8 +173,6 @@
       <Name>CallupImportAsciiOnDbServer</Name>
       <SequenceID>callup.db_import_ascii</SequenceID>
     </FSMTrigger>
-
-    <!--States dealing with the export of project data on the Oracle host specific for parallel deployments.-->
     <FSMTrigger>
       <CommonID>db.checkout_config_dirs_parallel</CommonID>
     </FSMTrigger>
@@ -204,7 +188,6 @@
     <FSMTrigger>
       <CommonID>db.remove_temp_config_dirs_multiple</CommonID>
     </FSMTrigger>
-
     <FSMTrigger>
       <CommonID>db.checkout_plant_topo_dir</CommonID>
     </FSMTrigger>
@@ -217,235 +200,217 @@
     <FSMTrigger>
       <CommonID>db.put_plant_topo_files_to_repo_multiple</CommonID>
     </FSMTrigger>
-
     <FSMTrigger>
-			<Name>FinishedSuccessfully</Name>
-			<SequenceID></SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>FinishedWithAbort</Name>
-			<SequenceID></SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>ErrorEncountered</Name>
-			<SequenceID></SequenceID>
-		</FSMTrigger>
-		<FSMTrigger>
-			<Name>Reset</Name>
-			<SequenceID></SequenceID>
-		</FSMTrigger>
-	</ArrayOfFSMTrigger>
-
-	<!--
-  This is an array of State Machine States.
-  Each state machine should contain the following items:
-      Name: the unique name by which to identify the state.
-      ReentryUsingTrigger: OPTIONAL: specify a trigger that can be used to launch the same state again.
-      ArrayOfAllowedTrigger: An array of combinations for triggers and the states that can be reached
-          FROM this particular state.
-      DefaultHandler: The callback function to call whenever the state is entered.
-      This function should be callable from the context of the HostDeploymentState class.
-          NOTE: NEEDS TO BE PUBLIC.
-  -->
-	<ArrayOfFSMState>
-		<FSMState>
-			<Name>WaitingForInput</Name>
-			<ReentryUsingTrigger>Reset</ReentryUsingTrigger>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CheckTargetDS</TriggerName>
-					<StateName>CheckingTargetDS</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StartProject</TriggerName>
-					<StateName>StartingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StopProject</TriggerName>
-					<StateName>StoppingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StartRegisteredProject</TriggerName>
-					<StateName>StartingRegisteredProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StopRegisteredProject</TriggerName>
-					<StateName>StoppingRegisteredProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>LclExportAsciiFiles</TriggerName>
-					<StateName>LclExportingDpAscii</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+      <Name>FinishedSuccessfully</Name>
+      <SequenceID />
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>FinishedWithAbort</Name>
+      <SequenceID />
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>ErrorEncountered</Name>
+      <SequenceID />
+    </FSMTrigger>
+    <FSMTrigger>
+      <Name>Reset</Name>
+      <SequenceID />
+    </FSMTrigger>
+  </ArrayOfFSMTrigger>
+  <ArrayOfFSMState>
+    <FSMState>
+      <Name>WaitingForInput</Name>
+      <ReentryUsingTrigger>Reset</ReentryUsingTrigger>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CheckTargetDS</TriggerName>
+          <StateName>CheckingTargetDS</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StartProject</TriggerName>
+          <StateName>StartingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StopProject</TriggerName>
+          <StateName>StoppingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StartRegisteredProject</TriggerName>
+          <StateName>StartingRegisteredProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StopRegisteredProject</TriggerName>
+          <StateName>StoppingRegisteredProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>LclExportAsciiFiles</TriggerName>
+          <StateName>LclExportingDpAscii</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.do_online_backup</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>InstallPatchFile</TriggerName>
-					<StateName>InstallingPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>ExtractPatchFile</TriggerName>
-					<StateName>ExtractingPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>GetBackups</TriggerName>
-					<StateName>GettingBackups</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-          <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
-				</AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnReset</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CheckingTargetDS</Name>
-			<Description>checking remote DS...</Description>
-			<!--
-      Define the triggers that can be launched FROM this state and the states that
-      are reached by these triggers.
-      -->
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CheckTargetWinCCOAVersion</TriggerName>
-					<StateName>CheckingWccoaVer</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CheckSupportDS</TriggerName>
-					<StateName>CheckingSupportDS</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>InstallPatchFile</TriggerName>
+          <StateName>InstallingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ExtractPatchFile</TriggerName>
+          <StateName>ExtractingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>GetBackups</TriggerName>
+          <StateName>GettingBackups</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
-          <StateAndTriggerName>target.do_online_backup</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutProject</TriggerName>
-					<StateName>VCSCheckingOutProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>KillWccoaOnTargetHost</TriggerName>
-					<StateName>KillingWccoaOnTargetHost</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutPatch</TriggerName>
-					<StateName>CheckingOutPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>InstallPatchFile</TriggerName>
-					<StateName>InstallingPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>ExtractPatchFile</TriggerName>
-					<StateName>ExtractingPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>LclExportAsciiFiles</TriggerName>
-					<StateName>LclExportingDpAscii</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CallupCheckoutDir</TriggerName>
-					<StateName>CallupCheckingOutDir</StateName>
-				</AllowedTrigger>
-
-				<!-- Allow the usual triggers to the usual states: user abort and error encountered.-->
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-
-			<!-- The callback function to use. NOTE: NEEDS TO BE PUBLIC. -->
-			<DefaultHandler>OnStartedCheckingTargetDS</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CheckingSupportDS</Name>
-			<Description>checking DB DS...</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CheckTargetWinCCOAVersion</TriggerName>
-					<StateName>CheckingWccoaVer</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CallupCheckoutAsciiOnDbServer</TriggerName>
-					<StateName>CallupCheckingOutAsciiOnDbServer</StateName>
-				</AllowedTrigger>
-        
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCheckingSupportDS</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CheckingWccoaVer</Name>
-			<Description>checking WinCC OA ver...</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CreateConfigFile</TriggerName>
-					<StateName>CreatingConfigFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutProject</TriggerName>
-					<StateName>VCSCheckingOutProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnReset</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>CheckingTargetDS</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CheckTargetWinCCOAVersion</TriggerName>
+          <StateName>CheckingWccoaVer</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CheckSupportDS</TriggerName>
+          <StateName>CheckingSupportDS</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
-          <StateAndTriggerName>db.get_temp_dir</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSUpdateProject</TriggerName>
-					<StateName>VCSUpdatingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<StateAndTriggerName>target.do_online_backup</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutPatch</TriggerName>
-					<StateName>CheckingOutPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>InstallPatchFile</TriggerName>
-					<StateName>InstallingPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>ExtractPatchFile</TriggerName>
-					<StateName>ExtractingPatchFile</StateName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCreatingConfigFileFromMapper</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CreatingConfigFile</Name>
-			<Description>(DB) creating config file</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CreateConfigFileFinished</TriggerName>
-					<StateName>CreatingConfigFileFinished</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-          <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
-				</AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>target.do_online_backup</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutProject</TriggerName>
+          <StateName>VCSCheckingOutProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>KillWccoaOnTargetHost</TriggerName>
+          <StateName>KillingWccoaOnTargetHost</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutPatch</TriggerName>
+          <StateName>CheckingOutPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>InstallPatchFile</TriggerName>
+          <StateName>InstallingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ExtractPatchFile</TriggerName>
+          <StateName>ExtractingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>LclExportAsciiFiles</TriggerName>
+          <StateName>LclExportingDpAscii</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CallupCheckoutDir</TriggerName>
+          <StateName>CallupCheckingOutDir</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCheckingTargetDS</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>CheckingSupportDS</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CheckTargetWinCCOAVersion</TriggerName>
+          <StateName>CheckingWccoaVer</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CallupCheckoutAsciiOnDbServer</TriggerName>
+          <StateName>CallupCheckingOutAsciiOnDbServer</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCheckingSupportDS</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>CheckingWccoaVer</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CreateConfigFile</TriggerName>
+          <StateName>CreatingConfigFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutProject</TriggerName>
+          <StateName>VCSCheckingOutProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCreatingConfigFileFromMapper</DefaultHandler>
-		</FSMState>
-
+        <AllowedTrigger>
+          <TriggerName>VCSUpdateProject</TriggerName>
+          <StateName>VCSUpdatingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>target.do_online_backup</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutPatch</TriggerName>
+          <StateName>CheckingOutPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>InstallPatchFile</TriggerName>
+          <StateName>InstallingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ExtractPatchFile</TriggerName>
+          <StateName>ExtractingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCreatingConfigFileFromMapper</DefaultHandler>
+    </FSMState>
     <FSMState>
-			<Name>db.get_temp_dir</Name>
-			<Description>(DB) getting temp dir</Description>
-			<ArrayOfAllowedTrigger>
+      <Name>CreatingConfigFile</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CreateConfigFileFinished</TriggerName>
+          <StateName>CreatingConfigFileFinished</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>db.get_temp_dir</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCreatingConfigFileFromMapper</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.get_temp_dir</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
@@ -454,92 +419,97 @@
         </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.checkout_dir</StateAndTriggerName>
-				</AllowedTrigger>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.checkout_plant_topo_dir</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedDBGetTempDirOnDBServer</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>db.checkout_dir</Name>
-			<Description>(DB) checking out cfg dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedDBGetTempDirOnDBServer</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.checkout_dir</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>db.grant_file_access</StateAndTriggerName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCheckoutConfigDirOnDBServer</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>db.grant_file_access</Name>
-			<Description>(DB) granting file access</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCheckoutConfigDirOnDBServer</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.grant_file_access</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>db.generate_project_config_files</StateAndTriggerName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedDBGrantFileAccess</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>db.generate_project_config_files</Name>
-			<Description>(DB) triggering config export</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedDBGrantFileAccess</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.generate_project_config_files</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>db.put_config_files_to_repo</StateAndTriggerName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedDBGenerateProjectConfigFiles</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>db.put_config_files_to_repo</Name>
-			<Description>(DB) adding config files to repo</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedDBGenerateProjectConfigFiles</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.put_config_files_to_repo</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedDBPutConfigFilesToRepo</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>db.remove_temp_dir</Name>
-			<Description>(DB) removing temp dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedDBPutConfigFilesToRepo</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.remove_temp_dir</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>db.checkout_dir</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CreateConfigFile</TriggerName>
-					<StateName>CreatingConfigFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CreateConfigFileFinished</TriggerName>
-					<StateName>CreatingConfigFileFinished</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CreateConfigFile</TriggerName>
+          <StateName>CreatingConfigFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CreateConfigFileFinished</TriggerName>
+          <StateName>CreatingConfigFileFinished</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.checkout_plant_topo_dir</StateAndTriggerName>
         </AllowedTrigger>
         <AllowedTrigger>
@@ -548,108 +518,110 @@
         <AllowedTrigger>
           <StateAndTriggerName>db.checkout_plant_topo_dir</StateAndTriggerName>
         </AllowedTrigger>
-        
         <AllowedTrigger>
           <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
         </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.checkout_config_dirs_parallel</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoveTempConfigDirOnDBServer</DefaultHandler>
-		</FSMState>
-    
-		<FSMState>
-			<Name>db.generate_plant_topo_item</Name>
-			<Description>(DB) generating plant topo item</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoveTempConfigDirOnDBServer</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.generate_plant_topo_item</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>db.put_plant_topo_files_to_repo</StateAndTriggerName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedDBGeneratePlantTopoItem</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>db.put_plant_topo_files_to_repo</Name>
-			<Description>(DB) putting plant item to repo</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedDBGeneratePlantTopoItem</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>db.put_plant_topo_files_to_repo</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_plant_topo_dir</StateAndTriggerName>
         </AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedDBPutPlantTopoFilesToRepo</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CreatingConfigFileFinished</Name>
-			<Description>(DB) putting plant item to repo</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedDBPutPlantTopoFilesToRepo</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>CreatingConfigFileFinished</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.checkout_plant_topo_dir</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StartProject</TriggerName>
-					<StateName>StartingProject</StateName>
-				</AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StartProject</TriggerName>
+          <StateName>StartingProject</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-        
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCreatingConfigFileFromMapperFinished</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>target.get_temp_dir</Name>
-			<Description>getting temp dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutProject</TriggerName>
-					<StateName>VCSCheckingOutProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSUpdateProject</TriggerName>
-					<StateName>VCSUpdatingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCreatingConfigFileFromMapperFinished</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>target.get_temp_dir</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutProject</TriggerName>
+          <StateName>VCSCheckingOutProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSUpdateProject</TriggerName>
+          <StateName>VCSUpdatingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.checkout_plant_topo_dir</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.remove_temp_dir</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>RemoveProject</TriggerName>
-					<StateName>RemovingProject</StateName>
-				</AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>RemoveProject</TriggerName>
+          <StateName>RemovingProject</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <TriggerName>ImportAsciiFiles</TriggerName>
           <StateName>ImportingAsciiFiles</StateName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
@@ -662,19 +634,17 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedGetTempDirOnTargetMachine</DefaultHandler>
     </FSMState>
-
     <FSMState>
-			<Name>target.stop_project_if_running</Name>
-			<Description>stopping project if running</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutProject</TriggerName>
-					<StateName>VCSCheckingOutProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSUpdateProject</TriggerName>
-					<StateName>VCSUpdatingProject</StateName>
-				</AllowedTrigger>
+      <Name>target.stop_project_if_running</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutProject</TriggerName>
+          <StateName>VCSCheckingOutProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSUpdateProject</TriggerName>
+          <StateName>VCSUpdatingProject</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
@@ -682,504 +652,542 @@
           <StateAndTriggerName>target.do_online_backup</StateAndTriggerName>
         </AllowedTrigger>
         <AllowedTrigger>
-					<TriggerName>RemoveProject</TriggerName>
-					<StateName>RemovingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>ImportOnlineBackup</TriggerName>
-					<StateName>ImportingOnlineBackup</StateName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedStoppingProjectIfRunning</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>VCSCheckingOutProject</Name>
-			<Description>checking out project dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSUpdateIgnoreList</TriggerName>
-					<StateName>VCSUpdatingIgnoreList</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSUpdateProject</TriggerName>
-					<StateName>VCSUpdatingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>UpdateTargetConfigFiles</TriggerName>
-					<StateName>UpdatingTargetConfigFiles</StateName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedTargetSystemProjectCheckout</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CheckingOutPatchFile</Name>
-			<Description>checking out patch file</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>InstallPatchFile</TriggerName>
-					<StateName>InstallingPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>ExtractPatchFile</TriggerName>
-					<StateName>ExtractingPatchFile</StateName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedTargetSystemPatchCheckout</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>target.checkout_plant_topo_dir</Name>
-			<Description>checking out plant dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+          <TriggerName>RemoveProject</TriggerName>
+          <StateName>RemovingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ImportOnlineBackup</TriggerName>
+          <StateName>ImportingOnlineBackup</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedStoppingProjectIfRunning</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>VCSCheckingOutProject</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSUpdateIgnoreList</TriggerName>
+          <StateName>VCSUpdatingIgnoreList</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSUpdateProject</TriggerName>
+          <StateName>VCSUpdatingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>UpdateTargetConfigFiles</TriggerName>
+          <StateName>UpdatingTargetConfigFiles</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedTargetSystemProjectCheckout</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>CheckingOutPatchFile</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>InstallPatchFile</TriggerName>
+          <StateName>InstallingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ExtractPatchFile</TriggerName>
+          <StateName>ExtractingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedTargetSystemPatchCheckout</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>target.checkout_plant_topo_dir</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.import_plant_topology_items</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSUpdateProject</TriggerName>
-					<StateName>VCSUpdatingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutProject</TriggerName>
-					<StateName>VCSCheckingOutProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StartProject</TriggerName>
-					<StateName>StartingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSUpdateProject</TriggerName>
+          <StateName>VCSUpdatingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutProject</TriggerName>
+          <StateName>VCSCheckingOutProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StartProject</TriggerName>
+          <StateName>StartingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCheckingOutPlantTopoDirectory</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>target.remove_temp_dir</Name>
-			<Description>removing temp dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CreateConfigFileFinished</TriggerName>
-					<StateName>CreatingConfigFileFinished</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCheckingOutPlantTopoDirectory</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>target.remove_temp_dir</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CreateConfigFileFinished</TriggerName>
+          <StateName>CreatingConfigFileFinished</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.checkout_plant_topo_dir</StateAndTriggerName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoveTempDirOnTargetServer</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>RemovingPatchTempOnTargetHost</Name>
-			<Description>removing temp dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>GetInstalledPatchVersionOnTargetHost</TriggerName>
-					<StateName>GetingInstalledPatchVersionOnTargetHost</StateName>
-				</AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemovePatchDirOnTargetServer</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>GetingInstalledPatchVersionOnTargetHost</Name>
-			<Description>get installed patch version</Description>
-			<ArrayOfAllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoveTempDirOnTargetServer</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>RemovingPatchTempOnTargetHost</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>GetInstalledPatchVersionOnTargetHost</TriggerName>
+          <StateName>GetingInstalledPatchVersionOnTargetHost</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnGetInstalledPatchVersionOnTargetHost</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>KillingWccoaOnTargetHost</Name>
-			<Description>kill wccoa programs</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSCheckoutPatch</TriggerName>
-					<StateName>CheckingOutPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>InstallPatchFile</TriggerName>
-					<StateName>InstallingPatchFile</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>ExtractPatchFile</TriggerName>
-					<StateName>ExtractingPatchFile</StateName>
-				</AllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemovePatchDirOnTargetServer</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>GetingInstalledPatchVersionOnTargetHost</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnKillWccoaOnTargetHost</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>VCSUpdatingProject</Name>
-			<Description>updating project dir</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>VCSUpdateIgnoreList</TriggerName>
-					<StateName>VCSUpdatingIgnoreList</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>UpdateTargetConfigFiles</TriggerName>
-					<StateName>UpdatingTargetConfigFiles</StateName>
-				</AllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnGetInstalledPatchVersionOnTargetHost</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>KillingWccoaOnTargetHost</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSCheckoutPatch</TriggerName>
+          <StateName>CheckingOutPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>InstallPatchFile</TriggerName>
+          <StateName>InstallingPatchFile</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ExtractPatchFile</TriggerName>
+          <StateName>ExtractingPatchFile</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedVCSUpdate</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>VCSUpdatingIgnoreList</Name>
-			<Description>updating ignore list</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>UpdateTargetConfigFiles</TriggerName>
-					<StateName>UpdatingTargetConfigFiles</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>SetUpProject</TriggerName>
-					<StateName>SettingUpProject</StateName>
-				</AllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnKillWccoaOnTargetHost</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>VCSUpdatingProject</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>VCSUpdateIgnoreList</TriggerName>
+          <StateName>VCSUpdatingIgnoreList</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>UpdateTargetConfigFiles</TriggerName>
+          <StateName>UpdatingTargetConfigFiles</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteUpdateIgnoreList</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>UpdatingTargetConfigFiles</Name>
-			<Description>updating config files</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>SetUpProject</TriggerName>
-					<StateName>SettingUpProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StartProject</TriggerName>
-					<StateName>StartingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedVCSUpdate</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>VCSUpdatingIgnoreList</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>UpdateTargetConfigFiles</TriggerName>
+          <StateName>UpdatingTargetConfigFiles</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>SetUpProject</TriggerName>
+          <StateName>SettingUpProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteUpdateIgnoreList</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>UpdatingTargetConfigFiles</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>SetUpProject</TriggerName>
+          <StateName>SettingUpProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StartProject</TriggerName>
+          <StateName>StartingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-
-				<AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedUpdateTargetProjectConfig</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>SettingUpProject</Name>
-			<Description>setting up project</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StartProject</TriggerName>
-					<StateName>StartingProject</StateName>
-				</AllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedUpdateTargetProjectConfig</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>SettingUpProject</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StartProject</TriggerName>
+          <StateName>StartingProject</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteProjectSetUp</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>StartingProject</Name>
-			<Description>starting project</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteProjectSetUp</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>StartingProject</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>ImportAsciiFiles</TriggerName>
-					<StateName>ImportingAsciiFiles</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>ImportAsciiFiles</TriggerName>
+          <StateName>ImportingAsciiFiles</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.import_plant_topology_items</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteProjectStart</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>ImportingAsciiFiles</Name>
-			<Description>importing ascii files</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StopProject</TriggerName>
-					<StateName>StoppingProject</StateName>
-				</AllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteProjectStart</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>ImportingAsciiFiles</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StopProject</TriggerName>
+          <StateName>StoppingProject</StateName>
+        </AllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>target.import_plant_topology_items</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteImportAsciiFiles</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>target.import_plant_topology_items</Name>
-			<Description>importing plant topo items</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>StopProject</TriggerName>
-					<StateName>StoppingProject</StateName>
-				</AllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteImportAsciiFiles</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>target.import_plant_topology_items</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>StopProject</TriggerName>
+          <StateName>StoppingProject</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteImportPlantTopologyItems</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>StoppingProject</Name>
-			<Description>stopping project</Description>
-			<ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteImportPlantTopologyItems</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>StoppingProject</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteProjectStop</DefaultHandler>
-		</FSMState>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteProjectStop</DefaultHandler>
+    </FSMState>
     <FSMState>
       <Name>target.do_online_backup</Name>
-			<Description>running online backup</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CreateConfigFile</TriggerName>
-					<StateName>CreatingConfigFile</StateName>
-				</AllowedTrigger>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CreateConfigFile</TriggerName>
+          <StateName>CreatingConfigFile</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteDoOnlineBackup</DefaultHandler>
-		</FSMState>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteDoOnlineBackup</DefaultHandler>
+    </FSMState>
     <FSMState>
-			<Name>GettingBackups</Name>
-			<Description>getting stored online backups</Description>
-			<ArrayOfAllowedTrigger>
+      <Name>GettingBackups</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteGetBackups</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>ImportingOnlineBackup</Name>
-			<Description>importing online backup</Description>
-			<ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteGetBackups</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>ImportingOnlineBackup</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteImportOnlineBackup</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>ExtractingPatchFile</Name>
-			<Description>extracting the patch file</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>InstallPatchFile</TriggerName>
-					<StateName>InstallingPatchFile</StateName>
-				</AllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteImportOnlineBackup</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>ExtractingPatchFile</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>InstallPatchFile</TriggerName>
+          <StateName>InstallingPatchFile</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteExtractPatchFile</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>InstallingPatchFile</Name>
-			<Description>install the patch file</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>RemovePatchTempOnTargetHost</TriggerName>
-					<StateName>RemovingPatchTempOnTargetHost</StateName>
-				</AllowedTrigger>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteExtractPatchFile</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>InstallingPatchFile</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>RemovePatchTempOnTargetHost</TriggerName>
+          <StateName>RemovingPatchTempOnTargetHost</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRemoteInstallPatchFile</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>StartingRegisteredProject</Name>
-			<Description>starting registered project</Description>
-			<ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRemoteInstallPatchFile</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>StartingRegisteredProject</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRegisteredProjectStart</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>StoppingRegisteredProject</Name>
-			<Description>stopping registered project</Description>
-			<ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRegisteredProjectStart</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>StoppingRegisteredProject</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedRegisteredProjectStop</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>RemovingProject</Name>
-			<Description>removing project</Description>
-			<ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedRegisteredProjectStop</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>RemovingProject</Name>
+      <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnRemovingProject</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>LclExportingDpAscii</Name>
-			<Description>(lcl) export ASCII files</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CallupCheckInAscii</TriggerName>
-					<StateName>CallupCheckingInAscii</StateName>
-				</AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnRemovingProject</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>LclExportingDpAscii</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CallupCheckInAscii</TriggerName>
+          <StateName>CallupCheckingInAscii</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedLclExportAsciiFiles</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CallupCheckingOutDir</Name>
-			<Description>check out configurations folder</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>LclExportAsciiFiles</TriggerName>
-					<StateName>LclExportingDpAscii</StateName>
-				</AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedLclExportAsciiFiles</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>CallupCheckingOutDir</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>LclExportAsciiFiles</TriggerName>
+          <StateName>LclExportingDpAscii</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCallupCheckingOutDir</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>CallupCheckingInAscii</Name>
-			<Description>checkin generated configuration</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>CheckSupportDS</TriggerName>
-					<StateName>CheckingSupportDS</StateName>
-				</AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCallupCheckingOutDir</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>CallupCheckingInAscii</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>CheckSupportDS</TriggerName>
+          <StateName>CheckingSupportDS</StateName>
+        </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-				<AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnStartedCallupCheckingInAscii</DefaultHandler>
-		</FSMState>
-
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnStartedCallupCheckingInAscii</DefaultHandler>
+    </FSMState>
     <FSMState>
       <Name>CallupCheckingOutAsciiOnDbServer</Name>
-      <Description>checkout configuration on DB server</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <TriggerName>CallupCheckoutAsciiOnLocalhost</TriggerName>
@@ -1188,15 +1196,17 @@
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedCallupCheckingOutAsciiOnDbServer</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>CallupCheckingOutAsciiOnLocalhost</Name>
-      <Description>checkout configuration on localhost</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <TriggerName>CallupImportAsciiOnDbServer</TriggerName>
@@ -1205,15 +1215,17 @@
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>FinishedWithAbort</StateAndTriggerName></AllowedTrigger>
-        <AllowedTrigger><StateAndTriggerName>ErrorEncountered</StateAndTriggerName></AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
+        </AllowedTrigger>
+        <AllowedTrigger>
+          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
+        </AllowedTrigger>
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedCallupCheckingOutAsciiOnLocalhost</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>CallupImportingAsciiOnDbServer</Name>
-      <Description>db import of configuration</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <TriggerName>CallupLinkDpsToPlantTopo</TriggerName>
@@ -1231,10 +1243,8 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedCallupImportingAsciiOnDbServer</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>CallupLinkingDpsToPlantTopo</Name>
-      <Description>link DPs to planttopology</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
@@ -1248,16 +1258,13 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedCallupLinkingDpsToPlantTopo</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.checkout_config_dirs_parallel</Name>
-      <Description>Checkout multiple config directories</Description>
       <ReentryUsingTrigger>db.checkout_config_dirs_parallel</ReentryUsingTrigger>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.grant_file_access_multiple</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1274,16 +1281,13 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnCheckoutConfigDirsParallel</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.grant_file_access_multiple</Name>
-      <Description>Grant file access to multiple directories ORA</Description>
       <ReentryUsingTrigger>db.grant_file_access_multiple</ReentryUsingTrigger>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.trigger_export_of_cfgs_parallel</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1297,20 +1301,16 @@
         <AllowedTrigger>
           <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
         </AllowedTrigger>
-
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnGrantFileAccessMultiple</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.trigger_export_of_cfgs_parallel</Name>
-      <Description>Trigger the config file generation for multiple projects</Description>
       <ReentryUsingTrigger>db.trigger_export_of_cfgs_parallel</ReentryUsingTrigger>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.put_config_files_to_repo_multiple</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1327,16 +1327,13 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnTriggerConfigMappingMultiple</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.put_config_files_to_repo_multiple</Name>
-      <Description>Put multiple config files in the repo</Description>
       <ReentryUsingTrigger>db.put_config_files_to_repo_multiple</ReentryUsingTrigger>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_config_dirs_multiple</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1353,20 +1350,16 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnPutConfigFilesToRepoMultiple</DefaultHandler>
     </FSMState>
-    
     <FSMState>
       <Name>db.remove_temp_config_dirs_multiple</Name>
-      <Description>Put multiple config files in the repo</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <TriggerName>CreateConfigFileFinished</TriggerName>
           <StateName>CreatingConfigFileFinished</StateName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>db.checkout_config_dirs_parallel</StateAndTriggerName>
         </AllowedTrigger>
-        
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1383,15 +1376,12 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnRemoveTempDirsMultiple</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.checkout_plant_topo_dir</Name>
-      <Description>Checkout the plant topology directory for the current host from the repo</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.grant_plant_dir_file_access</StateAndTriggerName>
         </AllowedTrigger>
-        
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1408,10 +1398,8 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedDBCheckoutPlantDir</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.grant_plant_dir_file_access</Name>
-      <Description>Grant write access to plant topology configurations checkout directory for oracle</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.generate_plant_topo_items_multiple</StateAndTriggerName>
@@ -1419,7 +1407,6 @@
         <AllowedTrigger>
           <StateAndTriggerName>db.generate_plant_topo_item</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1436,15 +1423,12 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedDBGrantPlantDirFileAccess</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.generate_plant_topo_items_multiple</Name>
-      <Description>Grant write access to plant topology configurations checkout directory for oracle</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.put_plant_topo_files_to_repo_multiple</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1461,15 +1445,12 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnGeneratePlantTopoItemsMultiple</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.put_plant_topo_files_to_repo_multiple</Name>
-      <Description>Grant write access to plant topology configurations checkout directory for oracle</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_plant_topo_dir</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1486,10 +1467,8 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnAddPlantTopoItemsToRepoMultiple</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>db.remove_temp_plant_topo_dir</Name>
-      <Description>(DB) removing temp plant topo dir</Description>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <TriggerName>CreateConfigFile</TriggerName>
@@ -1505,7 +1484,6 @@
         <AllowedTrigger>
           <StateAndTriggerName>target.get_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-        
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>
         </AllowedTrigger>
@@ -1518,14 +1496,10 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedDBRemovePlantTopoTempDir</DefaultHandler>
     </FSMState>
-
     <FSMState>
       <Name>DelegatedExecution</Name>
-      <Description>handling delegated</Description>
       <ReentryUsingTrigger>DelegatedExecution</ReentryUsingTrigger>
       <ArrayOfAllowedTrigger>
-        <!--All triggers that can be called from the delegated execution.
-        These are typically the steps that come after a step with delegated execution.-->
         <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
@@ -1562,7 +1536,6 @@
         <AllowedTrigger>
           <StateAndTriggerName>db.remove_temp_dir</StateAndTriggerName>
         </AllowedTrigger>
-
         <AllowedTrigger>
           <TriggerName>CreateConfigFileFinished</TriggerName>
           <StateName>CreatingConfigFileFinished</StateName>
@@ -1570,7 +1543,6 @@
         <AllowedTrigger>
           <StateAndTriggerName>target.stop_project_if_running</StateAndTriggerName>
         </AllowedTrigger>
-        
         <AllowedTrigger>
           <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
         </AllowedTrigger>
@@ -1584,56 +1556,44 @@
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnDelegatedExecution</DefaultHandler>
     </FSMState>
-    
     <FSMState>
-			<Name>ErrorEncountered</Name>
-			<Description>error encountered</Description>
-			<ReentryUsingTrigger>ErrorEncountered</ReentryUsingTrigger>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+      <Name>ErrorEncountered</Name>
+      <ReentryUsingTrigger>ErrorEncountered</ReentryUsingTrigger>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>Reset</TriggerName>
-					<StateName>WaitingForInput</StateName>
-				</AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnErrorEncountered</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>FinishedWithAbort</Name>
-			<Description>user abort</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>Reset</TriggerName>
-					<StateName>WaitingForInput</StateName>
-				</AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnAborted</DefaultHandler>
-		</FSMState>
-
-		<FSMState>
-			<Name>FinishedSuccessfully</Name>
-			<Description>finished successfully</Description>
-			<ArrayOfAllowedTrigger>
-				<AllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>Reset</TriggerName>
+          <StateName>WaitingForInput</StateName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnErrorEncountered</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>FinishedWithAbort</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
+          <TriggerName>Reset</TriggerName>
+          <StateName>WaitingForInput</StateName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnAborted</DefaultHandler>
+    </FSMState>
+    <FSMState>
+      <Name>FinishedSuccessfully</Name>
+      <ArrayOfAllowedTrigger>
+        <AllowedTrigger>
           <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
         </AllowedTrigger>
-				<AllowedTrigger>
-					<TriggerName>Reset</TriggerName>
-					<StateName>WaitingForInput</StateName>
-				</AllowedTrigger>
-			</ArrayOfAllowedTrigger>
-			<DefaultHandler>OnFinishedSuccessfully</DefaultHandler>
-		</FSMState>
-	</ArrayOfFSMState>
-
-	<!--
-  Convenience parameters that identify the standard triggers to call whenever an error
-  is encoutnered, or when a reset of the state machine (going back to some clean state)
-  is triggered.
-  -->
-	<DefaultTriggerOnError>ErrorEncountered</DefaultTriggerOnError>
-	<DefaultTriggerOnReset>Reset</DefaultTriggerOnReset>
+        <AllowedTrigger>
+          <TriggerName>Reset</TriggerName>
+          <StateName>WaitingForInput</StateName>
+        </AllowedTrigger>
+      </ArrayOfAllowedTrigger>
+      <DefaultHandler>OnFinishedSuccessfully</DefaultHandler>
+    </FSMState>
+  </ArrayOfFSMState>
+  <DefaultTriggerOnError>ErrorEncountered</DefaultTriggerOnError>
+  <DefaultTriggerOnReset>Reset</DefaultTriggerOnReset>
 </FSMConfig>

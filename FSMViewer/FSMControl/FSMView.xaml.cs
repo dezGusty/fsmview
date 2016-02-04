@@ -3,12 +3,12 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using FSMControl.DomainModel.FirstVersion;
 using FSMControl.DomainModel.SecondVersion;
 using FSMControl.Windows;
 using GraphSharp.Controls;
-using System.Windows.Input;
 
 namespace FSMControl
 {
@@ -36,6 +36,8 @@ namespace FSMControl
     private Version v = new Version();
     private CustomVertex selectedVertex = new CustomVertex();
     private CustomEdge selectedEdge = new CustomEdge(null, null);
+    private string xml = string.Empty;
+    private string xmlSeq = string.Empty;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FSMView"/> class.
@@ -44,6 +46,9 @@ namespace FSMControl
     {
       this.InitializeComponent();
 
+      this.cmbBox.IsEnabled = false;
+      this.cbLayout.IsEnabled = false;
+      this.miVersion.IsEnabled = false;
       this.currentOptionGraph = GraphOptions.Uninitialized;
       this.currentOption = MachineOptions.Uninitialized;
       this.EnableButtonStates();
@@ -74,6 +79,7 @@ namespace FSMControl
       represent.IsEnabled = this.currentOption != MachineOptions.Uninitialized;
       save.IsEnabled = this.currentOption != MachineOptions.Uninitialized;
       view.IsEnabled = this.currentOption != MachineOptions.Uninitialized;
+      miSave.IsEnabled = this.currentOption != MachineOptions.Uninitialized;
     }
 
     /// <summary>
@@ -83,6 +89,8 @@ namespace FSMControl
     {
       Version auxVersion = new Version(); ////make a new version
       auxVersion.GetVersion();
+      this.xml = auxVersion.Xml;
+      this.xmlSeq = auxVersion.XmlSeq;
       if (auxVersion.ID != 0)
       {
         this.v = auxVersion;
@@ -104,10 +112,58 @@ namespace FSMControl
 
         this.DataContext = this.machinee.MyGraph;
         console.Text += "A new version opened successfully!\r\n";
+        scrConsole.ScrollToEnd();
+        this.cmbBox.IsEnabled = true;
+        this.cbLayout.IsEnabled = true;
+        this.miVersion.IsEnabled = true;
+      }
+      else
+      {
+        console.Text += "There is no version for this type of xml or you didn't select both files!\r\n";
+        scrConsole.ScrollToEnd();
+        this.currentOption = MachineOptions.Uninitialized;
+        this.currentOptionGraph = GraphOptions.Uninitialized;
+        this.EnableButtonStates();
+        this.EnableButtonStatesForGraph();
+      }
+    }
+
+    private void OpenMachine()
+    {
+      Version auxVersion = new Version(); ////make a new version
+      auxVersion.GetVersionMultiple();
+      this.xml = auxVersion.Xml;
+      this.xmlSeq = auxVersion.XmlSeq;
+      if (auxVersion.ID != 0)
+      {
+        this.v = auxVersion;
+        if (this.v.ID == 1)
+        {
+          this.machinee = new FirstStateMachine(this.v);
+          this.machinee.GetDates();
+          cmbBox.ItemsSource = ((FirstStateMachine)this.machinee).Sequences.ArrayOfSequence.ToList();
+        }
+        else
+        {
+          if (this.v.ID == 2)
+          {
+            this.machinee = new SecondStateMachine(this.v);
+            this.machinee.GetDates();
+            cmbBox.ItemsSource = ((SecondStateMachine)this.machinee).Sequences.ArrayOfSequence.ToList();
+          }
+        }
+
+        this.DataContext = this.machinee.MyGraph;
+        console.Text += "A new version opened successfully!\r\n";
+        scrConsole.ScrollToEnd();
+        this.cmbBox.IsEnabled = true;
+        this.cbLayout.IsEnabled = true;
+        this.miVersion.IsEnabled = true;
       }
       else
       {
         console.Text += "There is no version for this type of xml!\r\n";
+        scrConsole.ScrollToEnd();
         this.currentOption = MachineOptions.Uninitialized;
         this.currentOptionGraph = GraphOptions.Uninitialized;
         this.EnableButtonStates();
@@ -139,10 +195,12 @@ namespace FSMControl
       {
         this.machinee.RepresentThisMachine(Colors.Yellow);
         console.Text += "Machine represented successfully!\r\n";
+        scrConsole.ScrollToEnd();
       }
       else
       {
         console.Text += "No machine to represent!\r\n";
+        scrConsole.ScrollToEnd();
       }
     }
 
@@ -168,6 +226,7 @@ namespace FSMControl
                 ((FirstStateMachine)this.machinee).MyGraph.ResetToDefault();
                 ((FirstStateMachine)this.machinee).RepresentSequence(Colors.Yellow, seq, true);
                 console.Text += "Sequence represented successfully!\r\n";
+                scrConsole.ScrollToEnd();
                 this.DataContext = this.machinee.MyGraph;
               }
 
@@ -189,6 +248,7 @@ namespace FSMControl
                 {
                   ((SecondStateMachine)this.machinee).RepresentSequence(Colors.Yellow, seq, true);
                   console.Text += "Sequence represented successfully!\r\n";
+                  scrConsole.ScrollToEnd();
                   this.DataContext = this.machinee.MyGraph;
                 }
                 else
@@ -226,6 +286,7 @@ namespace FSMControl
       this.SetNodesPositionToSave(this.machinee.MyGraph);
       SerializeHelper.SaveGraph(this.machinee.MyGraph, Utilities.SavePath("Save this graph"));
       console.Text += "Graph succesfully saved!\r\n";
+      scrConsole.ScrollToEnd();
     }
 
     /// <summary>
@@ -249,6 +310,7 @@ namespace FSMControl
         catch (Exception ex)
         {
           console.Text += ex.Message + "\r\nIncorrect file type!\r\n";
+          scrConsole.ScrollToEnd();
         }
       }
     }
@@ -301,10 +363,12 @@ namespace FSMControl
         }
 
         console.Text += "Configuration succesfully saved!\r\n";
+        scrConsole.ScrollToEnd();
       }
       catch
       {
         console.Text += "\nYou didn't save anything!\r\n";
+        scrConsole.ScrollToEnd();
       }
     }
 
@@ -313,7 +377,7 @@ namespace FSMControl
     /// </summary>
     private void About_Click(object sender, RoutedEventArgs e)
     {
-      MessageBox.Show("Not implemented yet!");
+      MessageBox.Show("Paula Trifanov\nMircea Solovăstru", "Authors", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
     }
 
     /// <summary>
@@ -404,6 +468,7 @@ namespace FSMControl
       {
         MessageBox.Show(this.machinee.DeleteVertex(this.selectedVertex.Text));
       }
+
       this.DataContext = this.machinee.MyGraph;
     }
 
@@ -480,6 +545,50 @@ namespace FSMControl
           this.DataContext = this.machinee.MyGraph;
         }
       }
+    }
+
+    /// <summary>
+    /// Handles the Click event of the MiSave control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+    private void MiSave_Click(object sender, RoutedEventArgs e)
+    {
+      try
+      {
+        if (this.v.ID == 1)
+        {
+          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)this.machinee).Configuration, this.xml);
+          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)this.machinee).Sequences, this.xmlSeq);
+        }
+        else
+        {
+          Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)this.machinee).Configuration, this.xml);
+          Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)this.machinee).Sequences, this.xmlSeq);
+        }
+
+        console.Text += "Configuration succesfully saved!\r\n";
+        scrConsole.ScrollToEnd();
+      }
+      catch
+      {
+        console.Text += "\nYou didn't save anything!\r\n";
+        scrConsole.ScrollToEnd();
+      }
+    }
+
+    /// <summary>
+    /// Handles the Click event of the LoadMultiple control.
+    /// </summary>
+    /// <param name="sender">The source of the event.</param>
+    /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+    private void LoadMultiple_Click(object sender, RoutedEventArgs e)
+    {
+      this.currentOption = MachineOptions.Initialized;
+      this.EnableButtonStates();
+      this.currentOptionGraph = GraphOptions.Initialized;
+      this.EnableButtonStatesForGraph();
+      this.OpenMachine();
     }
   }
 }

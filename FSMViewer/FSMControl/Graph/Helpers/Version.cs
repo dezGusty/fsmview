@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
@@ -75,12 +76,28 @@ namespace FSMControl
       this.XmlSeq = Utilities.GetPath("Select machine sequnces");
     }
 
+    public void GetXmlPathsAtOnce()
+    {
+      string[] xmls = Utilities.GetMultiplePaths("Select both files");
+      if (xmls == null)
+      {
+        return;
+      }
+
+      if (xmls.Length != 2)
+      {
+        return;
+      }
+
+      this.Xml = xmls[0];
+      this.XmlSeq = xmls[1];
+    }
+
     /// <summary>
     /// Gets the version.
     /// </summary>
     public void GetVersion()
     {
-      Version.GetListOfVersions();
       this.GetXmlPaths();
       if (this.Xml != null && this.XmlSeq != null)
       {
@@ -102,6 +119,64 @@ namespace FSMControl
             this.ID = v.ID;
             this.SequenceValidationString = v.SequenceValidationString;
             this.ConfigValidationString = v.ConfigValidationString;
+            return;
+          }
+        }
+      }
+    }
+
+    public void GetVersionMultiple()
+    {
+      this.GetXmlPathsAtOnce();
+      if (this.Xml != null && this.XmlSeq != null)
+      {
+        XmlSchemaSet schema;
+        foreach (Version v in Version.GetListOfVersions())
+        {
+          schema = new XmlSchemaSet();
+          schema.Add(null, v.ConfigValidationString);
+          XDocument document = XDocument.Load(this.Xml);
+          bool validationErrorConfig = true;
+          document.Validate(schema, (s, ex) => { validationErrorConfig = false; });
+          schema = new XmlSchemaSet();
+          schema.Add(null, v.SequenceValidationString);
+          document = XDocument.Load(this.XmlSeq);
+          bool validationErrorSeq = true;
+          document.Validate(schema, (s, ex) => { validationErrorSeq = false; });
+          if (validationErrorConfig && validationErrorSeq)
+          {
+            this.ID = v.ID;
+            this.SequenceValidationString = v.SequenceValidationString;
+            this.ConfigValidationString = v.ConfigValidationString;
+            return;
+          }
+        }
+      }
+
+      string aux = this.Xml;
+      this.Xml = this.XmlSeq;
+      this.XmlSeq = aux;
+      if (this.Xml != null && this.XmlSeq != null)
+      {
+        XmlSchemaSet schema;
+        foreach (Version v in Version.GetListOfVersions())
+        {
+          schema = new XmlSchemaSet();
+          schema.Add(null, v.ConfigValidationString);
+          XDocument document = XDocument.Load(this.Xml);
+          bool validationErrorConfig = true;
+          document.Validate(schema, (s, ex) => { validationErrorConfig = false; });
+          schema = new XmlSchemaSet();
+          schema.Add(null, v.SequenceValidationString);
+          document = XDocument.Load(this.XmlSeq);
+          bool validationErrorSeq = true;
+          document.Validate(schema, (s, ex) => { validationErrorSeq = false; });
+          if (validationErrorConfig && validationErrorSeq)
+          {
+            this.ID = v.ID;
+            this.SequenceValidationString = v.SequenceValidationString;
+            this.ConfigValidationString = v.ConfigValidationString;
+            return;
           }
         }
       }

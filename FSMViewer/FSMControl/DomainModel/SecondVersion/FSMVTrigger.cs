@@ -27,12 +27,40 @@ namespace FSMControl.DomainModel.SecondVersion
     }
 
     /// <summary>
+    /// Shoulds the serialize sequence identifier.
+    /// </summary>
+    /// <returns></returns>
+    public bool ShouldSerializeSequenceID()
+    {
+      if (string.IsNullOrEmpty(this.SequenceID))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    /// <summary>
     /// If the same content should be used for the Name and Sequence ID, consider using the CommonID property.
     /// </summary>
     public string CommonID
     {
       get;
       set;
+    }
+
+    /// <summary>
+    /// Shoulds the serialize common identifier.
+    /// </summary>
+    /// <returns></returns>
+    public bool ShouldSerializeCommonID()
+    {
+      if (string.IsNullOrEmpty(this.CommonID))
+      {
+        return false;
+      }
+
+      return true;
     }
 
     /// <summary>

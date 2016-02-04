@@ -19,11 +19,11 @@
     <Label Content="Target Vertex &#xD;&#xA;      Name:" Foreground="White" HorizontalAlignment="Left" Margin="10,65,0,0" Grid.Row="1" VerticalAlignment="Top" Width="115" Height="50" />
     <Button Content="Cancel" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="59" Click="Cancel" Height="22" Margin="24,129,0,0" Grid.Column="1" />
     <toolkit:AutoCompleteBox IsTextCompletionEnabled="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"
-                             ScrollViewer.VerticalScrollBarVisibility="Visible" Text="Search..." MouseEnter="autocompleteSource_MouseEnter" HorizontalAlignment="Right"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible" Text="Search..." MouseEnter="AutocompleteSource_MouseEnter" HorizontalAlignment="Right"
                              VerticalAlignment="Bottom" Margin="0,0,29,192" Name="autocompleteSource" Width="180" Grid.ColumnSpan="2"
                              MaxDropDownHeight="200" Grid.Row="1" />
     <toolkit:AutoCompleteBox IsTextCompletionEnabled="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"
-                             ScrollViewer.VerticalScrollBarVisibility="Visible" Text="Search..." MouseEnter="autocompleteTarget_MouseEnter" HorizontalAlignment="Right"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible" Text="Search..." MouseEnter="AutocompleteTarget_MouseEnter" HorizontalAlignment="Right"
                              VerticalAlignment="Bottom" Name="autocompleteTarget" Width="180" Grid.ColumnSpan="2"
                              MaxDropDownHeight="200" Grid.Row="1" Margin="0,0,29,141" />
   </Grid>

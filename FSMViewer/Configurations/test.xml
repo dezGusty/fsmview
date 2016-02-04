@@ -202,19 +202,15 @@
     </FSMTrigger>
     <FSMTrigger>
       <Name>FinishedSuccessfully</Name>
-      <SequenceID />
     </FSMTrigger>
     <FSMTrigger>
       <Name>FinishedWithAbort</Name>
-      <SequenceID />
     </FSMTrigger>
     <FSMTrigger>
       <Name>ErrorEncountered</Name>
-      <SequenceID />
     </FSMTrigger>
     <FSMTrigger>
       <Name>Reset</Name>
-      <SequenceID />
     </FSMTrigger>
   </ArrayOfFSMTrigger>
   <ArrayOfFSMState>
@@ -535,21 +531,6 @@
         </AllowedTrigger>
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedRemoveTempConfigDirOnDBServer</DefaultHandler>
-    </FSMState>
-    <FSMState>
-      <Name>db.generate_plant_topo_item</Name>
-      <ArrayOfAllowedTrigger>
-        <AllowedTrigger>
-          <StateAndTriggerName>db.put_plant_topo_files_to_repo</StateAndTriggerName>
-        </AllowedTrigger>
-        <AllowedTrigger>
-          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
-        </AllowedTrigger>
-        <AllowedTrigger>
-          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
-        </AllowedTrigger>
-      </ArrayOfAllowedTrigger>
-      <DefaultHandler>OnStartedDBGeneratePlantTopoItem</DefaultHandler>
     </FSMState>
     <FSMState>
       <Name>db.put_plant_topo_files_to_repo</Name>
@@ -1228,10 +1209,6 @@
       <Name>CallupImportingAsciiOnDbServer</Name>
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
-          <TriggerName>CallupLinkDpsToPlantTopo</TriggerName>
-          <StateName>CallupLinkingDpsToPlantTopo</StateName>
-        </AllowedTrigger>
-        <AllowedTrigger>
           <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
         </AllowedTrigger>
         <AllowedTrigger>
@@ -1242,21 +1219,6 @@
         </AllowedTrigger>
       </ArrayOfAllowedTrigger>
       <DefaultHandler>OnStartedCallupImportingAsciiOnDbServer</DefaultHandler>
-    </FSMState>
-    <FSMState>
-      <Name>CallupLinkingDpsToPlantTopo</Name>
-      <ArrayOfAllowedTrigger>
-        <AllowedTrigger>
-          <StateAndTriggerName>FinishedSuccessfully</StateAndTriggerName>
-        </AllowedTrigger>
-        <AllowedTrigger>
-          <StateAndTriggerName>FinishedWithAbort</StateAndTriggerName>
-        </AllowedTrigger>
-        <AllowedTrigger>
-          <StateAndTriggerName>ErrorEncountered</StateAndTriggerName>
-        </AllowedTrigger>
-      </ArrayOfAllowedTrigger>
-      <DefaultHandler>OnStartedCallupLinkingDpsToPlantTopo</DefaultHandler>
     </FSMState>
     <FSMState>
       <Name>db.checkout_config_dirs_parallel</Name>
@@ -1403,9 +1365,6 @@
       <ArrayOfAllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>db.generate_plant_topo_items_multiple</StateAndTriggerName>
-        </AllowedTrigger>
-        <AllowedTrigger>
-          <StateAndTriggerName>db.generate_plant_topo_item</StateAndTriggerName>
         </AllowedTrigger>
         <AllowedTrigger>
           <StateAndTriggerName>DelegatedExecution</StateAndTriggerName>

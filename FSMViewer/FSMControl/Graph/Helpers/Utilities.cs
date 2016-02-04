@@ -32,6 +32,20 @@ namespace FSMControl
       return null;
     }
 
+    public static string[] GetMultiplePaths(string title)
+    {
+      OpenFileDialog openFileDialog = new OpenFileDialog();
+      openFileDialog.Title = title;
+      openFileDialog.Multiselect = true;
+      bool? userClickedOK = openFileDialog.ShowDialog();
+      if (userClickedOK == true)
+      {
+        return openFileDialog.FileNames;
+      }
+
+      return null;
+    }
+
     public static string SavePath(string title)
     {
       SaveFileDialog save = new SaveFileDialog();

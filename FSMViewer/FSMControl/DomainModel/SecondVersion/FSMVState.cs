@@ -32,6 +32,20 @@ namespace FSMControl.DomainModel.SecondVersion
     }
 
     /// <summary>
+    /// Shoulds the serialize reentry using trigger.
+    /// </summary>
+    /// <returns></returns>
+    public bool ShouldSerializeReentryUsingTrigger()
+    {
+      if (string.IsNullOrEmpty(this.ReentryUsingTrigger))
+      {
+        return false;
+      }
+
+      return true;
+    }
+
+    /// <summary>
     /// Gets or sets the array of allowed trigger.
     /// </summary>
     /// <value>
@@ -53,6 +67,20 @@ namespace FSMControl.DomainModel.SecondVersion
     {
       get;
       set;
+    }
+
+    /// <summary>
+    /// Shoulds the serialize default handler.
+    /// </summary>
+    /// <returns></returns>
+    public bool ShouldSerializeDefaultHandler()
+    {
+      if (string.IsNullOrEmpty(this.DefaultHandler))
+      {
+        return false;
+      }
+
+      return true;
     }
 
     ////returneaza numele starii in care duce trigerul cu numele trigName si stare curenta\

@@ -145,10 +145,12 @@
     <StackPanel>
       <Menu>
         <MenuItem Header="Machine" Height="35" Width="145" FontSize="18" HorizontalAlignment="Center">
+          <MenuItem Name="loadMultiple" Header="Load both files" Click="LoadMultiple_Click"/>
           <MenuItem Name="load" Header="Load configuration" Click="LoadConfig_Click" />
           <MenuItem Name="represent" Header="Represent this machine" Click="Represent_machine" />
           <MenuItem Name="view" Header="View machine configuration"  Click="View_Configuration" />
           <MenuItem Name="save" Header="Save configuration" Click="SaveConfig_Click" />
+          <MenuItem Name="miSave" Header="Save without renaming files" Click="MiSave_Click" />
           <MenuItem Name="close" Header="Close" Click="Close_Click" />
         </MenuItem>
         <MenuItem Header="Graph options" Height="35" Width="168" FontSize="18">
@@ -162,14 +164,14 @@
         </MenuItem>
 
         <StackPanel>
-          <ComboBox ItemsSource="{Binding LayoutAlgorithmTypes}"
+          <ComboBox Name="cbLayout" ItemsSource="{Binding LayoutAlgorithmTypes}"
                           SelectedItem="{Binding Path=LayoutAlgorithmType, Mode=TwoWay}"
                           Width="150" Height="25" Margin="5" />
         </StackPanel>
         <ComboBox  Name="cmbBox" ItemsSource="{Binding Sequences}" DisplayMemberPath="Name"
                           Width="150" Height="25" Margin="5" SelectionChanged="ComboBox_SelectionChanged" />
         <MenuItem Header="Help" Height="35" Width="145" FontSize="18">
-          <MenuItem Header="Version" Click="Show_Version" />
+          <MenuItem Name="miVersion" Header="Version" Click="Show_Version" />
           <MenuItem Header="About" Click="About_Click" />
         </MenuItem>
       </Menu>
@@ -182,7 +184,7 @@
 						HighlightAlgorithmType="Simple" />
     </zoom:ZoomControl>
 
-    <ScrollViewer Grid.Row="2" Grid.Column="0" Margin="0,10,0,0">
+    <ScrollViewer Name="scrConsole" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0">
       <TextBlock Name="console"  Margin="35,0,0,0" Text="{Binding Message,Mode=TwoWay}" HorizontalAlignment="Left" FontFamily="Plantagenet Cherokee" FontSize="14" />
     </ScrollViewer>
   </Grid>
