@@ -52,9 +52,9 @@ namespace FSMControl.DomainModel.FirstVersion
     /// </summary>
     public override void SetGraphNodes()
     {
-      foreach (FSMState item in this.Configuration.ArrayOfFSMState)
+      foreach (FSMState state in this.Configuration.ArrayOfFSMState)
       {
-        CustomVertex vertex = new CustomVertex(item.Name, Colors.Wheat);
+        CustomVertex vertex = new CustomVertex(state.Name, Colors.Wheat);
         this.MyGraph.AddVertex(vertex);
       }
 
@@ -182,9 +182,9 @@ namespace FSMControl.DomainModel.FirstVersion
       this.MyGraph.ResetToDefault();
       if (this.Sequences.ArrayOfSequence.Count > 0)
       {
-        foreach (FSMSequence s in this.Sequences.ArrayOfSequence)
+        foreach (FSMSequence sequence in this.Sequences.ArrayOfSequence)
         {
-          this.RepresentSequence(color, s, false);
+          this.RepresentSequence(color, sequence, false);
         }
       }
     }
@@ -261,7 +261,6 @@ namespace FSMControl.DomainModel.FirstVersion
       }
 
       this.Configuration.AddNewTrigger(trig);
-      this.MyGraph.Message += string.Format("Edge from {0} to {1} added successfully!", vertexFrom, vertexTo);
     }
 
     public override string DeleteEdge(string sourceText, string targetText)
