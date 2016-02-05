@@ -8,6 +8,7 @@
              xmlns:local="clr-namespace:FSMControl"
              xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
              d:DesignHeight="780" d:DesignWidth="1350"
+             Background="#3D5C5C"
              Name="fsmWindow">
   <UserControl.Resources>
 
@@ -139,7 +140,7 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
-      <RowDefinition Height="100" />
+      <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
     <StackPanel>
@@ -151,6 +152,8 @@
           <MenuItem Name="view" Header="View machine configuration"  Click="View_Configuration" />
           <MenuItem Name="save" Header="Save configuration" Click="SaveConfig_Click" />
           <MenuItem Name="miSave" Header="Save without renaming files" Click="MiSave_Click" />
+          <MenuItem IsCheckable="True" IsChecked="False" Name="miShowLogger" Header="Show Logger" Click="miShowLogger_Click"/>
+          <MenuItem Name="miVersion" Header="Version" Click="Show_Version" />
           <MenuItem Name="close" Header="Close" Click="Close_Click" />
         </MenuItem>
         <MenuItem Header="Graph options" Height="35" Width="168" FontSize="18">
@@ -171,12 +174,11 @@
         <ComboBox  Name="cmbBox" ItemsSource="{Binding Sequences}" DisplayMemberPath="Name"
                           Width="150" Height="25" Margin="5" SelectionChanged="ComboBox_SelectionChanged" />
         <MenuItem Header="Help" Height="35" Width="145" FontSize="18">
-          <MenuItem Name="miVersion" Header="Version" Click="Show_Version" />
           <MenuItem Header="About" Click="About_Click" />
         </MenuItem>
       </Menu>
     </StackPanel>
-    <zoom:ZoomControl  Grid.Row="1"  Zoom="0.5" ZoomBoxOpacity="0.5" Background="#3D5C5C" Grid.Column="0" Margin="0,10,0,90" Grid.RowSpan="2">
+    <zoom:ZoomControl Name="zoom"  Grid.Row="1"  Zoom="0.5" ZoomBoxOpacity="0.5" Background="#3D5C5C" Grid.Column="0">
       <local:CustomGraphLayout x:Name="graphLayout" Margin="10"
 						Graph="{Binding}"
 						LayoutAlgorithmType="{Binding Path=LayoutAlgorithmType}"
@@ -184,8 +186,8 @@
 						HighlightAlgorithmType="Simple" />
     </zoom:ZoomControl>
 
-    <ScrollViewer Name="scrConsole" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0">
-      <TextBlock Name="console"  Margin="35,0,0,0" Text="{Binding Message,Mode=TwoWay}" HorizontalAlignment="Left" FontFamily="Plantagenet Cherokee" FontSize="14" />
+    <ScrollViewer Name="scrConsole" Grid.Row="2" Grid.Column="0" Height="0">
+      <TextBlock Foreground="White" Name="console"  Margin="35,0,0,0" Text="{Binding Message,Mode=TwoWay}" HorizontalAlignment="Left" FontFamily="Calibri" FontSize="16" />
     </ScrollViewer>
   </Grid>
 </UserControl>

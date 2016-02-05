@@ -36,8 +36,6 @@ namespace FSMControl
     private Version v = new Version();
     private CustomVertex selectedVertex = new CustomVertex();
     private CustomEdge selectedEdge = new CustomEdge(null, null);
-    private string xml = string.Empty;
-    private string xmlSeq = string.Empty;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FSMView"/> class.
@@ -49,6 +47,7 @@ namespace FSMControl
       this.cmbBox.IsEnabled = false;
       this.cbLayout.IsEnabled = false;
       this.miVersion.IsEnabled = false;
+      this.miShowLogger.IsEnabled = false;
       this.currentOptionGraph = GraphOptions.Uninitialized;
       this.currentOption = MachineOptions.Uninitialized;
       this.EnableButtonStates();
@@ -89,8 +88,6 @@ namespace FSMControl
     {
       Version auxVersion = new Version(); ////make a new version
       auxVersion.GetVersion();
-      this.xml = auxVersion.Xml;
-      this.xmlSeq = auxVersion.XmlSeq;
       if (auxVersion.ID != 0)
       {
         this.v = auxVersion;
@@ -116,6 +113,7 @@ namespace FSMControl
         this.cmbBox.IsEnabled = true;
         this.cbLayout.IsEnabled = true;
         this.miVersion.IsEnabled = true;
+        this.miShowLogger.IsEnabled = true;
       }
       else
       {
@@ -132,8 +130,6 @@ namespace FSMControl
     {
       Version auxVersion = new Version(); ////make a new version
       auxVersion.GetVersionMultiple();
-      this.xml = auxVersion.Xml;
-      this.xmlSeq = auxVersion.XmlSeq;
       if (auxVersion.ID != 0)
       {
         this.v = auxVersion;
@@ -158,7 +154,8 @@ namespace FSMControl
         scrConsole.ScrollToEnd();
         this.cmbBox.IsEnabled = true;
         this.cbLayout.IsEnabled = true;
-        this.miVersion.IsEnabled = true;
+        this.miVersion.IsEnabled = true; 
+        this.miShowLogger.IsEnabled = true;
       }
       else
       {
@@ -176,14 +173,7 @@ namespace FSMControl
     /// </summary>
     private void Show_Version(object sender, RoutedEventArgs e)
     {
-      if (this.v.ID == 0)
-      {
-        MessageBox.Show("There is no version for this type of xml!");
-      }
-      else
-      {
-        MessageBox.Show("This is version " + this.v.ID.ToString() + " of application!");
-      }
+      MessageBox.Show("This is configuration: " + this.v.ID.ToString() + "\n" + this.v.Xml);
     }
 
     /// <summary>
@@ -558,13 +548,13 @@ namespace FSMControl
       {
         if (this.v.ID == 1)
         {
-          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)this.machinee).Configuration, this.xml);
-          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)this.machinee).Sequences, this.xmlSeq);
+          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeConfig(((FirstStateMachine)this.machinee).Configuration, this.v.Xml);
+          Serializer<FSMConfig, FSMControl.DomainModel.FirstVersion.FSMSequenceConfig>.SerializeSequence(((FirstStateMachine)this.machinee).Sequences, this.v.XmlSeq);
         }
         else
         {
-          Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)this.machinee).Configuration, this.xml);
-          Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)this.machinee).Sequences, this.xmlSeq);
+          Serializer<FSMVConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeConfig(((SecondStateMachine)this.machinee).Configuration, this.v.Xml);
+          Serializer<FSMConfig, FSMControl.DomainModel.SecondVersion.FSMSequenceConfig>.SerializeSequence(((SecondStateMachine)this.machinee).Sequences, this.v.XmlSeq);
         }
 
         console.Text += "Configuration succesfully saved!\r\n";
@@ -589,6 +579,24 @@ namespace FSMControl
       this.currentOptionGraph = GraphOptions.Initialized;
       this.EnableButtonStatesForGraph();
       this.OpenMachine();
+    }
+
+    private void miShowLogger_Click(object sender, RoutedEventArgs e)
+    {
+      if (miShowLogger.IsChecked == true)
+      {
+        scrConsole.Height = 100;
+        this.console.Text += "Logger is active\n";
+      }
+      else
+      {
+        if (miShowLogger.IsChecked == false)
+        {
+          scrConsole.Height = 0;
+          this.console.Text += "\nLogger is disabled\n";
+        }
+      }
+
     }
   }
 }
