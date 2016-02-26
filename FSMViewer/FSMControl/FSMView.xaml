@@ -69,11 +69,11 @@
                 <ContentPresenter Content="{TemplateBinding Vertex}">
                   <ContentPresenter.ContextMenu>
                     <ContextMenu Style="{StaticResource ContextMenuStyle}">
-                      <MenuItem x:Name="MenuItem1" Header="Delete" Click="Delete_This_Vertex">
+                      <MenuItem Header="Delete" Click="Delete_This_Vertex">
                       </MenuItem>
-                      <MenuItem x:Name="MenuItem2" Header="Add edge to" Click="Add_Edge_To">
+                      <MenuItem Header="Add edge to" Click="Add_Edge_To">
                       </MenuItem>
-                      <MenuItem x:Name="MenuItem3" Header="Delete edge to itself" Click="Delete_My_Edge">
+                      <MenuItem Header="Delete edge to itself" Click="Delete_My_Edge">
                       </MenuItem>
                     </ContextMenu>
                   </ContentPresenter.ContextMenu>
@@ -146,24 +146,24 @@
     <StackPanel>
       <Menu>
         <MenuItem Header="Machine" Height="35" Width="145" FontSize="18" HorizontalAlignment="Center">
-          <MenuItem Name="loadMultiple" Header="Load both files" Click="LoadMultiple_Click"/>
-          <MenuItem Name="load" Header="Load configuration" Click="LoadConfig_Click" />
-          <MenuItem Name="represent" Header="Represent this machine" Click="Represent_machine" />
-          <MenuItem Name="view" Header="View machine configuration"  Click="View_Configuration" />
-          <MenuItem Name="save" Header="Save configuration" Click="SaveConfig_Click" />
-          <MenuItem Name="miSave" Header="Save without renaming files" Click="MiSave_Click" />
-          <MenuItem IsCheckable="True" IsChecked="False" Name="miShowLogger" Header="Show Logger" Click="miShowLogger_Click"/>
+          <MenuItem Header="Load both files" Click="LoadMultiple_Click"/>
+          <MenuItem Header="Load configuration" Click="LoadConfig_Click" />
+          <MenuItem Name="miRepresentMachine" Header="Represent this machine" Click="Represent_machine" />
+          <MenuItem Name="miViewMachineCfg" Header="View machine configuration"  Click="View_Configuration" />
+          <MenuItem Name="miSaveCfg" Header="Save configuration" Click="SaveConfig_Click" />
+          <MenuItem Name="miSaveCfgW" Header="Save without renaming files" Click="MiSave_Click" />
+          <MenuItem Name="miShowLogger" Header="Show Logger" Click="MiShowLogger_Click" IsCheckable="True" IsChecked="False" />
           <MenuItem Name="miVersion" Header="Version" Click="Show_Version" />
-          <MenuItem Name="close" Header="Close" Click="Close_Click" />
+          <MenuItem Header="Close" Click="Close_Click" />
         </MenuItem>
         <MenuItem Header="Graph options" Height="35" Width="168" FontSize="18">
-          <MenuItem Name="saveGraph" Header="Save graph"  Click="Save" />
-          <MenuItem Name="openGraph" Header="Open graph"  Click="Open" />
-          <MenuItem Name="addVertex" Header="Add a vertex" Click="AddVertex_Click" />
-          <MenuItem Name="addEdge" Header="Add an edge" Click="AddEdge_Click" />
-          <MenuItem Name="deleteVertex" Header="Delete a vertex" Click="DeleteVertex_Click" />
-          <MenuItem Name="deleteEdge" Header="Delete an edge" Click="DeleteEdge_Click" />
-          <MenuItem Name="generateNewSequence" Header="Generate new sequence" Click="Generate_Sequence_Click" />
+          <MenuItem Name="miSaveGraphLayout" Header="Save graph layout"  Click="Save" />
+          <MenuItem Name="miOpenGraphLayout" Header="Open graph layout"  Click="Open" />
+          <MenuItem Name="miAddVertex" Header="Add a vertex" Click="AddVertex_Click" />
+          <MenuItem Name="miAddEdge" Header="Add an edge" Click="AddEdge_Click" />
+          <MenuItem Name="miDeleteVertex" Header="Delete a vertex" Click="DeleteVertex_Click" />
+          <MenuItem Name="miDeleteEdge" Header="Delete an edge" Click="DeleteEdge_Click" />
+          <MenuItem Name="miGenerateNewSequence" Header="Generate new sequence" Click="Generate_Sequence_Click" />
         </MenuItem>
 
         <StackPanel>
@@ -171,7 +171,7 @@
                           SelectedItem="{Binding Path=LayoutAlgorithmType, Mode=TwoWay}"
                           Width="150" Height="25" Margin="5" />
         </StackPanel>
-        <ComboBox  Name="cmbBox" ItemsSource="{Binding Sequences}" DisplayMemberPath="Name"
+        <ComboBox  Name="cbSequences" ItemsSource="{Binding Sequences}" DisplayMemberPath="Name"
                           Width="150" Height="25" Margin="5" SelectionChanged="ComboBox_SelectionChanged" />
         <MenuItem Header="Help" Height="35" Width="145" FontSize="18">
           <MenuItem Header="About" Click="About_Click" />

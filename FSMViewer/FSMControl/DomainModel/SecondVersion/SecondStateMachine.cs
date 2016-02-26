@@ -256,7 +256,6 @@ namespace FSMControl.DomainModel.SecondVersion
       }
 
       this.Configuration.AddNewTrigger(trig);
-      ////this.MyGraph.Message += string.Format("Edge from {0} to {1} added successfully!", vertexFrom, vertexTo);
     }
 
     public override string DeleteEdge(string sourceText, string targetText)
