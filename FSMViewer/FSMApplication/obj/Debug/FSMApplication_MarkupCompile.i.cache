@@ -4,21 +4,16 @@
 winexe
 C#
 .cs
-D:\Siemens\fsmview\FSMViewer\FSMApplication\obj\Debug\
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\obj\Debug\
 FSMApplication
 none
 false
 DEBUG;TRACE
-D:\Siemens\fsmview\FSMViewer\FSMApplication\App.xaml
+D:\[Practica]\fsmview\FSMViewer\FSMApplication\App.xaml
 11151548125
 
-<<<<<<< HEAD
 9-1973000294
-20-2057106669
-=======
-9381161250
-20639685626
->>>>>>> origin/master
+20-376152485
 MainWindow.xaml;
 
 False

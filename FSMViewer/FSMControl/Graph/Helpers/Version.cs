@@ -55,14 +55,14 @@ namespace FSMControl
       List<Version> list = new List<Version>();
       Version versionA = new Version();
       versionA.ID = 1;
-      versionA.ConfigValidationString = @"..\..\..\Schemas\ConfigVersion1.xsd";
-      versionA.SequenceValidationString = @"..\..\..\Schemas\SequenceVersion1.xsd";
+      versionA.ConfigValidationString = @"Schemas\ConfigVersion1.xsd";
+      versionA.SequenceValidationString = @"Schemas\SequenceVersion1.xsd";
       list.Add(versionA);
 
       Version versionB = new Version();
       versionB.ID = 2;
-      versionB.ConfigValidationString = @"..\..\..\Schemas\ConfigVersion2.xsd";
-      versionB.SequenceValidationString = @"..\..\..\Schemas\SequenceVersion2.xsd";
+      versionB.ConfigValidationString = @"Schemas\ConfigVersion2.xsd";
+      versionB.SequenceValidationString = @"Schemas\SequenceVersion2.xsd";
       list.Add(versionB);
       return list;
     }

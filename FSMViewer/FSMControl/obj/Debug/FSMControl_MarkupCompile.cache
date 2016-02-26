@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\Siemens\fsmview\FSMViewer\FSMControl\obj\Debug\
+D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Debug\
 FSMControl
 none
 false
@@ -13,11 +13,7 @@ DEBUG;TRACE
 7-1555319983
 
 42-339449128
-<<<<<<< HEAD
-221349697014
-=======
-22292705643
->>>>>>> origin/master
+221920957390
 FSMView.xaml;Windows\AddEdgeToWindow.xaml;Windows\AddEdgeWindow.xaml;Windows\AddVertexWindow.xaml;Windows\DeleteEdgeWindow.xaml;Windows\DeleteVertexWindow.xaml;Windows\GenerateSequenceWindow.xaml;
 
 False

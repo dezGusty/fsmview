@@ -1,7 +1,3 @@
-C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\FSMView.g.cs
-C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\GeneratedInternalTypeHelper.g.cs
-C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\FSMControl_MarkupCompile.cache
-C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\FSMControl_MarkupCompile.lref
 D:\[Practica]\fsmview\FSMViewer\FSMControl\bin\Release\FSMControl.dll
 D:\[Practica]\fsmview\FSMViewer\FSMControl\bin\Release\FSMControl.pdb
 D:\[Practica]\fsmview\FSMViewer\FSMControl\bin\Release\GraphSharp.Controls.dll
