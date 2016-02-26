@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\paula.trifanov\Desktop\FSMControl\FSMControl\obj\Release\
+D:\[Practica]\fsmview\FSMViewer\FSMControl\obj\Release\
 FSMControl
 none
 false
 TRACE
 
-1-433257764
+7-1555319983
 
-81721297448
-19-728665020
-FSMView.xaml;
+42-339449128
+221920957390
+FSMView.xaml;Windows\AddEdgeToWindow.xaml;Windows\AddEdgeWindow.xaml;Windows\AddVertexWindow.xaml;Windows\DeleteEdgeWindow.xaml;Windows\DeleteVertexWindow.xaml;Windows\GenerateSequenceWindow.xaml;
 
-True
+False
 

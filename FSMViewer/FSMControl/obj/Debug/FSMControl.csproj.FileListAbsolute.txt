@@ -246,3 +246,6 @@ C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Deb
 C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.csproj.GenerateResource.Cache
 C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.dll
 C:\Users\Mircea.Solovastru\Documents\GitHub\fsmview\FSMViewer\FSMControl\obj\Debug\FSMControl.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMControl\bin\Debug\System.Windows.Controls.Input.Toolkit.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMControl\bin\Debug\System.Windows.Controls.Layout.Toolkit.pdb
+D:\[Practica]\fsmview\FSMViewer\FSMControl\bin\Debug\WPFToolkit.pdb
