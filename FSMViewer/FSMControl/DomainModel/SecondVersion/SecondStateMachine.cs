@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 
 namespace FSMControl.DomainModel.SecondVersion
@@ -343,15 +345,15 @@ namespace FSMControl.DomainModel.SecondVersion
     public FSMSequence AddNewStep(FSMSequence sequence, string steppTrigger)
     {
       FSMControl.DomainModel.SecondVersion.FSMStep step = new FSMControl.DomainModel.SecondVersion.FSMStep();
-      FSMVTrigger triig = new FSMVTrigger();
-      triig = this.Configuration.FoundStringTriggerList(steppTrigger);
-      if (string.IsNullOrEmpty(triig.SequenceID))
+      FSMVTrigger trig = new FSMVTrigger();
+      trig = this.Configuration.FoundStringTriggerList(steppTrigger);
+      if (string.IsNullOrEmpty(trig.SequenceID))
       {
-        step.Name = triig.CommonID;
+        step.Name = trig.CommonID;
       }
       else
       {
-        step.Name = triig.SequenceID;
+        step.Name = trig.SequenceID;
       }
 
       step.Weight = "2";
@@ -362,6 +364,58 @@ namespace FSMControl.DomainModel.SecondVersion
       }
 
       return sequence;
+    }
+
+    public override string HideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
+    {
+      this.MyGraph.GetVertexByName(vertex.Text).BackgroundColor = Colors.Red;
+      IEnumerable<CustomEdge> collectionIn = this.MyGraph.InEdges(vertex);
+      IEnumerable<CustomEdge> collectionOut = this.MyGraph.OutEdges(vertex);
+      foreach (var item in collectionIn)
+      {
+        CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+        edgesIn.Add(edge);
+      }
+
+      foreach (var item in collectionOut)
+      {
+        CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+        edgesOut.Add(edge);
+      }
+
+      this.MyGraph.ClearEdges(vertex);
+      return "Edges hidden - Vertex color changed";
+    }
+
+    public override string UnhideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
+    {
+      if (vertex.BackgroundColor == Colors.Red)
+      {
+        this.MyGraph.GetVertexByName(vertex.Text).BackgroundColor = Colors.Wheat;
+        foreach (var item in edgesIn)
+        {
+          if (string.Compare(item.Target.Text, vertex.Text) == 0)
+          {
+            CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+            this.MyGraph.AddEdge(edge);
+          }
+        }
+
+        foreach (var item in edgesOut)
+        {
+          if (string.Compare(item.Source.Text, vertex.Text) == 0)
+          {
+            CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+            this.MyGraph.AddEdge(edge);
+          }
+        }
+
+        return "Edges restored - Vertex color changed";
+      }
+      else
+      {
+        return "Nothing to unhide!";
+      }
     }
   }
 }

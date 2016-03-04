@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace FSMControl
 {
@@ -55,6 +56,16 @@ namespace FSMControl
     }
 
     public virtual string DeleteEdge(string sourceText, string targetText)
+    {
+      return string.Empty;
+    }
+
+    public virtual string HideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
+    {
+      return string.Empty;
+    }
+
+    public virtual string UnhideEdges(CustomVertex vertex, List<CustomEdge> edgeIn, List<CustomEdge> edgesOut)
     {
       return string.Empty;
     }

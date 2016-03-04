@@ -122,10 +122,7 @@ namespace FSMControl
             this.Vertices.Where(v => v.CompareTo(from)).FirstOrDefault().Highlight = true;
             this.NotifyPropertyChanged("CustomVertex");
           }
-          //else
-          // {
           this.AddEdge(newEdge);
-          // }
 
           this.NotifyPropertyChanged("Graph");
           this.Message += "Edge " + newEdge.Source.Text + "--> " + newEdge.Target.Text + " added successfully! \r\n";

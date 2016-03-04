@@ -69,12 +69,12 @@
                 <ContentPresenter Content="{TemplateBinding Vertex}">
                   <ContentPresenter.ContextMenu>
                     <ContextMenu Style="{StaticResource ContextMenuStyle}">
-                      <MenuItem Header="Delete" Click="Delete_This_Vertex">
-                      </MenuItem>
-                      <MenuItem Header="Add edge to" Click="Add_Edge_To">
-                      </MenuItem>
-                      <MenuItem Header="Delete edge to itself" Click="Delete_My_Edge">
-                      </MenuItem>
+                      <MenuItem Header="Delete" Click="Delete_This_Vertex"/>
+                      <MenuItem Header="Add edge to" Click="Add_Edge_To"/>
+                      <MenuItem Header="Delete edge to itself" Click="Delete_My_Edge"/>
+                      <MenuItem Header="Hide edges for this vertex" Click="Hide_Click"/>
+                      <MenuItem Header="Unhide edges for this vertex" Click="Unhide_Click"/>
+                      <MenuItem Header="Nr. of edges" Click="NrEdges_Click"/>
                     </ContextMenu>
                   </ContentPresenter.ContextMenu>
                 </ContentPresenter>

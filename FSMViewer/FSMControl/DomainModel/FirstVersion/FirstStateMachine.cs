@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace FSMControl.DomainModel.FirstVersion
@@ -300,14 +304,14 @@ namespace FSMControl.DomainModel.FirstVersion
             }
           }
         }
-        
+
         this.MyGraph.RemoveEdgeIf(v => v.Source.Text.Equals(source.Text) && v.Target.Text.Equals(target.Text));
         return string.Format("Successfully deleted an edge between {0} and {1}", source.Text, target.Text);
       }
 
       return string.Format("This edge doesn't exist!");
     }
-    
+
     public override string DeleteVertex(string text)
     {
       if (string.IsNullOrEmpty(text))
@@ -367,6 +371,58 @@ namespace FSMControl.DomainModel.FirstVersion
       }
 
       return sequence;
+    }
+
+    public override string HideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
+    {
+      this.MyGraph.GetVertexByName(vertex.Text).BackgroundColor = Colors.Red;
+      IEnumerable<CustomEdge> collectionIn = this.MyGraph.InEdges(vertex);
+      IEnumerable<CustomEdge> collectionOut = this.MyGraph.OutEdges(vertex);
+      foreach (var item in collectionIn)
+      {
+        CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+        edgesIn.Add(edge);
+      }
+
+      foreach (var item in collectionOut)
+      {
+        CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+        edgesOut.Add(edge);
+      }
+
+      this.MyGraph.ClearEdges(vertex);
+      return "Edges hidden - Vertex color changed";
+    }
+
+    public override string UnhideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
+    {
+      if (vertex.BackgroundColor == Colors.Red)
+      {
+        this.MyGraph.GetVertexByName(vertex.Text).BackgroundColor = Colors.Wheat;
+        foreach (var item in edgesIn)
+        {
+          if (string.Compare(item.Target.Text, vertex.Text) == 0)
+          {
+            CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+            this.MyGraph.AddEdge(edge);
+          }
+        }
+
+        foreach (var item in edgesOut)
+        {
+          if (string.Compare(item.Source.Text, vertex.Text) == 0)
+          {
+            CustomEdge edge = new CustomEdge(item.Trigger, item.Source, item.Target);
+            this.MyGraph.AddEdge(edge);
+          }
+        }
+
+        return "Edges restored - Vertex color changed";
+      }
+      else
+      {
+        return "Nothing to unhide!";
+      }
     }
   }
 }
