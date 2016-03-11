@@ -49,7 +49,7 @@ namespace FSMControl.DomainModel.SecondVersion
         {
             foreach (FSMVState item in this.Configuration.ArrayOfFSMVState)
             {
-                CustomVertex vertex = new CustomVertex(item.Name, Colors.Wheat);
+                CustomVertex vertex = new CustomVertex(item.Name, Colors.Wheat, true);
                 this.MyGraph.AddVertex(vertex);
             }
 
@@ -201,7 +201,7 @@ namespace FSMControl.DomainModel.SecondVersion
                 }
                 else
                 {
-                    CustomVertex vertex = new CustomVertex(stateName, Colors.Wheat);
+                    CustomVertex vertex = new CustomVertex(stateName, Colors.Wheat, true);
                     FSMVState state = new FSMVState();
                     state.Name = stateName;
                     state.DefaultHandler = stateDefaultHandler;

@@ -58,7 +58,7 @@ namespace FSMControl.DomainModel.FirstVersion
         {
             foreach (FSMState state in this.Configuration.ArrayOfFSMState)
             {
-                CustomVertex vertex = new CustomVertex(state.Name, Colors.Wheat);
+                CustomVertex vertex = new CustomVertex(state.Name, Colors.Wheat, true);
                 this.MyGraph.AddVertex(vertex);
             }
 
@@ -210,7 +210,7 @@ namespace FSMControl.DomainModel.FirstVersion
                 }
                 else
                 {
-                    CustomVertex vertex = new CustomVertex(stateName, Colors.Wheat);
+                    CustomVertex vertex = new CustomVertex(stateName, Colors.Wheat, true);
                     FSMState state = new FSMState();
                     state.Name = stateName;
                     state.DefaultHandler = stateDefaultHandler;
@@ -375,9 +375,10 @@ namespace FSMControl.DomainModel.FirstVersion
 
         public override void HideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
         {
-            if (vertex.BackgroundColor == Colors.Wheat)
+            if (vertex.BackgroundColor == Colors.Wheat || vertex.Display == true)
             {
                 this.MyGraph.GetVertexByName(vertex.Text).BackgroundColor = Colors.Red;
+                this.MyGraph.GetVertexByName(vertex.Text).Display = false;
                 IEnumerable<CustomEdge> collectionIn = this.MyGraph.InEdges(vertex);
                 IEnumerable<CustomEdge> collectionOut = this.MyGraph.OutEdges(vertex);
                 foreach (var item in collectionIn)
@@ -403,9 +404,10 @@ namespace FSMControl.DomainModel.FirstVersion
 
         public override void UnhideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
         {
-            if (vertex.BackgroundColor == Colors.Red)
+            if (vertex.BackgroundColor == Colors.Red || vertex.Display == false)
             {
                 this.MyGraph.GetVertexByName(vertex.Text).BackgroundColor = Colors.Wheat;
+                this.MyGraph.GetVertexByName(vertex.Text).Display = true;
                 for (int i = 0; i < edgesIn.Count; i++)
                 {
                     if (string.Compare(edgesIn[i].Target.Text, vertex.Text) == 0 || string.Compare(edgesIn[i].Trigger, vertex.Text) == 0)
