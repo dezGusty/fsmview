@@ -620,11 +620,11 @@ namespace FSMControl
         {
           if (this.machine is FirstStateMachine)
           {
-            MessageBox.Show(((FirstStateMachine)this.machine).HideEdges(this.selectedVertex, this.edgesIn, this.edgesOut));
+            ((FirstStateMachine)this.machine).HideEdges(this.selectedVertex, this.edgesIn, this.edgesOut);
           }
           else
           {
-            MessageBox.Show(((SecondStateMachine)this.machine).HideEdges(this.selectedVertex, this.edgesIn, this.edgesOut));
+            ((SecondStateMachine)this.machine).HideEdges(this.selectedVertex, this.edgesIn, this.edgesOut);
           }
 
           this.DataContext = this.machine.MyGraph;
@@ -640,11 +640,11 @@ namespace FSMControl
         {
           if (this.machine is FirstStateMachine)
           {
-            MessageBox.Show(((FirstStateMachine)this.machine).UnhideEdges(this.selectedVertex, this.edgesIn, this.edgesOut));
+            ((FirstStateMachine)this.machine).UnhideEdges(this.selectedVertex, this.edgesIn, this.edgesOut);
           }
           else
           {
-            MessageBox.Show(((SecondStateMachine)this.machine).UnhideEdges(this.selectedVertex, this.edgesIn, this.edgesOut));
+            ((SecondStateMachine)this.machine).UnhideEdges(this.selectedVertex, this.edgesIn, this.edgesOut);
           }
 
           this.DataContext = this.machine.MyGraph;
@@ -671,7 +671,7 @@ namespace FSMControl
         j++;
       }
 
-      MessageBox.Show("In: " + i.ToString() + "\nOut: " + j.ToString());
+      MessageBox.Show("In: " + i.ToString() + "\nOut: " + j.ToString(), "Number of edges");
     }
   }
 }

@@ -60,14 +60,12 @@ namespace FSMControl
       return string.Empty;
     }
 
-    public virtual string HideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
+    public virtual void HideEdges(CustomVertex vertex, List<CustomEdge> edgesIn, List<CustomEdge> edgesOut)
     {
-      return string.Empty;
     }
 
-    public virtual string UnhideEdges(CustomVertex vertex, List<CustomEdge> edgeIn, List<CustomEdge> edgesOut)
-    {
-      return string.Empty;
+    public virtual void UnhideEdges(CustomVertex vertex, List<CustomEdge> edgeIn, List<CustomEdge> edgesOut)
+    { 
     }
   }
 }
